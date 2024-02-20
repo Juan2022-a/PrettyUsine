@@ -3,25 +3,133 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Pretty usine</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
     
-    <h1>hola</h1>
-    <div class="container text-center">
-        <div class="row align-items-center">
-          <div class="col">
-            One of three columns
-          </div>
-          <div class="col">
-            One of three columns
-          </div>
-          <div class="col">
-            One of three columns
-          </div>
+    <!-- Contenido principal del documento -->
+    <main class="container">
+        <!-- Título del contenido principal -->
+        <h3 id="mainTitle">Administrar productos</h3>
+        <div class="row">
+            <!-- Formulario de búsqueda -->
+            <form class="col-sm-12 col-md-6" id="searchForm">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                            <i class="bi bi-x-square-fill"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="col-sm-12 col-md-6 text-end">
+                <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
+                <button type="button" class="btn btn-primary" onclick="openCreate()">
+                    <i class="bi bi-plus-square-fill"></i>
+                </button>
+                <!-- Botón para abrir un reporte en formato PDF -->
+                <button type="button" class="btn btn-warning" onclick="openReport()">
+                    <i class="bi bi-filetype-pdf"></i>
+                </button>
+            </div>
         </div>
-      </div>
+
+        <!-- Tabla para mostrar los registros existentes -->
+        <table class="table table-hover">
+            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+            <thead>
+                <tr>
+                    <td colspan="6" id="rowsFound"></td>
+                </tr>
+                <tr>
+                    <th>IMAGEN</th>
+                    <th>NOMBRE</th>
+                    <th>PRECIO (US$)</th>
+                    <th>DESCRIPCION</th>
+                    <th>CATEGORÍA</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+            <tbody id="tableBody"></tbody>
+        </table>
+
+        <!-- Componente Modal para guardar un registro -->
+        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Formulario para crear o actualizar un registro -->
+                    <form id="saveForm">
+                        <div class="modal-body row g-3">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="hidden" id="idProducto" name="idProducto">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="nombreProducto" class="form-label">Nombre</label>
+                                <input id="nombreProducto" type="text" name="nombreProducto" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="descripcionProducto" class="form-label">Descripción</label>
+                                <input id="descripcionProducto" type="text" name="descripcionProducto"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="precioProducto" class="form-label">Precio (US$)</label>
+                                <input id="precioProducto" type="number" name="precioProducto" min="0.01" step="0.01"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="existenciasProducto" class="form-label">Existencias</label>
+                                <input id="existenciasProducto" type="number" name="existenciasProducto" min="1"
+                                    step="1" class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="categoriaProducto" class="form-label">Categoría</label>
+                                <select id="categoriaProducto" name="categoriaProducto" class="form-select" required>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="imagenProducto" class="form-label">Imagen</label>
+                                <input id="imagenProducto" type="file" name="imagenProducto" class="form-control"
+                                    accept=".png, .jpg">
+                            </div>
+                            <div class="form-check form-switch form-check-reverse">
+                                <input class="form-check-input" type="checkbox" id="estadoProducto"
+                                    name="estadoProducto" checked>
+                                <label class="form-check-label" for="estadoProducto">Estado</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- IMPORTACIÓN DE ARCHIVOS JAVASCRIPT -->
+    <!-- Llamada al framework y librería de mensajes -->
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <!-- Llamada al controlador general de la aplicación -->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <!-- Llamada al controlador del sitio privado -->
+    <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
+    <!-- Llamada al controlador de la página web -->
+    <script type="text/javascript" src="../../controllers/admin/producto.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

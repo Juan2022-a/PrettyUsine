@@ -35,37 +35,38 @@
         </div>
     </nav>
     <!-- Contenido principal del documento -->
-    <main class="container">
-        <!-- Título del contenido principal -->
-        <h3 id="mainTitle">Administrar productos</h3>
+    <div class="container text-center">
+        <h1>Administrar Productos</h1>
+    </div>
+    <br>
+    <br>
+    <div class="container text-center">
         <div class="row">
-            <!-- Formulario de búsqueda -->
-            <form class="col-sm-12 col-md-6" id="searchForm">
-                <div class="row">
-                    <div class="col-6">
-                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
+            <!-- Buscador -->
+            <div class="col">
+                <nav class="navbar bg-body-tertiary">
+                    <div class="container-fluid">
+                        <form class="d-flex" id="searchForm">
+                            <input class="form-control me-2" name="search" type="search" placeholder="Buscar"
+                                aria-label="Search" required>
+                            <button class="btn btn-outline-success me-2" type="submit">🔎
+                                <i class="bi bi-search"></i>
+                            </button>
+                            <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                                <i class="bi bi-x-square-fill"></i> X
+                            </button>
+                        </form>
+                        <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
+                        <div class="row">
+                            <div class="col-sm-12 col-md-15 text-end">
+                                <button type="button" class="btn btn-primary" onclick="openCreate()">
+                                    <i class="bi bi-plus-square-fill"></i> Agregar Producto
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <button type="submit" class="btn btn-success">
-                            <i class="bi bi-search"></i>
-                        </button>
-                        <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                            <i class="bi bi-x-square-fill"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <div class="col-sm-12 col-md-6 text-end">
-                <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
-                <button type="button" class="btn btn-primary" onclick="openCreate()">
-                    <i class="bi bi-plus-square-fill"></i>
-                </button>
-                <!-- Botón para abrir un reporte en formato PDF -->
-                <button type="button" class="btn btn-warning" onclick="openReport()">
-                    <i class="bi bi-filetype-pdf"></i>
-                </button>
+                </nav>
             </div>
-        </div>
 
         <!-- Tabla para mostrar los registros existentes -->
         <table class="table table-hover">

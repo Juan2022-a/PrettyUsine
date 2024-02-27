@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <img src="../../Recursos/Img/LogoPretty.png" width="40">
+            <img src="../../Recursos/Img/LogoPretty.png" width="60">
             <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>-->
@@ -27,8 +27,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../Cecot/InicioCecot.html">Inicio</a></li>
-                        <li><a class="dropdown-item" href="../Cecot/administrador.html">Administradores</a></li>                        
+                        <li><a class="dropdown-item" href="../Cecot/administrador.html">Administradores</a></li>
                         <li><a class="dropdown-item" href="../Cecot/categoria.html">Categorias</a></li>
+                        <li><a class="dropdown-item" href="../Cecot/productos.html">Productos</a></li>
                         <li><a class="dropdown-item" href="../Cecot/pedidos.html">Pedidos</a></li>
                     </ul>
                 </li>
@@ -36,14 +37,12 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <img src="../../Recursos/Img/LogoPretty.png"  alt="" height="40">
+                            <img src="../../Recursos/Img/usuario.png"  alt="" height="35">
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../Cecot/Index.html">Cerrar seción</a></li>
-
                         </ul>
-                    </li>
-                   
+                    </li>                   
                 </ul>
             </ul>
         </div>
@@ -71,9 +70,42 @@
                         <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
                         <div class="row">
                             <div class="col-sm-12 col-md-15 text-end">
-                                <button type="button" class="btn btn-primary" onclick="openCreate()">
-                                    Agregar Producto
-                                </button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" 
+                                data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar Producto</button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Producto</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form>
+                                            <div class="mb-3">
+                                              <label for="recipient-name" class="col-form-label">Nombre</label>
+                                              <input type="text" class="form-control" id="recipient-name">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label">Precio</label>
+                                                <input type="text" class="form-control" id="recipient-name">
+                                              </div>
+                                            <div class="mb-3">
+                                              <label for="message-text" class="col-form-label">Descripción</label>
+                                              <textarea class="form-control" id="message-text"></textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label">Categoria</label>
+                                                <input type="text" class="form-control" id="recipient-name">
+                                              </div>
+                                          </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-primary">Send message</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                             </div>
                         </div>
                     </div>

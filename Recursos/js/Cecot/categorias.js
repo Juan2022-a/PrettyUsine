@@ -1,10 +1,26 @@
-// Función para mostrar una ventana de confirmación para agregar categoria
+// Función para mostrar una ventana de confirmación para agregar categoría
 $(document).ready(function () {
     $(".ConfirmarEmployed").click(function (event) {
         event.preventDefault(); // Evita que el formulario se envíe automáticamente
 
+        // Obtener valores de los campos
+        var nombreCategoria = $("#recipient-name").val().trim();
+        var descripcionCategoria = $("#message-text").val().trim();
+
+        // Validar campos antes de mostrar la ventana de confirmación
+        if (nombreCategoria === '' || descripcionCategoria === '') {
+            // Mostrar mensaje de error si algún campo está vacío
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Por favor, completa todos los campos.',
+            });
+            return;
+        }
+
+        // Mostrar ventana de confirmación
         Swal.fire({
-            title: '¿Quieres agregar una nueva categoria?',
+            title: '¿Quieres agregar una nueva categoría?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -13,10 +29,10 @@ $(document).ready(function () {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Aquí iría el código para agregar la categoria si se confirma la acción
+                // Aquí iría el código para agregar la categoría si se confirma la acción
                 Swal.fire(
                     '¡Agregado!',
-                    'la nueva categoria ha sido agregada.',
+                    'La nueva categoría ha sido agregada.',
                     'success'
                 );
             }

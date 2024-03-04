@@ -43,10 +43,10 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <img src="../../Recursos/Img/usuario.png"  alt="" height="35">
+                            <img src="../../Recursos/Img/usuario.png" alt="" height="35">
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../Cecot/Index.html">Cerrar seción</a></li>
+                            <li><a class="dropdown-item" href="../Cecot/Index.html">Cerrar sesión</a></li>
 
                         </ul>
                     </li>
@@ -79,51 +79,70 @@
                         <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
                         <div class="row">
                             <div class="col-sm-12 col-md-15 text-end">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" 
-                                data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar Administrador</button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar
+                                    Administrador</button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
                                     <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Administrador</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <form>
-                                            <div class="mb-3">
-                                              <label for="recipient-name" class="col-form-label">Apellido</label>
-                                              <input type="text" class="form-control" id="recipient-name">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar
+                                                    Administrador</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="recipient-name" class="col-form-label">Nombre</label>
-                                                <input type="text" class="form-control" id="recipient-name">
-                                              </div>
-                                              <div class="mb-3">
-                                                <label for="recipient-name" class="col-form-label">Correo</label>
-                                                <input type="text" class="form-control" id="recipient-name">
-                                              </div>
-                                              <div class="mb-3">
-                                                <label for="recipient-name" class="col-form-label">Alias</label>
-                                                <input type="text" class="form-control" id="recipient-name">
-                                              </div>                                            
-                                          </form>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name"
+                                                            class="col-form-label">Apellido</label>
+                                                        <input type="text" class="form-control" id="recipient-name"
+                                                            required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient2-name"
+                                                            class="col-form-label">Nombre</label>
+                                                        <input type="text" class="form-control" id="recipient2-name"
+                                                            required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient3-name"
+                                                            class="col-form-label">Correo</label>
+                                                        <input type="text" class="form-control" id="recipient3-name"
+                                                            required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient4-name"
+                                                            class="col-form-label">Alias</label>
+                                                        <input type="text" class="form-control" id="recipient4-name"
+                                                            required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient4-name"
+                                                            class="col-form-label">Contraseña</label>
+                                                        <input type="text" class="form-control" id="recipient4-name"
+                                                            required>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cerrar</button>
+                                                        <button type="submit"
+                                                            class="btn btn-primary ConfirmarEmployed">Confirmar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Send message</button>
-                                        </div>
-                                      </div>
                                     </div>
-                                  </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </nav>
             </div>
-
             <!-- Tabla para mostrar los registros existentes -->
             <table class="table table-hover">
-                <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                <!-- Encabezado de la tabla para mostrar la información -->
                 <thead>
                     <tr>
                         <td colspan="5" id="rowsFound"></td>
@@ -136,73 +155,18 @@
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
-                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                <tbody id="tableBody"></tbody>
             </table>
-
-            <!-- Componente Modal para guardar un registro -->
-            <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="modalTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="modalTitle"></h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <!-- Formulario para guardar un registro -->
-                        <form id="saveForm">
-                            <div class="modal-body row g-3">
-                                <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                                <input type="hidden" id="idAdministrador" name="idAdministrador">
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="nombreAdministrador" class="form-label">Nombre</label>
-                                    <input id="nombreAdministrador" type="text" name="nombreAdministrador"
-                                        class="form-control" required>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="apellidoAdministrador" class="form-label">Apellido</label>
-                                    <input id="apellidoAdministrador" type="text" name="apellidoAdministrador"
-                                        class="form-control" required>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="correoAdministrador" class="form-label">Correo</label>
-                                    <input id="correoAdministrador" type="email" name="correoAdministrador"
-                                        class="form-control" required>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="aliasAdministrador" class="form-label">Alias</label>
-                                    <input id="aliasAdministrador" type="text" name="aliasAdministrador"
-                                        class="form-control" required>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="claveAdministrador" class="form-label">Contraseña</label>
-                                    <input id="claveAdministrador" type="password" name="claveAdministrador"
-                                        class="form-control" required>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="confirmarClave" class="form-label">Confirmar contraseña</label>
-                                    <input id="confirmarClave" type="password" name="confirmarClave"
-                                        class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- IMPORTACIÓN DE ARCHIVOS JAVASCRIPT -->
         <!-- Llamada al framework y librería de mensajes -->
         <script type="text/javascript" src="../../Controladores/resources/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="../../Controladores/resources/js/sweetalert.min.js"></script>
-        <!-- Llamada al controlador general de la aplicación -->
-        <script type="text/javascript" src="../../Controladores/utils/components.js"></script>
-        <!-- Llamada al controlador del sitio privado -->
-        <script type="text/javascript" src="../../Controladores/utils/admin.js"></script>
-        <!-- Llamada al controlador de la página web -->
-        <script type="text/javascript" src="../../Controladores/Cecot/administrador.js"></script>
+        <!-- Mandar a llamar Sweeralert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- Llamada a jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <!-- Conectar al js de esta página -->
+        <script type="text/javascript" src="../../Recursos/js/Cecot/administrador.js"></script>
+
 </body>
 
 </html>

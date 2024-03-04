@@ -16,10 +16,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
             <img src="../../Recursos/Img/LogoPretty.png" width="60">
-            <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>-->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown" id="menuDes">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -37,14 +34,14 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <img src="../../Recursos/Img/usuario.png"  alt="" height="35">
+                            <img src="../../Recursos/Img/usuario.png" alt="" height="35">
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../Cecot/Index.html">Cerrar seción</a></li>
+                            <li><a class="dropdown-item" href="../Cecot/Index.html">Cerrar sesión</a></li>
 
                         </ul>
                     </li>
-                   
+
                 </ul>
             </ul>
         </div>
@@ -62,12 +59,12 @@
                             <input class="form-control me-2" name="search" type="search" placeholder="Buscar"
                                 aria-label="Search" required>
                             <button class="btn btn-outline-success me-2" type="submit">
-                                🔎                                
+                                🔎
                             </button>
                             <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                                 Borrar
                             </button>
-                        </form>                      
+                        </form>
                     </div>
                 </nav>
             </div>
@@ -86,48 +83,9 @@
                             <th>Estado</th>
                         </tr>
                     </thead>
-
-
                     <!-- Cuerpo de la tabla para mostrar un registro por fila -->
                     <tbody id="tableBody"></tbody>
                 </table>
-            </div>
-            <!-- Inicio del modal -->
-            <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="modalTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="modalTitle"></h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <!-- Formulario para guardar un registro -->
-                        <form id="saveForm">
-                            <div class="modal-body row g-3">
-                                <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                                <input type="hidden" id="idCategoria" name="idCategoria">
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="nombreCategoria" class="form-label">Nombre</label>
-                                    <input id="nombreCategoria" type="text" name="nombreCategoria" class="form-control"
-                                        required>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="descripcionCategoria" class="form-label">Descripción</label>
-                                    <input id="descripcionCategoria" type="text" name="descripcionCategoria"
-                                        class="form-control">
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="imagenCategoria" class="form-label">Imagen</label>
-                                    <input id="imagenCategoria" type="file" name="imagenCategoria" class="form-control"
-                                        accept=".png, .jpg">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

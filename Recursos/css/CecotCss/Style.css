@@ -58,3 +58,10 @@
 .card-text {
     font-size: 16px !important;
 }
+
+@media(max-width:300px){
+    .carousel  {
+        margin-top: 170px !important;
+    }
+
+} 

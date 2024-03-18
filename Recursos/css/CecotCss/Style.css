@@ -65,3 +65,69 @@
     }
 
 } 
+
+/* Estilos para pantallas medianas */
+@media (max-width: 991px) {
+    .card {
+        height: 350px !important;
+    }
+
+    .card-title {
+        font-size: 20px !important;
+    }
+
+    .card-text {
+        font-size: 14px !important;
+    }
+}
+
+/* Estilos para tabletas */
+@media (max-width: 768px) {
+    .tarjeta {
+        margin-top: -50px !important;
+    }
+
+    .categorias {
+        margin-top: 300px !important;
+    }
+
+    .card {
+        height: 300px !important;
+    }
+
+    .card-title {
+        font-size: 18px !important;
+    }
+
+    .card-text {
+        font-size: 12px !important;
+    }
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 576px) {
+    .tarjeta {
+        margin-top: -30px !important;
+    }
+
+    .categorias {
+        margin-top: 200px !important;
+    }
+
+    .card {
+        height: 250px !important;
+    }
+
+    .card-title {
+        font-size: 16px !important;
+    }
+
+    .card-text {
+        font-size: 10px !important;
+    }
+
+    .btn-primary {
+        font-size: 12px !important;
+        padding: 6px 12px !important;
+    }
+}

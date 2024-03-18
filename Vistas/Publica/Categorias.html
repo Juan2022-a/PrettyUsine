@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../Recursos/css/CecotCss/Style.css" type="text/css">
+    <!-- Llamada al icono de la página web -->
+    <link type="image/png" rel="icon" href="../../Recursos/Img/LogoPretty.png">
+    <title>Pretty Usine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../Recursos/css/imagenCategoria.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../Recursos/css/publica/estilo.css">
+    <script src="../../Recursos/js/publica/categoria.js" async></script>
+</head>
+
+<body>
+    <!-- Barra de navegacion  -->
+    <nav class="navbar  fixed-top navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+            <img src="../../Recursos/Img/LogoPretty.png" width="60">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown" id="menuDes">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Menu
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../Publica/plantainterior.html">Plantas Interiores</a></li>
+                        <li><a class="dropdown-item" href="../Publica/carrito.html">Carrito</a></li>
+                    </ul>
+                </li>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="../../Recursos/Img/usuario.png" alt="" height="35">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../Cecot/Index.html">Cerrar sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+    </nav>
+
+    
+    <header>
+        <h1>Categorias
+        </h1>
+    </header>
+    <section class="contenedor">
+        <!-- Contenedor de elementos -->
+        <div class="contenedor-items">
+            <div class="item">
+                <span class="titulo-item">Orquídea Azul</span>
+                <img src="../../Recursos/Img/Publica/comprar.png" alt="" class="img-item">
+                <span class="precio-item">$10</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Rosa Silvestre</span>
+                <img src="../../Recursos/Img/Publica/comprar.png" alt="" class="img-item">
+                <span class="precio-item">$15</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Lirio Nocturno</span>
+                <img src="../../Recursos/Img/Publica/comprar.png" alt="" class="img-item">
+                <span class="precio-item">$20</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Girasol Plateado</span>
+                <img src="../../Recursos/Img/Publica/comprar.png" alt="" class="img-item">
+                <span class="precio-item">$12</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Violeta Brillante</span>
+                <img src="../../Recursos/Img/Publica/comprar.png" alt="" class="img-item">
+                <span class="precio-item">$25</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Fresia Estelar</span>
+                <img src="../../Recursos/Img/Publica/comprar.png" alt="" class="img-item">
+                <span class="precio-item">$12</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Margarita Celestial</span>
+                <img src="../../Recursos/Img/img2.png" alt="" class="img-item">
+                <span class="precio-item">$35</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Azalea Real</span>
+                <img src="../../Recursos/Img/Publica/comprar.png" alt="" class="img-item">
+                <span class="precio-item">$25</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Orquídea Mediana</span>
+                <img src="../../Recursos/Img/img1.png" alt="" class="img-item">
+                <span class="precio-item">$30.96</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+        </div>
+        
+        <!-- Carrito de Compras -->
+        <div class="carrito" id="carrito">
+            <div class="header-carrito">
+                <h2>Tu Carrito</h2>
+            </div>
+
+            <div class="carrito-items">
+                <!-- 
+                <div class="carrito-item">
+                    <img src="img/boxengasse.png" width="80px" alt="">
+                    <div class="carrito-item-detalles">
+                        <span class="carrito-item-titulo">Box Engasse</span>
+                        <div class="selector-cantidad">
+                            <i class="fa-solid fa-minus restar-cantidad"></i>
+                            <input type="text" value="1" class="carrito-item-cantidad" disabled>
+                            <i class="fa-solid fa-plus sumar-cantidad"></i>
+                        </div>
+                        <span class="carrito-item-precio">$15,000.00</span>
+                    </div>
+                   <span class="btn-eliminar">
+                        <i class="fa-solid fa-trash"></i>
+                   </span>
+                </div>
+                <div class="carrito-item">
+                    <img src="img/skinglam.png" width="80px" alt="">
+                    <div class="carrito-item-detalles">
+                        <span class="carrito-item-titulo">Skin Glam</span>
+                        <div class="selector-cantidad">
+                            <i class="fa-solid fa-minus restar-cantidad"></i>
+                            <input type="text" value="3" class="carrito-item-cantidad" disabled>
+                            <i class="fa-solid fa-plus sumar-cantidad"></i>
+                        </div>
+                        <span class="carrito-item-precio">$18,000.00</span>
+                    </div>
+                   <button class="btn-eliminar">
+                        <i class="fa-solid fa-trash"></i>
+                   </button>
+                </div>
+                 -->
+            </div>
+            <div class="carrito-total">
+                <div class="fila">
+                    <strong>Tu Total</strong>
+                    <span class="carrito-precio-total">
+                        $100,00.00
+                    </span>
+                </div>
+                <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="cardd text-center fixed-bottom " id="Footer">
+
+        <div class="card-body">
+            <h5 class="card-title" style="color: rgb(0, 0, 0);">Pretty Usine</h5>
+            <p class="card-text" style="color: rgb(0, 0, 0);">Derechos reservados 2024</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</div>
+</body>
+</html>

@@ -20,8 +20,6 @@
 
 
 
-
-
 .btn-primary {
     background-color: transparent !important;
     border: 2px solid #fff !important;
@@ -60,10 +58,13 @@
 .card-title {
     font-size: 24px !important;
     font-weight: bold !important;
-    
-    margin-top: 115px !important;
-
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    justify-content: center; /* Para alinear horizontalmente */
+    align-items: center; /* Para alinear verticalmente */
 }
+
 
 .card-text {
     font-size: 16px !important;

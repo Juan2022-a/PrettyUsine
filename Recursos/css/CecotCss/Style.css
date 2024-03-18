@@ -11,7 +11,7 @@
 }
 
 .tarjeta {
-    margin-top: -100px !important;
+    margin-top: -150px !important;
 }
 
 .categorias {
@@ -54,11 +54,15 @@
 
 .categorias .col {
     padding: 0 !important;
+
 }
 
 .card-title {
     font-size: 24px !important;
     font-weight: bold !important;
+    
+    margin-top: 115px !important;
+
 }
 
 .card-text {

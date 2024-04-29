@@ -1,118 +1,91 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
+    <!-- Título del documento -->
+    <title></title>
+    <!-- Metadatos de la página web -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Daniel Carranza">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- IMPORTACIÓN DE RECURSOS EXTERNOS -->
     <!-- Llamada al icono de la página web -->
     <link type="image/png" rel="icon" href="../../Recursos/Img/LogoPretty.png">
-    <title>PrettyUsine</title>
-    <link rel="stylesheet" href="../../Recursos/css/styles.css" type="text/css">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../Recursos/css/CecotCss/footer.css">
-
+    <!-- Llamada a las hojas de estilos del framework e iconos -->
+    <link type="text/css" rel="stylesheet" href="../../Controladores/resources/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../../Controladores/resources/css/bootstrap-icons.min.css">
 </head>
 
 <body>
-
-    <div class="container d-flex justify-content-center align-items-center vh-100 d-none" id="login">
-        <div class="row">
-            <div class="col-md-6 logo-container">
-                <!-- Logo va aquí -->
-                <img src="../../Recursos/Img/LogoLogin.png" alt="Pretty Usine Logo" height="500px">
+    <!-- Contenido principal del documento -->
+    <main>
+        <!-- Título del contenido principal -->
+        <h3 id="mainTitle"></h3>
+        <img src="../../Recursos/Img/LogoPretty.png" class="mx-auto d-block" width="130">
+        <!-- Formulario para iniciar sesión -->
+        <form class="d-none" id="loginForm">
+            <div class="row g-3">
+                <div class="col-sm-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                    <label for="alias" class="form-label">Alias</label>
+                    <input id="alias" type="text" name="alias" class="form-control" required>
+                </div>
+                <div class="col-sm-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                    <label for="clave" class="form-label">Contraseña</label>
+                    <input id="clave" type="password" name="clave" class="form-control" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Enviar</button>
+                </div>
             </div>
-
-            <div class="col-md-6 login-container">
-                <form>
-                    <h2>Iniciar Sesión</h2>
-
-                    <!-- Nombre de usuario -->
-                    <div class="form-group">
-                        <label for="username">Alias:</label>
-                        <input type="text" id="username" name="username" placeholder="Usuario" required>
-                    </div>
-
-                    <!-- Contraseña -->
-                    <div class="form-group">
-                        <label for="password">Contraseña:</label>
-                        <input type="password" id="password" name="password" placeholder="Contraseña" required>
-                    </div>
-
-                    <!-- Botón de envío -->
-                    <button type="submit" class="btn btn-success">Ingresar</button>
-
-                </form>
+        </form>
+        <!-- Formulario para crear el primer administrador -->
+        <form class="d-none" id="signupForm">
+            <div class="row g-3">
+                <div class="col-sm-12 col-md-6">
+                    <label for="nombreAdministrador" class="form-label">Nombre</label>
+                    <input id="nombreAdministrador" type="text" name="nombreAdministrador" class="form-control"
+                        required>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="apellidoAdministrador" class="form-label">Apellido</label>
+                    <input id="apellidoAdministrador" type="text" name="apellidoAdministrador" class="form-control"
+                        required>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="correoAdministrador" class="form-label">Correo</label>
+                    <input id="correoAdministrador" type="email" name="correoAdministrador" class="form-control"
+                        required>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="aliasAdministrador" class="form-label">Alias</label>
+                    <input id="aliasAdministrador" type="text" name="aliasAdministrador" class="form-control" required>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="claveAdministrador" class="form-label">Contraseña</label>
+                    <input id="claveAdministrador" type="password" name="claveAdministrador" class="form-control"
+                        required>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="confirmarClave" class="form-label">Confirmar contraseña</label>
+                    <input id="confirmarClave" type="password" name="confirmarClave" class="form-control" required>
+                </div>
+                <div class="text-center">
+                    <button type="reset" class="btn btn-secondary"><i class="bi bi-x-square"></i> Cancelar</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar</button>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <div class="container d-flex justify-content-center align-items-center vh-100 d-none" id="signup">
-        <div class="row">
-            <div class="col-md-6 logo-container">
-                <!-- Logo va aquí -->
-                <img src="../../Recursos/Img/LogoLogin.png" alt="Pretty Usine Logo" height="500px">
-            </div>
-
-            <div class="col-md-6 login-container">
-                <form>
-                    <h2>Crear cuenta</h2>
-
-                    <!-- Nombre de usuario -->
-                    <div class="form-group">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
-                    </div>
-
-                    <!-- Contraseña -->
-                    <div class="form-group">
-                        <label for="apellido">Apellido:</label>
-                        <input type="text" id="apellido" name="apellido" placeholder="Apellido" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="correo">Correo:</label>
-                        <input type="text" id="correo" name="correo" placeholder="Correo" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="alias">Alias:</label>
-                        <input type="text" id="alias" name="alias" placeholder="Alias" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="clave">Clave:</label>
-                        <input type="password" id="clave" name="clave" placeholder="Contraseña" required>
-                    </div>
-
-                    <!-- Botón de envío -->
-                    <button type="submit" class="btn btn-success">Ingresar</button>
-
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    <br><br><br>
-
-    <div class="cardd text-center fixed-bottom " id="Footer">
-        <div class="card-body">
-            <h5 class="card-title" style="color: rgb(0, 0, 0);">Pretty Usine</h5>
-            <p class="card-text" style="color: rgb(0, 0, 0);">Derechos reservados 2024</p>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
-
+        </form>
+    </main>
+    <!-- IMPORTACIÓN DE ARCHIVOS JAVASCRIPT -->
+    <!-- Llamada al framework y librería de mensajes -->
+    <script type="text/javascript" src="../../Controladores/resources/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../Controladores/resources/js/sweetalert.min.js"></script>
+    <!-- Llamada al controlador general de la aplicación -->
+    <script type="text/javascript" src="../../Controladores/utils/components.js"></script>
+    <!-- Llamada al controlador del sitio privado -->
+    <script type="text/javascript" src="../../Recursos/js/Cecot/administrador.js"></script>
+    <!-- Llamada al controlador de la página web -->
+    <script type="text/javascript" src="../../Controladores/utils/admin.js"></script>
 </body>
 
 </html>

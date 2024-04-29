@@ -1,0 +1,153 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #ffff;
+  }
+
+  canvas {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 100%; /* Asegúrate de que el canvas tome todo el ancho del contenedor */
+}
+
+.grafica {
+    margin-bottom: 20px; /* Agrega un margen inferior si es necesario */
+}
+
+.tb-clientes {
+    width: 100%; /* Asegura que la tabla ocupe todo el ancho de su contenedor */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .grafica, .tb-clientes {
+        width: 100%; /* Las tablas y las gráficas ocupan todo el ancho en dispositivos pequeños */
+    }
+}
+
+.stat-card {
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h5 {
+    font-weight: normal;
+}
+
+.container {
+    gap: rem;
+}
+
+th {
+    background-color: #D6D6D6;
+}
+
+.boton-agregar {
+    background-color: #00B207;
+    border: none;
+    color: #ffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 43px;
+    transition: padding 0.3s ease;
+    padding: 0.5rem 1rem;  /* Modificado para ser más adaptable */
+}
+
+.boton-agregar img {
+    width: 30px;
+    height: 30px;
+    padding-right: 5px;
+}
+
+.boton-editar {
+    background-color: #FABF15;
+    border: none;
+    color: #ffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 43px;
+    transition: padding 0.3s ease;
+    padding: 0.5rem 1rem;  /* Modificado para ser más adaptable */
+}
+
+.boton-editar img {
+    width: 30px;
+    height: 30px;
+    padding-right: 5px;
+}
+
+.boton-eliminar {
+    background-color: #C93E07;
+    border: none;
+    color: #ffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 43px;
+    transition: padding 0.3s ease;
+    padding: 0.5rem 1rem;  /* Modificado para ser más adaptable */
+}
+
+.boton-eliminar img {
+    width: 30px;
+    height: 30px;
+    padding-right: 5px;
+}
+
+.botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 5rem 1rem 0 0;
+}
+
+.usuarios {
+    margin: 1rem 5rem 0 5rem;
+}
+
+/* Estilos generales para la responsividad */
+@media screen and (max-width: 768px) {
+    .botones {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .boton-agregar,
+    .boton-editar,
+    .boton-eliminar {
+        width: 100%;  /* Botones a ancho completo en móviles */
+        margin-bottom: 1rem;  /* Espacio entre botones */
+        padding: 1rem; /* Más grande para mejor accesibilidad */
+    }
+
+    .usuarios {
+        margin: 1rem;  /* Menor margen para evitar el desbordamiento horizontal */
+    }
+
+    .table {
+        font-size: 12px; /* Fuente más pequeña para la tabla en dispositivos móviles */
+    }
+}
+
+/* Ajustar tamaño de imágenes en botones para pequeñas resoluciones */
+@media screen and (max-width: 480px) {
+    .boton-agregar img,
+    .boton-editar img,
+    .boton-eliminar img {
+        width: 20px;
+        height: 20px;
+    }
+}

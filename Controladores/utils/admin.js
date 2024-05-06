@@ -41,13 +41,16 @@ const loadTemplate = async () => {
                             <div class="collapse navbar-collapse" id="navbarContent">
                                 <ul class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="producto.html">Productos</a>
+                                        <a class="nav-link" href="../Cecot/productos.html">Productos</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="categoria.html">Categorías</a>
+                                        <a class="nav-link" href="../Cecot/categoria.html">Categorías</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="administrador.html">Administradores</a>
+                                        <a class="nav-link" href="../Cecot/pedidos.html">Pedidos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../Cecot/administrador.html">Administradores</a>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Cuenta: <b>${DATA.username}</b></a>
@@ -69,12 +72,12 @@ const loadTemplate = async () => {
                     <nav class="navbar fixed-bottom bg-body-tertiary">
                         <div class="container">
                             <div>
-                                <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
-                                <p><i class="bi bi-c-square-fill"></i> 2018-2024 Todos los derechos reservados</p>
+                                <p><a class="nav-link" href="https://github.com/Juan2022-a/PrettyUsine" target="_blank"><i class="bi bi-github"></i> PrettyUsine</a></p>
+                                <p><i class="bi bi-c-square-fill"></i> 2023-2024 Todos los derechos reservados</p>
                             </div>
                             <div>
-                                <p><a class="nav-link" href="../public/" target="_blank"><i class="bi bi-cart-fill"></i> Sitio público</a></p>
-                                <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                                <p><a class="nav-link" href="../../Vistas/Publica" target="_blank"><i class="bi bi-cart-fill"></i> Sitio público</a></p>
+                                <p><i class="bi bi-envelope-fill"></i> prettyusine@gmail.com</p>
                             </div>
                         </div>
                     </nav>
@@ -103,8 +106,8 @@ const loadTemplate = async () => {
                 <footer>
                     <nav class="navbar fixed-bottom bg-body-tertiary">
                         <div class="container">
-                            <p><a class="nav-link" href="https://github.com/dacasoft/coffeeshop" target="_blank"><i class="bi bi-github"></i> CoffeeShop</a></p>
-                            <p><i class="bi bi-envelope-fill"></i> dacasoft@outlook.com</p>
+                            <p><a class="nav-link" href="https://github.com/Juan2022-a/PrettyUsine" target="_blank"><i class="bi bi-github"></i> PrettyUsine</a></p>
+                            <p><i class="bi bi-envelope-fill"></i> prettyusine@gmail.com</p>
                         </div>
                     </nav>
                 </footer>

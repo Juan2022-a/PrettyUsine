@@ -21,162 +21,121 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-            <img src="../../Recursos/Img/LogoPretty.png" width="60">
-            <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>-->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown" id="menuDes">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Menu
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../Cecot/InicioCecot.html">Inicio</a></li>
-                        <li><a class="dropdown-item" href="../Cecot/administrador.html">Administradores</a></li>
-                        <li><a class="dropdown-item" href="../Cecot/categoria.html">Categorias</a></li>
-                        <li><a class="dropdown-item" href="../Cecot/productos.html">Productos</a></li>
-                        <li><a class="dropdown-item" href="../Cecot/pedidos.html">Pedidos</a></li>
-                    </ul>
-                </li>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <img src="../../Recursos/Img/usuario.png" alt="" height="35">
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../Cecot/Index.html">Cerrar sesión</a></li>
-
-                        </ul>
-                    </li>
-
-                </ul>
-            </ul>
+    <main>
+        <!-- Título del contenido principal -->
+        <div class="container text-center">
+            <h1>Administrar Administradores</h1>
         </div>
-    </nav>
-    <!-- Título del contenido principal -->
-    <div class="container text-center">
-        <h1>Administrar Administradores</h1>
-    </div>
-    <div class="container text-center">
+        <div class="container text-center">
 
-        <div class="row">
-            <!-- Formulario de búsqueda -->
-            <div class="col">
-                <nav class="navbar bg-body-tertiary">
-                    <div class="container-fluid">
-                        <form class="d-flex" id="searchForm">
-                            <input class="form-control me-2" name="search" type="search" placeholder="Buscar"
-                                aria-label="Search" required>
-                            <button class="btn btn-outline-success me-2" type="submit">
-                                🔎
-                            </button>
-                            <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                                Borrar
-                            </button>
-                        </form>
-                        <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
-                        <div class="row">
-                            <div class="col-sm-12 col-md-15 text-end">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar
-                                    Administrador</button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar
-                                                    Administrador</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="mb-3">
-                                                        <label for="recipient-name"
-                                                            class="col-form-label">Apellido</label>
-                                                        <input type="text" class="form-control" id="recipient-name"
-                                                            required>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="recipient2-name"
-                                                            class="col-form-label">Nombre</label>
-                                                        <input type="text" class="form-control" id="recipient2-name"
-                                                            required>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="recipient3-name"
-                                                            class="col-form-label">Correo</label>
-                                                        <input type="text" class="form-control" id="recipient3-name"
-                                                            required>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="recipient4-name"
-                                                            class="col-form-label">Alias</label>
-                                                        <input type="text" class="form-control" id="recipient4-name"
-                                                            required>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="recipient4-name"
-                                                            class="col-form-label">Contraseña</label>
-                                                        <input type="text" class="form-control" id="recipient4-name"
-                                                            required>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Cerrar</button>
-                                                        <button type="submit"
-                                                            class="btn btn-primary ConfirmarEmployed">Confirmar</button>
-                                                    </div>
-                                                </form>
+            <div class="row">
+                <!-- Formulario de búsqueda -->
+                <div class="col">
+                    <nav class="navbar bg-body-tertiary">
+                        <div class="container-fluid">
+                            <form class="d-flex" id="searchForm">
+                                <input class="form-control me-2" name="search" type="search" placeholder="Buscar"
+                                    aria-label="Search" required>
+                                <button class="btn btn-outline-success me-2" type="submit">
+                                    🔎
+                                </button>
+                                <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                                    Borrar
+                                </button>
+                            </form>
+                            <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
+                            <div class="row">
+                                <div class="col-sm-12 col-md-15 text-end">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar
+                                        Administrador</button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar
+                                                        Administrador</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="mb-3">
+                                                            <label for="recipient-name"
+                                                                class="col-form-label">Apellido</label>
+                                                            <input type="text" class="form-control" id="recipient-name"
+                                                                required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recipient2-name"
+                                                                class="col-form-label">Nombre</label>
+                                                            <input type="text" class="form-control" id="recipient2-name"
+                                                                required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recipient3-name"
+                                                                class="col-form-label">Correo</label>
+                                                            <input type="text" class="form-control" id="recipient3-name"
+                                                                required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recipient4-name"
+                                                                class="col-form-label">Alias</label>
+                                                            <input type="text" class="form-control" id="recipient4-name"
+                                                                required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recipient4-name"
+                                                                class="col-form-label">Contraseña</label>
+                                                            <input type="text" class="form-control" id="recipient4-name"
+                                                                required>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary ConfirmarEmployed">Confirmar</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </nav>
+                    </nav>
+                </div>
+                <!-- Tabla para mostrar los registros existentes -->
+                <table class="table table-hover">
+                    <!-- Encabezado de la tabla para mostrar la información -->
+                    <thead>
+                        <tr>
+                            <td colspan="5" id="rowsFound"></td>
+                        </tr>
+                        <tr>
+                            <th>APELLIDO</th>
+                            <th>NOMBRE</th>
+                            <th>CORREO</th>
+                            <th>ALIAS</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <!-- Tabla para mostrar los registros existentes -->
-            <table class="table table-hover">
-                <!-- Encabezado de la tabla para mostrar la información -->
-                <thead>
-                    <tr>
-                        <td colspan="5" id="rowsFound"></td>
-                    </tr>
-                    <tr>
-                        <th>APELLIDO</th>
-                        <th>NOMBRE</th>
-                        <th>CORREO</th>
-                        <th>ALIAS</th>
-                        <th>ACCIONES</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-        <div class="cardd text-center fixed-bottom " id="Footer">
 
-            <div class="card-body">
-                <h5 class="card-title" style="color: rgb(0, 0, 0);">Pretty Usine</h5>
-                <p class="card-text" style="color: rgb(0, 0, 0);">Derechos reservados 2024</p>
-            </div>
-        </div>
+    </main>
 
-        <!-- IMPORTACIÓN DE ARCHIVOS JAVASCRIPT -->
-        <!-- Llamada al framework y librería de mensajes -->
-        <script type="text/javascript" src="../../Controladores/resources/js/bootstrap.bundle.min.js"></script>
-        <!-- Mandar a llamar Sweeralert -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <!-- Llamada a jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <!-- Conectar al js de esta página -->
-        <script type="text/javascript" src="../../Recursos/js/Cecot/administrador.js"></script>
-
+    <!-- IMPORTACIÓN DE ARCHIVOS JAVASCRIPT -->
+    <!-- Llamada al framework y librería de mensajes -->
+    <script type="text/javascript" src="../../Controladores/resources/js/bootstrap.bundle.min.js"></script>
+    <!-- Mandar a llamar Sweeralert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Conectar plantilla -->
+    <script type="text/javascript" src="../../Controladores/utils/admin.js"></script>
+    <!-- Conectar al js de esta página -->
+    <script type="text/javascript" src="../../Controladores/admin/administrador.js"></script>
 </body>
 
 </html>

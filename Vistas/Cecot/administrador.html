@@ -9,130 +9,126 @@
     <meta charset="utf-8">
     <meta name="author" content="Juan Flamenco">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../Recursos/css/CecotCss/Style.css" type="text/css">
-    <!-- IMPORTACIÓN DE RECURSOS EXTERNOS -->
     <!-- Llamada al icono de la página web -->
     <link type="image/png" rel="icon" href="../../Recursos/Img/LogoPretty.png">
     <!-- Llamada a las hojas de estilos del framework e iconos -->
     <link type="text/css" rel="stylesheet" href="../../Controladores/resources/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../../Controladores/resources/css/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../../Recursos/css/CecotCss/footer.css">
 
 </head>
 
 <body>
     <main>
         <!-- Título del contenido principal -->
-        <div class="container text-center">
-            <h1>Administrar Administradores</h1>
+        <h3 id="mainTitle"></h3>
+        <div class="row">
+            <!-- Formulario de búsqueda -->
+            <form class="col-sm-12 col-md-6" id="searchForm">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                            <i class="bi bi-x-square-fill"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="col-sm-12 col-md-6 text-end">
+                <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
+                <button type="button" class="btn btn-primary" onclick="openCreate()">
+                    <i class="bi bi-plus-square-fill"></i>
+                </button>
+            </div>
         </div>
-        <div class="container text-center">
 
-            <div class="row">
-                <!-- Formulario de búsqueda -->
-                <div class="col">
-                    <nav class="navbar bg-body-tertiary">
-                        <div class="container-fluid">
-                            <form class="d-flex" id="searchForm">
-                                <input class="form-control me-2" name="search" type="search" placeholder="Buscar"
-                                    aria-label="Search" required>
-                                <button class="btn btn-outline-success me-2" type="submit">
-                                    🔎
-                                </button>
-                                <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                                    Borrar
-                                </button>
-                            </form>
-                            <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
-                            <div class="row">
-                                <div class="col-sm-12 col-md-15 text-end">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar
-                                        Administrador</button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar
-                                                        Administrador</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
-                                                        <div class="mb-3">
-                                                            <label for="recipient-name"
-                                                                class="col-form-label">Apellido</label>
-                                                            <input type="text" class="form-control" id="recipient-name"
-                                                                required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="recipient2-name"
-                                                                class="col-form-label">Nombre</label>
-                                                            <input type="text" class="form-control" id="recipient2-name"
-                                                                required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="recipient3-name"
-                                                                class="col-form-label">Correo</label>
-                                                            <input type="text" class="form-control" id="recipient3-name"
-                                                                required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="recipient4-name"
-                                                                class="col-form-label">Alias</label>
-                                                            <input type="text" class="form-control" id="recipient4-name"
-                                                                required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="recipient4-name"
-                                                                class="col-form-label">Contraseña</label>
-                                                            <input type="text" class="form-control" id="recipient4-name"
-                                                                required>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Cerrar</button>
-                                                            <button type="submit"
-                                                                class="btn btn-primary ConfirmarEmployed">Confirmar</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+        <!-- Tabla para mostrar los registros existentes -->
+        <table class="table table-hover">
+            <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+            <thead>
+                <tr>
+                    <td colspan="5" id="rowsFound"></td>
+                </tr>
+                <tr>
+                    <th>APELLIDO</th>
+                    <th>NOMBRE</th>
+                    <th>CORREO</th>
+                    <th>ALIAS</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+            <tbody id="tableBody"></tbody>
+        </table>
+
+        <!-- Componente Modal para guardar un registro -->
+        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Formulario para guardar un registro -->
+                    <form id="saveForm">
+                        <div class="modal-body row g-3">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="hidden" id="idAdministrador" name="idAdministrador">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="nombreAdministrador" class="form-label">Nombre</label>
+                                <input id="nombreAdministrador" type="text" name="nombreAdministrador"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="apellidoAdministrador" class="form-label">Apellido</label>
+                                <input id="apellidoAdministrador" type="text" name="apellidoAdministrador"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="correoAdministrador" class="form-label">Correo</label>
+                                <input id="correoAdministrador" type="email" name="correoAdministrador"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="aliasAdministrador" class="form-label">Alias</label>
+                                <input id="aliasAdministrador" type="text" name="aliasAdministrador"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="claveAdministrador" class="form-label">Contraseña</label>
+                                <input id="claveAdministrador" type="password" name="claveAdministrador"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="confirmarClave" class="form-label">Confirmar contraseña</label>
+                                <input id="confirmarClave" type="password" name="confirmarClave" class="form-control"
+                                    required>
                             </div>
                         </div>
-                    </nav>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- Tabla para mostrar los registros existentes -->
-                <table class="table table-hover">
-                    <!-- Encabezado de la tabla para mostrar la información -->
-                    <thead>
-                        <tr>
-                            <td colspan="5" id="rowsFound"></td>
-                        </tr>
-                        <tr>
-                            <th>APELLIDO</th>
-                            <th>NOMBRE</th>
-                            <th>CORREO</th>
-                            <th>ALIAS</th>
-                            <th>ACCIONES</th>
-                        </tr>
-                    </thead>
-                </table>
             </div>
-
+        </div>
     </main>
 
     <!-- IMPORTACIÓN DE ARCHIVOS JAVASCRIPT -->
     <!-- Llamada al framework y librería de mensajes -->
-    <script type="text/javascript" src="../../Controladores/resources/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     <!-- Mandar a llamar Sweeralert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Conectar plantilla -->
+    <script type="text/javascript" src="../../Controladores/resources/js/sweetalert.min.js"></script>
+    <!-- Llamada al controlador general de la aplicación -->
+    <script type="text/javascript" src="../../Controladores/utils/components.js"></script>
+    <!-- Llamada al controlador del sitio web -->
     <script type="text/javascript" src="../../Controladores/utils/admin.js"></script>
     <!-- Conectar al js de esta página -->
     <script type="text/javascript" src="../../Controladores/admin/administrador.js"></script>

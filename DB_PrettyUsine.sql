@@ -290,7 +290,28 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `valoracion`
   ADD CONSTRAINT `valoracion_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`);
+  
+CREATE VIEW vista_detalle_pedido AS
+SELECT 
+    dp.id_detalle,
+    p.imagen_producto,
+    p.nombre_producto,
+    c.nombre_cliente,
+    c.direccion_cliente,
+    pe.estado_pedido
+FROM 
+    detalle_pedido dp
+JOIN 
+    producto p ON dp.id_producto = p.id_producto
+JOIN 
+    pedido pe ON dp.id_pedido = pe.id_pedido
+JOIN 
+    cliente c ON pe.id_cliente = c.id_cliente;
+
+SELECT * FROM vista_detalle_pedido;
+
 COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

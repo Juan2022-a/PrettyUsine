@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<!-- Declaración del idioma para el documento -->
 <html lang="es">
 
 <head>
-    <!-- Título del documento -->
-    <title></title>
-    <!-- Metadatos de la página web -->
     <meta charset="utf-8">
-    <meta name="author" content="Aleck Nuñez">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Llamada al icono de la página web -->
     <link type="image/png" rel="icon" href="../../Recursos/Img/LogoPretty.png">
-    <!-- Llamada a las hojas de estilos del framework e iconos -->
+    <title>Clientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="../../Controladores/resources/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../../Controladores/resources/css/bootstrap-icons.min.css">
-
 </head>
 
 <body>
@@ -38,46 +34,80 @@
                     </div>
                 </div>
             </form>
-            
+
+        </div>
 
         <!-- Tabla para mostrar los registros existentes -->
         <table class="table table-hover">
             <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
             <thead>
                 <tr>
-                    <td colspan="5" id="rowsFound"></td>
+                    <td colspan="4" id="rowsFound"></td>
                 </tr>
-                <tr>
-                    <th>APELLIDO</th>
+                <tr>                    
                     <th>NOMBRE</th>
-                    <th>DUI</th>
-                    <th>CORREO</th>
-                    <th>TELEFONO</th>
-                    <th> DIRECCION</th>
-                    <th>FECHA DE NACIMIENTO</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Estado</th>
                     <th>ACCIONES</th>
                 </tr>
             </thead>
             <!-- Cuerpo de la tabla para mostrar un registro por fila -->
             <tbody id="tableBody"></tbody>
         </table>
-
-      
+        <!-- Componente Modal para guardar un registro -->
+        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Formulario para guardar un registro -->
+                    <form id="saveForm">
+                        <div class="modal-body row g-3">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="hidden" id="idCategoria" name="idCategoria">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="nombreCategoria" class="form-label">Nombre</label>
+                                <input id="nombreCategoria" type="text" name="nombreCategoria" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="descripcionCategoria" class="form-label">Descripción</label>
+                                <input id="descripcionCategoria" type="text" name="descripcionCategoria"
+                                    class="form-control">
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="imagenCategoria" class="form-label">Imagen</label>
+                                <input id="imagenCategoria" type="file" name="imagenCategoria" class="form-control"
+                                    accept=".png, .jpg">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <!-- IMPORTACIÓN DE ARCHIVOS JAVASCRIPT -->
     <!-- Llamada al framework y librería de mensajes -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-    <!-- Mandar a llamar Sweeralert -->
-    <script type="text/javascript" src="../../Controladores/resources/js/sweetalert.min.js"></script>
     <!-- Llamada al controlador general de la aplicación -->
     <script type="text/javascript" src="../../Controladores/utils/components.js"></script>
     <!-- Llamada al controlador del sitio web -->
     <script type="text/javascript" src="../../Controladores/utils/admin.js"></script>
+    <!-- Mandar a llamar Sweeralert -->
+    <script type="text/javascript" src="../../Controladores/resources/js/sweetalert.min.js"></script>
+    <!-- Llamada a jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!-- Conectar al js de esta página -->
-    <script type="text/javascript" src="../../Controladores/admin/Clientes.js "></script>
+    <script type="text/javascript" src="../../Controladores/admin/Clientes.js"></script>
 </body>
 
 </html>

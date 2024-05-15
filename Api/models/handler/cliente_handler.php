@@ -11,14 +11,14 @@ class ClienteHandler
     */
     protected $id = null;
     protected $nombre = null;
-    protected $apellido = null;
-    protected $correo = null;
-    protected $telefono = null;
+    protected $apellido = null;    
     protected $dui = null;
-    protected $nacimiento = null;
+    protected $telefono = null;
     protected $direccion = null;
-    protected $clave = null;
+    protected $correo = null;
+    protected $nacimiento = null;
     protected $estado = null;
+    protected $clave = null;
 
     /*
     *   Métodos para gestionar la cuenta del cliente.

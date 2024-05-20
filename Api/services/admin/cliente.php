@@ -17,23 +17,10 @@ class ClienteHandler
 
         // Verificar si se obtuvieron resultados
         if ($clientes) {
-            // Mostrar los clientes en una tabla HTML
-            echo '<table border="1">';
-            echo '<tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Correo</th><th>Teléfono</th><th>Dirección</th><th>Fecha de Registro</th></tr>';
-            foreach ($clientes as $cliente) {
-                echo '<tr>';
-                echo '<td>' . $cliente['id_cliente'] . '</td>';
-                echo '<td>' . $cliente['nombre_cliente'] . '</td>';
-                echo '<td>' . $cliente['apellido_cliente'] . '</td>';
-                echo '<td>' . $cliente['correo_cliente'] . '</td>';
-                echo '<td>' . $cliente['telefono_cliente'] . '</td>';
-                echo '<td>' . $cliente['direccion_cliente'] . '</td>';
-                echo '<td>' . $cliente['fecha_registro'] . '</td>';
-                echo '</tr>';
-            }
-            echo '</table>';
+            // Devolver los clientes en formato JSON
+            echo json_encode(['status' => true, 'data' => $clientes]);
         } else {
-            echo 'No se encontraron clientes.';
+            echo json_encode(['status' => false, 'message' => 'No se encontraron clientes.']);
         }
     }
 
@@ -52,7 +39,7 @@ switch ($action) {
     // Otros casos para manejar diferentes acciones...
     default:
         // Acción por defecto si no se proporciona ninguna o si es inválida
-        echo 'Acción no válida.';
+        echo json_encode(['status' => false, 'message' => 'Acción no válida.']);
         break;
 }
 ?>

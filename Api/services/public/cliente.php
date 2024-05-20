@@ -62,14 +62,14 @@ if (isset($_GET['action'])) {
                 } elseif(!isset($_POST['condicion'])) { 
                     $result['error'] = 'Debe marcar la aceptación de términos y condiciones';
                 } elseif (
-                    !$cliente->setNombreCLiente($_POST['nombreCliente']) or
-                    !$cliente->setApellidoCLiente($_POST['apellidoCliente']) or
-                    !$cliente->setCorreoCLiente($_POST['correoCliente']) or
-                    !$cliente->setDireccionCLiente($_POST['direccionCliente']) or
-                    !$cliente->setDUICLiente($_POST['duiCliente']) or
-                    !$cliente->setNacimientoCLiente($_POST['nacimientoCliente']) or
-                    !$cliente->setTelefonoCLiente($_POST['telefonoCliente']) or
-                    !$cliente->setClaveCLiente($_POST['claveCliente'])
+                    !$cliente->setNombreCLiente($_POST['nombre_cliente']) or
+                    !$cliente->setApellidoCLiente($_POST['apellido_cliente']) or
+                    !$cliente->setCorreoCLiente($_POST['correo_cliente']) or
+                    !$cliente->setDireccionCLiente($_POST['direccion_cliente']) or
+                    !$cliente->setDUICLiente($_POST['dui_cliente']) or
+                    !$cliente->setNacimientoCLiente($_POST['nacimiento_cliente']) or
+                    !$cliente->setTelefonoCLiente($_POST['telefono_cliente']) or
+                    !$cliente->setClaveCLiente($_POST['clave_cliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($_POST['claveCliente'] != $_POST['confirmarClave']) {
@@ -83,7 +83,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
-                if (!$cliente->checkUser($_POST['correo'], $_POST['clave'])) {
+                if (!$cliente->checkUser($_POST['correo_cliente'], $_POST['clave_cliente'])) {
                     $result['error'] = 'Datos incorrectos';
                 } elseif ($cliente->checkStatus()) {
                     $result['status'] = 1;

@@ -29,7 +29,7 @@ class ClienteHandler
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT * FROM cliente
-                WHERE nombre_Cliente LIKE ? OR apellido_Cliente LIKE ?
+                WHERE nombre_cliente LIKE ? OR apellido_cliente LIKE ?
                 ORDER BY apellido_Cliente';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
@@ -37,7 +37,7 @@ class ClienteHandler
 
     public function createRow()
     {
-        $sql = 'INSERT INTO cliente(nombre_cliente, apellido_Cliente, dui_Cliente, correo_Cliente, telefono_Cliente, direccion_Cliente, nacimiento_Cliente, clave_Cliente, estado_Cliente, fecha_Registro)
+        $sql = 'INSERT INTO cliente(nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, direccion_cliente, nacimiento_cliente, clave_cliente, estado_cliente, fecha_Registro)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->direccion, $this->nacimiento, $this->clave, $this->estado, $this->fecha_registro);
         return Database::executeRow($sql, $params);
@@ -61,7 +61,7 @@ class ClienteHandler
     public function updateRow()
     {
         $sql = 'UPDATE cliente
-                SET nombre_Cliente = ?, apellido_Cliente = ?, dui_Cliente = ?, correo_Cliente = ?, telefono_Cliente = ?, direccion_Cliente = ?, nacimiento_Cliente = ?, clave_Cliente = ?, estado_Cliente = ?
+                SET nombre_Cliente = ?, apellido_cliente = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?, direccion_cliente = ?, nacimiento_cliente = ?, clave_cliente = ?, estado_cliente = ?
                 WHERE id_cliente = ?';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->direccion, $this->nacimiento, $this->clave, $this->estado, $this->id);
         return Database::executeRow($sql, $params);

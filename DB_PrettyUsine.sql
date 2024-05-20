@@ -33,9 +33,9 @@ CREATE TABLE `administrador` (
   `id_administrador` int(10) UNSIGNED NOT NULL,
   `nombre_administrador` varchar(50) NOT NULL,
   `apellido_administrador` varchar(50) NOT NULL,
-  `correo_administrador` varchar(100) NOT NULL,
+  `correo_administrador` varchar(25) NOT NULL,
   `alias_administrador` varchar(25) NOT NULL,
-  `clave_administrador` varchar(100) NOT NULL,
+  `clave_administrador` varchar(15) NOT NULL,
   `fecha_registro` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -70,11 +70,11 @@ CREATE TABLE `cliente` (
   `nombre_cliente` varchar(50) NOT NULL,
   `apellido_cliente` varchar(50) NOT NULL,
   `dui_cliente` varchar(10) NOT NULL,
-  `correo_cliente` varchar(100) NOT NULL,
+  `correo_cliente` varchar(25) NOT NULL,
   `telefono_cliente` varchar(9) NOT NULL,
   `direccion_cliente` varchar(250) NOT NULL,
   `nacimiento_cliente` date NOT NULL,
-  `clave_cliente` varchar(100) NOT NULL,
+  `clave_cliente` varchar(15) NOT NULL,
   `estado_cliente` tinyint(1) NOT NULL DEFAULT 1,
   `fecha_registro` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

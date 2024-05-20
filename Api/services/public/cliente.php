@@ -59,17 +59,17 @@ if (isset($_GET['action'])) {
                 if (!$captcha['success']) {
                     $result['recaptcha'] = 1;
                     $result['error'] = 'No eres humano';
-                } elseif(!isset($_POST['condicion'])) {
+                } elseif(!isset($_POST['condicion'])) { 
                     $result['error'] = 'Debe marcar la aceptación de términos y condiciones';
                 } elseif (
-                    !$cliente->setNombre($_POST['nombreCliente']) or
-                    !$cliente->setApellido($_POST['apellidoCliente']) or
-                    !$cliente->setCorreo($_POST['correoCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or
-                    !$cliente->setDUI($_POST['duiCliente']) or
-                    !$cliente->setNacimiento($_POST['nacimientoCliente']) or
-                    !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setClave($_POST['claveCliente'])
+                    !$cliente->setNombreCLiente($_POST['nombreCliente']) or
+                    !$cliente->setApellidoCLiente($_POST['apellidoCliente']) or
+                    !$cliente->setCorreoCLiente($_POST['correoCliente']) or
+                    !$cliente->setDireccionCLiente($_POST['direccionCliente']) or
+                    !$cliente->setDUICLiente($_POST['duiCliente']) or
+                    !$cliente->setNacimientoCLiente($_POST['nacimientoCliente']) or
+                    !$cliente->setTelefonoCLiente($_POST['telefonoCliente']) or
+                    !$cliente->setClaveCLiente($_POST['claveCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($_POST['claveCliente'] != $_POST['confirmarClave']) {

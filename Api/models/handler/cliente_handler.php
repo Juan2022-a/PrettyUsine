@@ -37,7 +37,7 @@ class ClienteHandler
 
     public function createRow()
     {
-        $sql = 'INSERT INTO cliente(nombre_Cliente, apellido_Cliente, dui_Cliente, correo_Cliente, telefono_Cliente, direccion_Cliente, nacimiento_Cliente, clave_Cliente, estado_Cliente, fecha_Registro)
+        $sql = 'INSERT INTO cliente(nombre_cliente, apellido_Cliente, dui_Cliente, correo_Cliente, telefono_Cliente, direccion_Cliente, nacimiento_Cliente, clave_Cliente, estado_Cliente, fecha_Registro)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->direccion, $this->nacimiento, $this->clave, $this->estado, $this->fecha_registro);
         return Database::executeRow($sql, $params);
@@ -46,14 +46,14 @@ class ClienteHandler
     public function readAll()
     {
         $sql = 'SELECT * FROM cliente
-                ORDER BY apellido_Cliente';
+                ORDER BY nombre_cliente';
         return Database::getRows($sql);
     }
 
     public function readOne()
     {
         $sql = 'SELECT * FROM cliente
-                WHERE id_Cliente = ?';
+                WHERE id_cliente = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -62,7 +62,7 @@ class ClienteHandler
     {
         $sql = 'UPDATE cliente
                 SET nombre_Cliente = ?, apellido_Cliente = ?, dui_Cliente = ?, correo_Cliente = ?, telefono_Cliente = ?, direccion_Cliente = ?, nacimiento_Cliente = ?, clave_Cliente = ?, estado_Cliente = ?
-                WHERE id_Cliente = ?';
+                WHERE id_cliente = ?';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->direccion, $this->nacimiento, $this->clave, $this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
@@ -70,7 +70,7 @@ class ClienteHandler
     public function deleteRow()
     {
         $sql = 'DELETE FROM cliente
-                WHERE id_Cliente = ?';
+                WHERE id_cliente = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }

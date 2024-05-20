@@ -10,15 +10,15 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_CLIENTE = document.getElementById('idCliente'),
-    NOMBRE_CLIENTE = document.getElementById('nombreCliente'),
-    APELLIDO_CLIENTE = document.getElementById('apellidoCliente'),
-    CORREO_CLIENTE = document.getElementById('correoCliente'),
-    TELEFONO_CLIENTE = document.getElementById('telefonoCliente'),
-    DUI_CLIENTE = document.getElementById('duiCliente'),
-    DIRECCION_CLIENTE = document.getElementById('direccionCliente'),
-    NACIMIENTO_CLIENTE = document.getElementById('nacimientoCliente'),
-    CLAVE_CLIENTE = document.getElementById('claveCliente');
+    ID_CLIENTE = document.getElementById('id_cliente'),
+    NOMBRE_CLIENTE = document.getElementById('nombre_Cliente'),
+    APELLIDO_CLIENTE = document.getElementById('apellido_Cliente'),
+    CORREO_CLIENTE = document.getElementById('correo_Cliente'),
+    TELEFONO_CLIENTE = document.getElementById('telefono_Cliente'),
+    DUI_CLIENTE = document.getElementById('dui_Cliente'),
+    DIRECCION_CLIENTE = document.getElementById('direccion_Cliente'),
+    NACIMIENTO_CLIENTE = document.getElementById('nacimiento_Cliente'),
+    CLAVE_CLIENTE = document.getElementById('clave_Cliente');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -129,7 +129,7 @@ const openCreate = () => {
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('idCliente', id);
+    FORM.append('id_cliente', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(CLIENTE_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -168,7 +168,7 @@ const openDelete = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('idCliente', id);
+        FORM.append('id_cliente', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(CLIENTE_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.

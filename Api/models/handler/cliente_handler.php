@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 
 /*
  * Clase para manejar el comportamiento de los datos de la tabla CLIENTE.
@@ -45,15 +45,16 @@ class ClienteHandler
 
     public function readAll()
     {
-        $sql = 'SELECT * FROM cliente
-                ORDER BY nombre_cliente';
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, direccion_cliente, nacimiento_cliente, clave_cliente, estado_cliente, fecha_registro 
+        FROM cliente
+        ORDER BY fecha_registro DESC';
         return Database::getRows($sql);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT * FROM cliente
-                WHERE id_cliente = ?';
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, direccion_cliente, nacimiento_cliente, clave_cliente, estado_cliente, fecha_registro 
+        FROM cliente';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -61,9 +62,17 @@ class ClienteHandler
     public function updateRow()
     {
         $sql = 'UPDATE cliente
-                SET nombre_Cliente = ?, apellido_cliente = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?, direccion_cliente = ?, nacimiento_cliente = ?, clave_cliente = ?, estado_cliente = ?
-                WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->direccion, $this->nacimiento, $this->clave, $this->estado, $this->id);
+        SET nombre_cliente = ?,
+            apellido_cliente = ?,
+            dui_cliente = ?,
+            correo_cliente = ?,
+            telefono_cliente = ?,
+            direccion_cliente = ?,
+            nacimiento_cliente = ?,
+            clave_cliente = ?,
+            estado_cliente = ?
+        WHERE id_cliente = ?';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->direccion, $this->nacimiento, $this->clave, $this->estado);
         return Database::executeRow($sql, $params);
     }
 

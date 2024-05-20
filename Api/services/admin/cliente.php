@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
-require_once('../../models/data/cliente_data.php');
+require_once ('../../models/data/cliente_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -27,16 +27,16 @@ if (isset($_GET['action'])) {
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$cliente->setNombreCliente ($_POST['nombre_cliente']) or
-                    !$cliente->setApellidoCliente($_POST['apellido_cliente']) or
-                    !$cliente->setCorreoCliente($_POST['correo_cliente']) or
-                    !$cliente->setTelefonoCliente($_POST['telefono_cliente']) or
-                    !$cliente->setDuiCliente($_POST['dui_cliente']) or
-                    !$cliente->setDireccionCliente($_POST['direccion_cliente']) or
-                    !$cliente->setNacimientoCliente($_POST['nacimiento_cliente']) or
-                    !$cliente->setClaveCliente($_POST['clave_cliente']) or
-                    !$cliente->setEstadoCliente($_POST['estado_cliente']) or
-                    !$cliente->setFechaRegistroCliente($_POST['fecha_registro'])
+                    !$cliente->setNombreCliente($_POST['nombreCliente']) or
+                    !$cliente->setApellidoCliente($_POST['apellidoCliente']) or
+                    !$cliente->setCorreoCliente($_POST['correoCliente']) or
+                    !$cliente->setTelefonoCliente($_POST['telefonoCliente']) or
+                    !$cliente->setDuiCliente($_POST['duiCliente']) or
+                    !$cliente->setDireccionCliente($_POST['direccionCliente']) or
+                    !$cliente->setNacimientoCliente($_POST['nacimientoCliente']) or
+                    !$cliente->setClaveCliente($_POST['claveCliente']) or
+                    !$cliente->setEstadoCliente($_POST['estadoCliente']) or
+                    !$cliente->setFechaRegistroCliente($_POST['fechaRegistro'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->createRow()) {
@@ -55,7 +55,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$cliente->setIdCliente($_POST['id_cliente'])) {
+                if (!$cliente->setIdCliente($_POST['idCliente'])) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($result['dataset'] = $cliente->readOne()) {
                     $result['status'] = 1;
@@ -66,17 +66,17 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$cliente->setIdCliente($_POST['id_cliente']) or
-                    !$cliente->setNombreCliente($_POST['nombre_cliente']) or
-                    !$cliente->setApellidoCliente($_POST['apellido_cliente']) or
-                    !$cliente->setCorreoCliente($_POST['correo_cliente']) or
-                    !$cliente->setTelefonoCliente($_POST['telefono_cliente']) or
-                    !$cliente->setDuiCliente($_POST['dui_cliente']) or
-                    !$cliente->setDireccionCliente($_POST['direccion_cliente']) or
-                    !$cliente->setNacimientoCliente($_POST['nacimiento_cliente']) or
-                    !$cliente->setClaveCliente($_POST['clave_cliente']) or
-                    !$cliente->setEstadoCliente($_POST['estado_cliente']) or
-                    !$cliente->setFechaRegistroCliente($_POST['fecha_registro'])
+                    !$cliente->setIdCliente($_POST['idCliente']) or
+                    !$cliente->setNombreCliente($_POST['nombreCliente']) or
+                    !$cliente->setApellidoCliente($_POST['apellidoCliente']) or
+                    !$cliente->setCorreoCliente($_POST['correoCliente']) or
+                    !$cliente->setTelefonoCliente($_POST['telefonoCliente']) or
+                    !$cliente->setDuiCliente($_POST['duiCliente']) or
+                    !$cliente->setDireccionCliente($_POST['direccionCliente']) or
+                    !$cliente->setNacimientoCliente($_POST['nacimientoCliente']) or
+                    !$cliente->setClaveCliente($_POST['claveCliente']) or
+                    !$cliente->setEstadoCliente($_POST['estadoCliente']) or
+                    !$cliente->setFechaRegistroCliente($_POST['fechaRegistro'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->updateRow()) {
@@ -87,7 +87,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'deleteRow':
-                if (!$cliente->setIdCliente($_POST['id_cliente'])) {
+                if (!$cliente->setIdCliente($_POST['idCliente'])) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->deleteRow()) {
                     $result['status'] = 1;
@@ -104,11 +104,11 @@ if (isset($_GET['action'])) {
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('Content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
-        print(json_encode($result));
+        print (json_encode($result));
     } else {
-        print(json_encode('Acceso denegado'));
+        print (json_encode('Acceso denegado'));
     }
 } else {
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }
 ?>

@@ -21,7 +21,7 @@ class ClienteData extends ClienteHandler
     {
         // Validar que el ID sea un número natural.
         if (Validator::validateNaturalNumber($value)) {
-            $this->id_cliente = $value;
+            $this->id = $value;
             return true;
         } else {
             $this->data_error = 'El identificador del cliente es incorrecto';
@@ -37,7 +37,7 @@ class ClienteData extends ClienteHandler
             $this->data_error = 'El nombre debe ser un valor alfabético';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nombre_cliente = $value;
+            $this->nombre = $value;
             return true;
         } else {
             $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -53,7 +53,7 @@ class ClienteData extends ClienteHandler
             $this->data_error = 'El apellido debe ser un valor alfabético';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->apellido_cliente = $value;
+            $this->apellido = $value;
             return true;
         } else {
             $this->data_error = 'El apellido debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -69,7 +69,7 @@ class ClienteData extends ClienteHandler
             $this->data_error = 'El correo electrónico no es válido';
             return false;
         } else {
-            $this->correo_cliente = $value;
+            $this->correo = $value;
             return true;
         }
     }
@@ -78,11 +78,11 @@ class ClienteData extends ClienteHandler
     public function setTelefonoCliente($value)
     {
         // Validar que el teléfono sea válido.
-        if (!Validator::validatePhoneNumber($value)) {
+        if (!Validator::validatePhone($value)) {
             $this->data_error = 'El teléfono no es válido';
             return false;
         } else {
-            $this->telefono_cliente = $value;
+            $this->telefono= $value;
             return true;
         }
     }
@@ -95,7 +95,7 @@ class ClienteData extends ClienteHandler
             $this->data_error = 'El DUI no es válido';
             return false;
         } else {
-            $this->dui_cliente = $value;
+            $this->dui = $value;
             return true;
         }
     }
@@ -105,7 +105,7 @@ class ClienteData extends ClienteHandler
     {
         // Validar que la dirección tenga una longitud adecuada.
         if (Validator::validateLength($value, $min, $max)) {
-            $this->direccion_cliente = $value;
+            $this->direccion = $value;
             return true;
         } else {
             $this->data_error = 'La dirección debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -121,7 +121,7 @@ class ClienteData extends ClienteHandler
             $this->data_error = 'La fecha de nacimiento no es válida';
             return false;
         } else {
-            $this->nacimiento_cliente = $value;
+            $this->nacimiento = $value;
             return true;
         }
     }
@@ -132,7 +132,7 @@ class ClienteData extends ClienteHandler
         // Validar que la clave tenga una longitud adecuada.
         if (Validator::validateLength($value,
         $value, $min, $max)) {
-            $this->clave_cliente = $value;
+            $this->clave = $value;
             return true;
         } else {
             $this->data_error = 'La clave debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -145,7 +145,7 @@ class ClienteData extends ClienteHandler
     {
         // Validar que el estado sea un número natural.
         if (Validator::validateNaturalNumber($value)) {
-            $this->estado_cliente = $value;
+            $this->estado = $value;
             return true;
         } else {
             $this->data_error = 'El estado del cliente es incorrecto';
@@ -161,7 +161,7 @@ class ClienteData extends ClienteHandler
             $this->data_error = 'La fecha de registro no es válida';
             return false;
         } else {
-            $this->fecha_registro_cliente = $value;
+            $this->fecha_registro = $value;
             return true;
         }
     }

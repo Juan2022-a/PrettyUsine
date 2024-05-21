@@ -1,6 +1,6 @@
 // Constante para completar la ruta de la API.
 const PEDIDO_API = 'services/admin/pedido.php';
-// Constante para establecer el formulario de buscar.
+// Constante para establecer el formulario de buscar.F
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer los elementos de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
@@ -10,11 +10,13 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_PEDIDO = document.getElementById('id_pedido'),
-    ID_CLIENTE = document.getElementById('idPedido'),
-    DIRECCION_PEDIDO = document.getElementById('direccion_pedido'),
-    ESTADO_PEDIDO = document.getElementById('estado_pedido'),
-    FECHA_REGISTRO = document.getElementById('fecha_registro');
+    ID_PEDIDO = document.getElementById('idpedido'),
+    IMAGEN_PRODUCTO = document.getElementById('imagenproducto'),
+    NOMBRE_PRODUCTO = document.getElementById('nombreproducto'),
+    NOMBRE_CLIENTE = document.getElementById('nombrecliente'),
+    DIRECCION_CLIENTE = document.getElementById('direccioncliente'),
+    ESTADO_PEDIDO = document.getElementById('estadopedido');
+
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -79,11 +81,11 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
                 <tr>
-                    <td>${row.id_pedido}</td>
-                    <td>${row.id_cliente}</td>
-                    <td>${row.direccion_pedido}</td>
+                <td><img src="${SERVER_URL}images/productos/${row.imagen_producto}" height="50"></td>
+                    <td>${row.nombre_producto}</td>
+                    <td>${row.nombre_cliente}</td>
+                    <td>${row.direccion_cliente}</td>
                     <td>${row.estado_pedido}</td>
-                    <td>${row.fecha_registro}</td>
                     <td>
                         <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_pedido})">
                             <i class="bi bi-pencil-fill"></i>
@@ -123,9 +125,9 @@ const fillTable = async (form = null) => {
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_cliente', id);
+    FORM.append('idpedido', id);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(CLIENTE_API, 'readOne', FORM);
+    const DATA = await fetchData(PEDIDO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
@@ -136,10 +138,11 @@ const openUpdate = async (id) => {
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
         ID_PEDIDO.value = ROW.id_pedido;
-        ID_CLIENTE.value = ROW.id_cliente;
-        DIRECCION_PEDIDO.value = ROW.direccion_pedido;
+        IMAGEN_PRODUCTO.value = ROW.imagen_pedido;
+        NOMBRE_PRODUCTO.value = ROW.nombre_producto;
+        NOMBRE_CLIENTE.value = ROW.nombre_cliente;
+        DIRECCION_CLIENTE.value = ROW.direccion_cliente;
         ESTADO_PEDIDO.value = ROW.estado_pedido;
-        FECHA_REGISTRO.value = ROW.fecha_registro;
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -157,7 +160,7 @@ const openDelete = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_pedido', id);
+        FORM.append('idpedido', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(PEDIDO_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.

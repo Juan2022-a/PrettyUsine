@@ -11,10 +11,12 @@ class PedidoHandler
      *  Declaración de atributos para el manejo de datos.
      */
     protected $id = null;
-    protected $id_cliente = null;
-    protected $direccionpedido = null;
-    protected $estadoPedido = null;
-    protected $fechaRegistro = null;
+    protected $imagenproducto = null;
+    protected $nombreproducto = null;
+    protected $nombrecliente = null;
+    protected $direccioncliente = null;
+    protected $estadopedido = null;
+
 
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../images/pedidos/';
@@ -27,7 +29,7 @@ class PedidoHandler
     public function searchRows($value)
     {
         $value = '%' . $value . '%';
-        $sql = 'SELECT id_pedido, id_cliente, direccion_pedido, estado_pedido, fecha_registro
+        $sql = 'SELECT id_pedido, nombre_producto, nombre_cliente, direccion_cliente, estado_pedido, fecha_registro, imagen_pedido
                 FROM pedido
                 WHERE nombre_producto LIKE ? OR nombre_cliente LIKE ?
                 ORDER BY fecha_registro DESC';
@@ -35,21 +37,33 @@ class PedidoHandler
         return Database::getRows($sql, $params);
     }
 
-    // Método para crear un nuevo registro.
-    public function createRow()
-    {
-        $sql = 'INSERT INTO pedido(nombre_producto, nombre_cliente, direccion_cliente, estado_pedido, fecha_registro, imagen_pedido)
-                VALUES(?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombreProducto, $this->nombreCliente, $this->direccionCliente, $this->estadoPedido, $this->fechaRegistro, $this->imagen);
-        return Database::executeRow($sql, $params);
-    }
+    // // Método para crear un nuevo registro.
+    // public function createRow()
+    // {
+    //     $sql = 'INSERT INTO pedido(nombre_producto, nombre_cliente, direccion_cliente, estado_pedido, fecha_registro, imagen_pedido)
+    //             VALUES(?, ?, ?, ?, ?, ?)';
+    //     $params = array($this->nombreProducto, $this->nombreCliente, $this->direccionCliente, $this->estadoPedido, $this->fechaRegistro, $this->imagen);
+    //     return Database::executeRow($sql, $params);
+    // }
 
     // Método para obtener todos los registros.
     public function readAll()
     {
-        $sql = 'SELECT id_pedido, nombre_producto, nombre_cliente, direccion_cliente, estado_pedido, fecha_registro, imagen_pedido
-                FROM pedido
-                ORDER BY fecha_registro DESC';
+        $sql = 'SELECT 
+	    PD.id_pedido,
+        P.imagen_producto,
+        P.nombre_producto,
+        C.nombre_cliente,
+        C.direccion_cliente,
+        PD.estado_pedido
+    FROM 
+        detalle_pedido DP
+    JOIN 
+        producto P ON DP.id_producto = P.id_producto
+    JOIN 
+        pedido PD ON DP.id_pedido = PD.id_pedido
+    JOIN 
+        cliente C ON PD.id_cliente = C.id_cliente';
         return Database::getRows($sql);
     }
 
@@ -87,7 +101,7 @@ class PedidoHandler
     public function deleteRow()
     {
         $sql = 'DELETE FROM pedido
-                WHERE id_pedido = ?';
+        WHERE id_pedido = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }

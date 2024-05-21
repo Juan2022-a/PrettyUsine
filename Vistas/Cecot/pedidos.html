@@ -40,11 +40,13 @@
                     <td colspan="8" id="rowsFound"></td>
                 </tr>
                 <tr>
-                    <th>PEDIDO</th>
+                    <th>IMAGEN PRODUCTO</th>
+                    <th>NOMBRE PRODUCTO</th>
                     <th>CLIENTE</th>
                     <th>DIRECCION</th>
                     <th>ESTADO</th>
-                    <th>FECHA</th>
+                    <th>ACCIONES</th>
+
                 </tr>
             </thead>
             <tbody id="tableBody"></tbody>
@@ -60,52 +62,38 @@
                     </div>
                     <form id="saveForm">
                         <div class="modal-body row g-3">
-                            <input type="hidden" id="idCliente" name="idCliente">
+                            <input type="hidden" id="idpedido" name="idpedido">
                             <div class="col-sm-12 col-md-6">
-                                <label for="nombreCliente" class="form-label">Nombre</label>
-                                <input id="nombreCliente" type="text" name="nombreCliente" class="form-control"
+                                <label for="imagenproducto" class="form-label">Imagen del preducto</label>
+                                <input id="imagenproducto" type="text" name="imagenproducto" class="form-control"
                                     required>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <label for="apellidoCliente" class="form-label">Apellido</label>
-                                <input id="apellidoCliente" type="text" name="apellidoCliente" class="form-control"
+                                <label for="nombreproducto" class="form-label">Nombre del producto</label>
+                                <input id="nombreproducto" type="text" name="nombreproducto" class="form-control"
+                                    required>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <label for="nombrecliente" class="form-label">Nombre del cliente</label>
+                                <input id="nombrecliente" type="text" name="nombrecliente" class="form-control"
                                     required>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <label for="duiCliente" class="form-label">DUI</label>
-                                <input id="duiCliente" type="text" name="duiCliente" class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="correoCliente" class="form-label">Correo</label>
-                                <input id="correoCliente" type="email" name="correoCliente" class="form-control"
+                                <label for="direccioncliente" class="form-label">Direccion del cliente</label>
+                                <input id="direccioncliente" type="text" name="direccioncliente" class="form-control"
                                     required>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <label for="telefonoCliente" class="form-label">Teléfono</label>
-                                <input id="telefonoCliente" type="text" name="telefonoCliente" class="form-control"
-                                    required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="direccionCliente" class="form-label">Dirección</label>
-                                <input id="direccionCliente" type="text" name="direccionCliente" class="form-control"
-                                    required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="nacimientoCliente" class="form-label">Fecha de Nacimiento</label>
-                                <input id="nacimientoCliente" type="date" name="nacimientoCliente" class="form-control"
-                                    required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="estadoCliente" class="form-label">Estado</label>
-                                <select id="estadoCliente" name="estadoCliente" class="form-select" required>
+                                <label for="estadopedido" class="form-label">Estado del pedido</label>
+                                <select id="estadopedido" name="estadopedido" class="form-select" required>
                                     <option value="1">Activo</option>
                                     <option value="0">Inactivo</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
                     </form>
                 </div>
             </div>

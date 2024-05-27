@@ -10,11 +10,12 @@ class PedidoHandler
     /*
      *  Declaración de atributos para el manejo de datos.
      */
-    protected $id = null;
+    protected $id_pedido = null;
     protected $imagenproducto = null;
     protected $nombreproducto = null;
     protected $nombrecliente = null;
     protected $direccioncliente = null;
+    protected $fecharegistro = null;
     protected $estadopedido = null;
 
 
@@ -70,10 +71,11 @@ class PedidoHandler
     // Método para obtener un solo registro por su ID.
     public function readOne()
     {
-        $sql = 'SELECT id_pedido, nombre_producto, nombre_cliente, direccion_cliente, estado_pedido, fecha_registro, imagen_pedido
-                FROM pedido
-                WHERE id_pedido = ?';
-        $params = array($this->id);
+        $sql = ' SELECT   nombre_cliente, direccion_cliente, estado_pedido, pedido.fecha_registro
+        FROM pedido
+        inner join cliente using (id_cliente)
+        WHERE id_pedido = ?';
+        $params = array($this->id_pedido);
         return Database::getRow($sql, $params);
     }
 
@@ -83,7 +85,7 @@ class PedidoHandler
         $sql = 'SELECT imagen_pedido
                 FROM pedido
                 WHERE id_pedido = ?';
-        $params = array($this->id);
+        $params = array($this->id_pedido);
         return Database::getRow($sql, $params);
     }
 
@@ -91,19 +93,19 @@ class PedidoHandler
     public function updateRow()
     {
         $sql = 'UPDATE pedido
-                SET nombre_producto = ?, nombre_cliente = ?, direccion_cliente = ?, estado_pedido = ?, fecha_registro = ?, imagen_pedido = ?
+                SET imagen_pedido = ?, nombre_producto = ?, nombre_cliente = ?, direccion_cliente = ?, estado_pedido = ?, fecha_registro = ?
                 WHERE id_pedido = ?';
-        $params = array($this->nombreProducto, $this->nombreCliente, $this->direccionCliente, $this->estadoPedido, $this->fechaRegistro, $this->imagen, $this->id);
+        $params = array($this->nombreproducto, $this->nombrecliente, $this->direccioncliente, $this->estadopedido, $this->fecharegistro, $this->imagenproducto, $this->id_pedido);
         return Database::executeRow($sql, $params);
     }
 
     // Método para eliminar un registro.
-    public function deleteRow()
+   /* public function deleteRow()
     {
         $sql = 'DELETE FROM pedido
         WHERE id_pedido = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
-    }
+    }*/
 }
 ?>

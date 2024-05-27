@@ -180,5 +180,3 @@ const openDelete = async (id) => {
         }
     }
 }
-
-// Agregar otras funciones auxiliares según sea necesario

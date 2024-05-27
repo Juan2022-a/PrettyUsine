@@ -21,7 +21,7 @@ class PedidoData extends PedidoHandler
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id = $value;
+            $this->id_pedido = $value;
             return true;
         } else {
             $this->data_error = 'El identificador del pedido es incorrecto';
@@ -35,7 +35,7 @@ class PedidoData extends PedidoHandler
             $this->data_error = 'El nombre del producto debe ser un valor alfanumérico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nombreProducto = $value;
+            $this->nombreproducto = $value;
             return true;
         } else {
             $this->data_error = 'El nombre del producto debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -49,7 +49,7 @@ class PedidoData extends PedidoHandler
             $this->data_error = 'El nombre del cliente debe ser un valor alfanumérico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nombreCliente = $value;
+            $this->nombrecliente = $value;
             return true;
         } else {
             $this->data_error = 'El nombre del cliente debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -63,7 +63,7 @@ class PedidoData extends PedidoHandler
             $this->data_error = 'La dirección contiene caracteres prohibidos';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->direccionCliente = $value;
+            $this->direccioncliente = $value;
             return true;
         } else {
             $this->data_error = 'La dirección debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -74,7 +74,7 @@ class PedidoData extends PedidoHandler
     public function setEstadoPedido($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->estadoPedido = $value;
+            $this->estadopedido = $value;
             return true;
         } else {
             $this->data_error = 'El estado del pedido es incorrecto';
@@ -85,16 +85,16 @@ class PedidoData extends PedidoHandler
     public function setImagen($file, $filename = null)
     {
         if (Validator::validateImageFile($file, 1000)) {
-            $this->imagen = Validator::getFilename();
+            $this->imagenproducto = Validator::getFilename();
             return true;
         } elseif (Validator::getFileError()) {
             $this->data_error = Validator::getFileError();
             return false;
         } elseif ($filename) {
-            $this->imagen = $filename;
+            $this->imagenproducto = $filename;
             return true;
         } else {
-            $this->imagen = 'default.png';
+            $this->imagenproducto = 'default.png';
             return true;
         }
     }
@@ -102,7 +102,7 @@ class PedidoData extends PedidoHandler
     public function setFilename()
     {
         if ($data = $this->readFilename()) {
-            $this->filename = $data['imagen_pedido'];
+            $this->filename = $data['imagenpedido'];
             return true;
         } else {
             $this->data_error = 'Pedido inexistente';

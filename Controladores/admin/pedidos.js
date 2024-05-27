@@ -10,7 +10,7 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_PEDIDO = document.getElementById('idpedido'),
+    ID_PEDIDO = document.getElementById('id_pedido'),
     IMAGEN_PRODUCTO = document.getElementById('imagenproducto'),
     NOMBRE_PRODUCTO = document.getElementById('nombreproducto'),
     NOMBRE_CLIENTE = document.getElementById('nombrecliente'),
@@ -90,9 +90,6 @@ const fillTable = async (form = null) => {
                         <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_pedido})">
                             <i class="bi bi-pencil-fill"></i>
                         </button>
-                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_pedido})">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
                     </td>
                 </tr>
             `;
@@ -125,7 +122,7 @@ const fillTable = async (form = null) => {
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('idpedido', id);
+    FORM.append('id_pedido', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(PEDIDO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -138,11 +135,11 @@ const openUpdate = async (id) => {
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
         ID_PEDIDO.value = ROW.id_pedido;
-        IMAGEN_PRODUCTO.value = ROW.imagen_pedido;
-        NOMBRE_PRODUCTO.value = ROW.nombre_producto;
-        NOMBRE_CLIENTE.value = ROW.nombre_cliente;
-        DIRECCION_CLIENTE.value = ROW.direccion_cliente;
-        ESTADO_PEDIDO.value = ROW.estado_pedido;
+        IMAGEN_PRODUCTO.value = ROW.imagenpedido;
+        NOMBRE_PRODUCTO.value = ROW.nombreproducto;
+        NOMBRE_CLIENTE.value = ROW.nombrecliente;
+        DIRECCION_CLIENTE.value = ROW.direccioncliente;
+        ESTADO_PEDIDO.value = ROW.estadopedido;
     } else {
         sweetAlert(2, DATA.error, false);
     }

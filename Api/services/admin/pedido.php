@@ -24,7 +24,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
-            case 'createRow':
+          /*  case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$pedido->setNombreProducto($_POST['nombreProducto']) or
@@ -39,7 +39,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Ocurrió un problema al crear el pedido';
                 }
-                break;
+                break;*/
             case 'readAll':
                 if ($result['dataset'] = $pedido->readAll()) {
                     $result['status'] = 1;
@@ -49,7 +49,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$pedido->setId($_POST['idPedido'])) {
+                if (!$pedido->setId($_POST['id_pedido'])) {
                     $result['error'] = $pedido->getDataError();
                 } elseif ($result['dataset'] = $pedido->readOne()) {
                     $result['status'] = 1;
@@ -60,7 +60,7 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$pedido->setId($_POST['idPedido']) or
+                    !$pedido->setId($_POST['id_pedido']) or
                     !$pedido->setNombreProducto($_POST['nombreProducto']) or
                     !$pedido->setNombreCliente($_POST['nombreCliente']) or
                     !$pedido->setDireccionCliente($_POST['direccionCliente']) or
@@ -74,20 +74,19 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el pedido';
                 }
                 break;
-            case 'deleteRow':
-                print_r($_POST);
-                if (!$pedido->setId($_POST['idpedido'])) {
-                    $result['error'] = $pedido->getDataError();
-                } elseif ($pedido->deleteRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Pedido eliminado correctamente';
-                } else {
-                    $result['error'] = 'Ocurrió un problema al eliminar el pedido';
-                }
-                break;
-            default:
-                $result['error'] = 'Acción no disponible dentro de la sesión';
-        }
+                /*case 'deleteRow':
+                    if (!$pedido->setid_pedido($_POST['id_pedido'])) {
+                        $result['error'] = $pedido->getDataError();
+                    } elseif ($pedido->deleteRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'pedido eliminado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al eliminar el pedido';
+                    }
+                    break;
+                default:
+                    $result['error'] = 'Acción no válida';*/
+            }
         // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
         $result['exception'] = Database::getException();
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.

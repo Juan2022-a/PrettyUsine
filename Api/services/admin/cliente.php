@@ -74,9 +74,7 @@ if (isset($_GET['action'])) {
                     !$cliente->setDuiCliente($_POST['duiCliente']) or
                     !$cliente->setDireccionCliente($_POST['direccionCliente']) or
                     !$cliente->setNacimientoCliente($_POST['nacimientoCliente']) or
-                    !$cliente->setClaveCliente($_POST['claveCliente']) or
-                    !$cliente->setEstadoCliente($_POST['estadoCliente']) or
-                    !$cliente->setFechaRegistroCliente($_POST['fechaRegistro'])
+                    !$cliente->setEstadoCliente($_POST['estadoCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->updateRow()) {

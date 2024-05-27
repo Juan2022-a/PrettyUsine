@@ -1,6 +1,6 @@
 <?php
 // Se incluyen las credenciales para conectar con la base de datos.
-require_once('config.php');
+require_once ('config.php');
 
 /*
  *   Clase para realizar las operaciones en la base de datos.

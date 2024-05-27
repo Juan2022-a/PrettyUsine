@@ -18,7 +18,8 @@ const SAVE_FORM = document.getElementById('saveForm'),
     DUI_CLIENTE = document.getElementById('duiCliente'),
     DIRECCION_CLIENTE = document.getElementById('direccionCliente'),
     NACIMIENTO_CLIENTE = document.getElementById('nacimientoCliente'),
-    CLAVE_CLIENTE = document.getElementById('claveCliente');
+    ESTADO_CLIENTE = document.getElementById('estadoCliente')
+
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -149,6 +150,7 @@ const openUpdate = async (id) => {
         DUI_CLIENTE.value = ROW.dui_cliente;
         DIRECCION_CLIENTE.value = ROW.direccion_cliente;
         NACIMIENTO_CLIENTE.value = ROW.nacimiento_cliente;
+        ESTADO_CLIENTE.value = ROW.estado_cliente;
     } else {
         sweetAlert(2, DATA.error, false);
     }

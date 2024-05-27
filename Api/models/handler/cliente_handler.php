@@ -53,8 +53,8 @@ class ClienteHandler
 
     public function readOne()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, direccion_cliente, nacimiento_cliente, clave_cliente, estado_cliente, fecha_registro 
-        FROM cliente';
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, direccion_cliente, nacimiento_cliente,  estado_cliente
+        FROM cliente where id_cliente =?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -69,10 +69,9 @@ class ClienteHandler
             telefono_cliente = ?,
             direccion_cliente = ?,
             nacimiento_cliente = ?,
-            clave_cliente = ?,
             estado_cliente = ?
         WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->direccion, $this->nacimiento, $this->clave, $this->estado);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->direccion, $this->nacimiento, $this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 

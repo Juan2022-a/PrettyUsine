@@ -1,0 +1,16 @@
+body {
+    font-family: Arial, sans-serif ;
+    background-color: #eff0b9 !important;    
+}
+#mainTitle{
+    margin-top: 100px;
+}
+#cantidadProducto {   
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+.card {
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

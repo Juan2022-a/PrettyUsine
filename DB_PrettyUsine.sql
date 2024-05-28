@@ -57,7 +57,7 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`, `imagen_categoria`) VALUES
-(1, 'Carnivoras', 'Las mejores plantas a nivel visual que existe en esta vida', '');
+(1, 'Carnivoras', 'Las mejores plantas a nivel visual que existe en esta vida', 'default.png');
 
 -- --------------------------------------------------------
 

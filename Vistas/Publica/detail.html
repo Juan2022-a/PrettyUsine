@@ -10,6 +10,7 @@
     <meta name="author" content="JP Carranza Flamenco y-y">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- IMPORTACIÓN DE RECURSOS EXTERNOS -->
+    <link type="text/css" rel="stylesheet" href="../../Recursos/css/publica/detail.css">
     <!-- Llamada al icono de la página web -->
     <link type="image/png" rel="icon" href="../../Recursos/Img/LogoPretty.png">
     <!-- Llamada a las hojas de estilos del framework e iconos -->
@@ -21,7 +22,7 @@
     <!-- Contenido principal del documento -->
     <main>
         <!-- Título del contenido principal -->
-        <h4 id="mainTitle"></h4>
+        <h3 id="mainTitle"></h3>
         <!-- Componente Horizontal Card para mostrar el detalle de un producto -->
         <div class="card mb-3" id="detalle">
             <div class="row">
@@ -31,10 +32,10 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title" id="nombreProducto"></h5>
+                        <h3 class="card-title" id="nombreProducto"></h3>
                         <p class="card-text" id="descripcionProducto"></p>
-                        <p class="card-text">Precio unitario (US$) <b id="precioProducto"></b></p>
-                        <p class="card-text">Existencias <b id="existenciasProducto"></b></p>
+                        <p class="card-text">Precio: $ <b id="precioProducto"></b>.</p>
+                        <p class="card-text">Existencias: <b id="existenciasProducto"></b>.</p>
                         <!-- Formulario para agregar el producto al carrito de compras -->
                         <form class="row" id="shoppingForm">
                             <!-- Campo oculto para asignar el id del producto -->

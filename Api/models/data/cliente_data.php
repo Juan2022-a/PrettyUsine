@@ -1,25 +1,21 @@
 <?php
-// Incluir la clase para validar los datos de entrada.
+// Se incluye la clase para validar los datos de entrada.
 require_once('../../helpers/validator.php');
-// Incluir la clase padre.
+// Se incluye la clase padre.
 require_once('../../models/handler/cliente_handler.php');
-
 /*
- * Clase para manejar el encapsulamiento de los datos de la tabla CLIENTE.
- */
+*	Clase para manejar el encapsulamiento de los datos de la tabla CLIENTE.
+*/
 class ClienteData extends ClienteHandler
 {
-    // Atributo para manejar errores de datos.
+    // Atributo genérico para manejo de errores.
     private $data_error = null;
 
     /*
-     * Métodos para validar y asignar valores de los atributos.
-     */
-
-    // Método para validar y asignar el ID del cliente.
-    public function setIdCliente($value)
+    *   Métodos para validar y establecer los datos.
+    */
+    public function setId($value)
     {
-        // Validar que el ID sea un número natural.
         if (Validator::validateNaturalNumber($value)) {
             $this->id = $value;
             return true;
@@ -29,10 +25,8 @@ class ClienteData extends ClienteHandler
         }
     }
 
-    // Método para validar y asignar el nombre del cliente.
-    public function setNombreCliente($value, $min = 2, $max = 50)
+    public function setNombre($value, $min = 2, $max = 50)
     {
-        // Validar que el nombre sea alfabético y tenga una longitud adecuada.
         if (!Validator::validateAlphabetic($value)) {
             $this->data_error = 'El nombre debe ser un valor alfabético';
             return false;
@@ -45,10 +39,8 @@ class ClienteData extends ClienteHandler
         }
     }
 
-    // Método para validar y asignar el apellido del cliente.
-    public function setApellidoCliente($value, $min = 2, $max = 50)
+    public function setApellido($value, $min = 2, $max = 50)
     {
-        // Validar que el apellido sea alfabético y tenga una longitud adecuada.
         if (!Validator::validateAlphabetic($value)) {
             $this->data_error = 'El apellido debe ser un valor alfabético';
             return false;
@@ -61,12 +53,16 @@ class ClienteData extends ClienteHandler
         }
     }
 
-    // Método para validar y asignar el correo del cliente.
-    public function setCorreoCliente($value)
+    public function setCorreo($value, $min = 8, $max = 100)
     {
-        // Validar que el correo sea válido.
         if (!Validator::validateEmail($value)) {
-            $this->data_error = 'El correo electrónico no es válido';
+            $this->data_error = 'El correo no es válido';
+            return false;
+        } elseif (!Validator::validateLength($value, $min, $max)) {
+            $this->data_error = 'El correo debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        } elseif($this->checkDuplicate($value)) {
+            $this->data_error = 'El correo ingresado ya existe';
             return false;
         } else {
             $this->correo = $value;
@@ -74,25 +70,24 @@ class ClienteData extends ClienteHandler
         }
     }
 
-    // Método para validar y asignar el teléfono del cliente.
-    public function setTelefonoCliente($value)
+    public function setTelefono($value)
     {
-        // Validar que el teléfono sea válido.
-        if (!Validator::validatePhone($value)) {
-            $this->data_error = 'El teléfono no es válido';
-            return false;
-        } else {
-            $this->telefono= $value;
+        if (Validator::validatePhone($value)) {
+            $this->telefono = $value;
             return true;
+        } else {
+            $this->data_error = 'El teléfono debe tener el formato (2, 6, 7)###-####';
+            return false;
         }
     }
 
-    // Método para validar y asignar el DUI del cliente.
-    public function setDuiCliente($value)
+    public function setDUI($value)
     {
-        // Validar que el DUI sea válido.
         if (!Validator::validateDUI($value)) {
-            $this->data_error = 'El DUI no es válido';
+            $this->data_error = 'El DUI debe tener el formato ########-#';
+            return false;
+        } elseif($this->checkDuplicate($value)) {
+            $this->data_error = 'El DUI ingresado ya existe';
             return false;
         } else {
             $this->dui = $value;
@@ -100,11 +95,23 @@ class ClienteData extends ClienteHandler
         }
     }
 
-    // Método para validar y asignar la dirección del cliente.
-    public function setDireccionCliente($value, $min = 2, $max = 250)
+    public function setNacimiento($value)
     {
-        // Validar que la dirección tenga una longitud adecuada.
-        if (Validator::validateLength($value, $min, $max)) {
+        if (Validator::validateDate($value)) {
+            $this->nacimiento = $value;
+            return true;
+        } else {
+            $this->data_error = 'La fecha de nacimiento es incorrecta';
+            return false;
+        }
+    }
+
+    public function setDireccion($value, $min = 2, $max = 250)
+    {
+        if (!Validator::validateString($value)) {
+            $this->data_error = 'La dirección contiene caracteres prohibidos';
+            return false;
+        } elseif(Validator::validateLength($value, $min, $max)) {
             $this->direccion = $value;
             return true;
         } else {
@@ -113,56 +120,25 @@ class ClienteData extends ClienteHandler
         }
     }
 
-    // Método para validar y asignar la fecha de nacimiento del cliente.
-    public function setNacimientoCliente($value)
+    public function setClave($value)
     {
-        // Validar que la fecha de nacimiento sea válida.
-        if (!Validator::validateDate($value)) {
-            $this->data_error = 'La fecha de nacimiento no es válida';
-            return false;
-        } else {
-            $this->nacimiento = $value;
-            return true;
-        }
-    }
-
-    // Método para validar y asignar la clave del cliente.
-    public function setClaveCliente($value, $min = 8, $max = 100)
-    {
-        // Validar que la clave tenga una longitud adecuada.
-        if (Validator::validateLength($value,
-        $value, $min, $max)) {
-            $this->clave = $value;
+        if (Validator::validatePassword($value)) {
+            $this->clave = password_hash($value, PASSWORD_DEFAULT);
             return true;
         } else {
-            $this->data_error = 'La clave debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = Validator::getPasswordError();
             return false;
         }
     }
 
-    // Método para validar y asignar el estado del cliente.
-    public function setEstadoCliente($value)
+    public function setEstado($value)
     {
-        // Validar que el estado sea un número natural.
-        if (Validator::validateNaturalNumber($value)) {
+        if (Validator::validateBoolean($value)) {
             $this->estado = $value;
             return true;
         } else {
-            $this->data_error = 'El estado del cliente es incorrecto';
+            $this->data_error = 'Estado incorrecto';
             return false;
-        }
-    }
-
-    // Método para validar y asignar la fecha de registro del cliente.
-    public function setFechaRegistroCliente($value)
-    {
-        // Validar que la fecha de registro sea válida.
-        if (!Validator::validateDate($value)) {
-            $this->data_error = 'La fecha de registro no es válida';
-            return false;
-        } else {
-            $this->fecha_registro = $value;
-            return true;
         }
     }
 

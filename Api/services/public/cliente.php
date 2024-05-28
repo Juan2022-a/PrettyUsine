@@ -59,17 +59,17 @@ if (isset($_GET['action'])) {
                 if (!$captcha['success']) {
                     $result['recaptcha'] = 1;
                     $result['error'] = 'No eres humano';
-                } elseif(!isset($_POST['condicion'])) { 
+                } elseif(!isset($_POST['condicion'])) {
                     $result['error'] = 'Debe marcar la aceptación de términos y condiciones';
                 } elseif (
-                    !$cliente->setNombreCLiente($_POST['nombre_cliente']) or
-                    !$cliente->setApellidoCLiente($_POST['apellido_cliente']) or
-                    !$cliente->setCorreoCLiente($_POST['correo_cliente']) or
-                    !$cliente->setDireccionCLiente($_POST['direccion_cliente']) or
-                    !$cliente->setDUICLiente($_POST['dui_cliente']) or
-                    !$cliente->setNacimientoCLiente($_POST['nacimiento_cliente']) or
-                    !$cliente->setTelefonoCLiente($_POST['telefono_cliente']) or
-                    !$cliente->setClaveCLiente($_POST['clave_cliente'])
+                    !$cliente->setNombre($_POST['nombreCliente']) or
+                    !$cliente->setApellido($_POST['apellidoCliente']) or
+                    !$cliente->setCorreo($_POST['correoCliente']) or
+                    !$cliente->setDireccion($_POST['direccionCliente']) or
+                    !$cliente->setDUI($_POST['duiCliente']) or
+                    !$cliente->setNacimiento($_POST['nacimientoCliente']) or
+                    !$cliente->setTelefono($_POST['telefonoCliente']) or
+                    !$cliente->setClave($_POST['claveCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($_POST['claveCliente'] != $_POST['confirmarClave']) {
@@ -83,7 +83,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
-                if (!$cliente->checkUser($_POST['correo_cliente'], $_POST['clave_cliente'])) {
+                if (!$cliente->checkUser($_POST['correo'], $_POST['clave'])) {
                     $result['error'] = 'Datos incorrectos';
                 } elseif ($cliente->checkStatus()) {
                     $result['status'] = 1;

@@ -55,6 +55,9 @@ const loadTemplate = async () => {
                                     <li class="nav-item">
                                         <a class="nav-link" href="../Cecot/clientes.html">Clientes</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../Cecot/valoraciones.html">Valoraciones</a>
+                                    </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Cuenta: <b>${DATA.username}</b></a>
                                         <ul class="dropdown-menu">

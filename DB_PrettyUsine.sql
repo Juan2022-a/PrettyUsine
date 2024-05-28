@@ -143,14 +143,16 @@ CREATE TABLE `tipo_usuario` (
 -- Estructura de tabla para la tabla `valoracion`
 --
 
-CREATE TABLE `valoracion` (
-  `id_valoracion` int(10) UNSIGNED NOT NULL,
-  `id_producto` int(10) UNSIGNED NOT NULL,
-  `calificacion_producto` int(11) DEFAULT NULL,
-  `comentario_producto` varchar(250) DEFAULT NULL,
-  `fecha_registro` datetime NOT NULL DEFAULT current_timestamp(),
-  `estado_comentario` tinyint(1) NOT NULL
+CREATE TABLE valoracion (
+  id_valoracion INT AUTO_INCREMENT PRIMARY KEY,
+  calificacion_valoracion INT,
+  comentario_valoracion VARCHAR(250),
+  fecha_valoracion DATETIME DEFAULT CURRENT_TIMESTAMP,
+  estado_valoracion BOOL,
+  id_producto INT UNSIGNED NOT NULL,
+  CONSTRAINT calificacion_valoracion_check CHECK (calificacion_valoracion >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 --
 -- Índices para tablas volcadas

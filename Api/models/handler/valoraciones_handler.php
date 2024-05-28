@@ -25,8 +25,8 @@ class ValoracionesHandler
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT v.id_valoracion, p.nombre_producto, p.imagen AS imagen_producto, v.calificacion_valoracion, v.comentario_valoracion, v.fecha_valoracion, v.estado_valoracion
-        FROM tb_valoraciones v
-        INNER JOIN tb_productos p ON v.id_producto = p.id_producto
+        FROM valoracion v
+        INNER JOIN producto p ON v.id_producto = p.id_producto
         WHERE p.nombre_producto LIKE ?
         ORDER BY p.id_producto';
         $params = array($value);
@@ -38,8 +38,8 @@ class ValoracionesHandler
     public function readAll()
     {
         $sql = 'SELECT v.id_valoracion, p.nombre_producto, p.imagen, v.calificacion_valoracion, v.comentario_valoracion, v.fecha_valoracion, v.estado_valoracion
-        FROM tb_valoraciones v
-        INNER JOIN tb_productos p ON v.id_producto = p.id_producto
+        FROM valoracion v
+        INNER JOIN producto p ON v.id_producto = p.id_producto
         ORDER BY p.nombre_producto;';
         return Database::getRows($sql);
     }
@@ -48,8 +48,8 @@ class ValoracionesHandler
     public function readOne()
     {
         $sql = 'SELECT v.id_valoracion, p.nombre_producto, p.imagen AS imagen_producto, v.calificacion_valoracion, v.comentario_valoracion, v.fecha_valoracion, v.estado_valoracion
-        FROM tb_valoraciones v
-        INNER JOIN tb_productos p ON v.id_producto = p.id_producto
+        FROM valoracion v
+        INNER JOIN producto p ON v.id_producto = p.id_producto
         WHERE id_valoracion = ?';
         $params = array($this->idValoracion);
         return Database::getRows($sql, $params);
@@ -58,7 +58,7 @@ class ValoracionesHandler
     //    Actualizar una valoracion
     public function updateRow()
     {
-        $sql = 'UPDATE tb_valoraciones 
+        $sql = 'UPDATE valoracion 
                 SET estado_valoracion = ?
                 WHERE id_valoracion = ?';
         $params = array(

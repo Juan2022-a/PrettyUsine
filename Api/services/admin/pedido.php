@@ -24,7 +24,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
-          /*  case 'createRow':
+          /*case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$pedido->setNombreProducto($_POST['nombreProducto']) or

@@ -15,6 +15,71 @@ class PedidoData extends PedidoHandler
     /*
     *   Métodos para validar y establecer los datos.
     */
+
+    public function setId($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_pedido = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del pedido es incorrecto';
+            return false;
+        }
+    }
+
+    public function setNombreProducto($value, $min = 2, $max = 50)
+    {
+        if (!Validator::validateAlphanumeric($value)) {
+            $this->data_error = 'El nombre del producto debe ser un valor alfanumérico';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->nombreProducto = $value;
+            return true;
+        } else {
+            $this->data_error = 'El nombre del producto debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
+    public function setNombreCliente($value, $min = 2, $max = 50)
+    {
+        if (!Validator::validateAlphanumeric($value)) {
+            $this->data_error = 'El nombre del cliente debe ser un valor alfanumérico';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->nombreCliente = $value;
+            return true;
+        } else {
+            $this->data_error = 'El nombre del cliente debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
+    public function setDireccionCliente($value, $min = 5, $max = 250)
+    {
+        if (!Validator::validateString($value)) {
+            $this->data_error = 'La dirección contiene caracteres prohibidos';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->direccionCliente = $value;
+            return true;
+        } else {
+            $this->data_error = 'La dirección debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
+    public function setEstadoPedido($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->estadoPedido = $value;
+            return true;
+        } else {
+            $this->data_error = 'El estado del pedido es incorrecto';
+            return false;
+        }
+    }
+
     public function setIdPedido($value)
     {
         if (Validator::validateNaturalNumber($value)) {

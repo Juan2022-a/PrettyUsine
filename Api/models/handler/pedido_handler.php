@@ -17,7 +17,11 @@ class PedidoHandler
     protected $direccioncliente = null;
     protected $fecharegistro = null;
     protected $estadopedido = null;
-
+    protected $id_detalle = null;
+    protected $cliente = null;
+    protected $producto = null;
+    protected $cantidad = null;
+    protected $estado = null;
 
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../images/pedidos/';

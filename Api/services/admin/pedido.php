@@ -61,10 +61,10 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$pedido->setId($_POST['id_pedido']) or
-                    !$pedido->setNombreProducto($_POST['nombreProducto']) or
-                    !$pedido->setNombreCliente($_POST['nombreCliente']) or
-                    !$pedido->setDireccionCliente($_POST['direccionCliente']) or
-                    !$pedido->setEstadoPedido($_POST['estadoPedido'])
+                    !$pedido->setNombreProducto($_POST['nombreproducto']) or
+                    !$pedido->setNombreCliente($_POST['nombrecliente']) or
+                    !$pedido->setDireccionCliente($_POST['direccioncliente']) or
+                    !$pedido->setEstadoPedido($_POST['estadopedido'])
                 ) {
                     $result['error'] = $pedido->getDataError();
                 } elseif ($pedido->updateRow()) {

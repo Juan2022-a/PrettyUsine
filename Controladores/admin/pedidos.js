@@ -11,9 +11,8 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_PEDIDO = document.getElementById('id_pedido'),
-    IMAGEN_PRODUCTO = document.getElementById('imagenproducto'),
-    NOMBRE_PRODUCTO = document.getElementById('nombreproducto'),
     NOMBRE_CLIENTE = document.getElementById('nombrecliente'),
+    FECHA_REGISTRO = document.getElementById('fecharegistro'),
     DIRECCION_CLIENTE = document.getElementById('direccioncliente'),
     ESTADO_PEDIDO = document.getElementById('estadopedido');
 
@@ -81,9 +80,8 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
                 <tr>
-                <td><img src="${SERVER_URL}images/productos/${row.imagen_producto}" height="50"></td>
-                    <td>${row.nombre_producto}</td>
                     <td>${row.nombre_cliente}</td>
+                    <td>${row.fecha_registro}</td>
                     <td>${row.direccion_cliente}</td>
                     <td>${row.estado_pedido}</td>
                     <td>
@@ -135,11 +133,10 @@ const openUpdate = async (id) => {
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
         ID_PEDIDO.value = ROW.id_pedido;
-        IMAGEN_PRODUCTO.value = ROW.imagenpedido;
-        NOMBRE_PRODUCTO.value = ROW.nombreproducto;
-        NOMBRE_CLIENTE.value = ROW.nombrecliente;
-        DIRECCION_CLIENTE.value = ROW.direccioncliente;
-        ESTADO_PEDIDO.value = ROW.estadopedido;
+        NOMBRE_PRODUCTO.value = ROW.nombre_producto;
+        NOMBRE_CLIENTE.value = ROW.nombre_cliente;
+        DIRECCION_CLIENTE.value = ROW.direccion_cliente;
+        fillSelect(PEDIDO_API, 'getEstados', 'estadopedido', ROW.estado_pedido);
     } else {
         sweetAlert(2, DATA.error, false);
     }

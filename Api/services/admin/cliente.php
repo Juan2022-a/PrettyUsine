@@ -27,16 +27,15 @@ if (isset($_GET['action'])) {
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$cliente->setNombreCliente($_POST['nombreCliente']) or
-                    !$cliente->setApellidoCliente($_POST['apellidoCliente']) or
-                    !$cliente->setCorreoCliente($_POST['correoCliente']) or
-                    !$cliente->setTelefonoCliente($_POST['telefonoCliente']) or
-                    !$cliente->setDuiCliente($_POST['duiCliente']) or
-                    !$cliente->setDireccionCliente($_POST['direccionCliente']) or
-                    !$cliente->setNacimientoCliente($_POST['nacimientoCliente']) or
-                    !$cliente->setClaveCliente($_POST['claveCliente']) or
-                    !$cliente->setEstadoCliente($_POST['estadoCliente']) or
-                    !$cliente->setFechaRegistroCliente($_POST['fechaRegistro'])
+                    !$cliente->setNombre($_POST['nombreCliente']) or
+                    !$cliente->setApellido($_POST['apellidoCliente']) or
+                    !$cliente->setCorreo($_POST['correoCliente']) or
+                    !$cliente->setDui($_POST['duiCliente']) or
+                    !$cliente->setTelefono($_POST['telefonoCliente']) or
+                    !$cliente->setDireccion($_POST['direccionCliente']) or
+                    !$cliente->setNacimiento($_POST['nacimientoCliente']) or
+                    !$cliente->setClave($_POST['claveCliente']) or
+                    !$cliente->setEstado($_POST['estadoCliente']) 
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->createRow()) {
@@ -55,7 +54,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$cliente->setIdCliente($_POST['idCliente'])) {
+                if (!$cliente->setId($_POST['idCliente'])) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($result['dataset'] = $cliente->readOne()) {
                     $result['status'] = 1;
@@ -66,15 +65,15 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$cliente->setIdCliente($_POST['idCliente']) or
-                    !$cliente->setNombreCliente($_POST['nombreCliente']) or
-                    !$cliente->setApellidoCliente($_POST['apellidoCliente']) or
-                    !$cliente->setCorreoCliente($_POST['correoCliente']) or
-                    !$cliente->setTelefonoCliente($_POST['telefonoCliente']) or
-                    !$cliente->setDuiCliente($_POST['duiCliente']) or
-                    !$cliente->setDireccionCliente($_POST['direccionCliente']) or
-                    !$cliente->setNacimientoCliente($_POST['nacimientoCliente']) or
-                    !$cliente->setEstadoCliente($_POST['estadoCliente'])
+                    !$cliente->setId($_POST['idCliente']) or
+                    !$cliente->setNombre($_POST['nombreCliente']) or
+                    !$cliente->setApellido($_POST['apellidoCliente']) or
+                    !$cliente->setCorreo($_POST['correoCliente']) or
+                    !$cliente->setDui($_POST['duiCliente']) or
+                    !$cliente->setTelefono($_POST['telefonoCliente']) or
+                    !$cliente->setDireccion($_POST['direccionCliente']) or
+                    !$cliente->setNacimiento($_POST['nacimientoCliente']) or
+                    !$cliente->setEstado($_POST['estadoCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->updateRow()) {
@@ -85,7 +84,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'deleteRow':
-                if (!$cliente->setIdCliente($_POST['idCliente'])) {
+                if (!$cliente->setId($_POST['idCliente'])) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->deleteRow()) {
                     $result['status'] = 1;

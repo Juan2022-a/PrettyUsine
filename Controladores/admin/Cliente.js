@@ -14,8 +14,8 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_CLIENTE = document.getElementById('nombreCliente'),
     APELLIDO_CLIENTE = document.getElementById('apellidoCliente'),
     CORREO_CLIENTE = document.getElementById('correoCliente'),
-    TELEFONO_CLIENTE = document.getElementById('telefonoCliente'),
     DUI_CLIENTE = document.getElementById('duiCliente'),
+    TELEFONO_CLIENTE = document.getElementById('telefonoCliente'),
     DIRECCION_CLIENTE = document.getElementById('direccionCliente'),
     NACIMIENTO_CLIENTE = document.getElementById('nacimientoCliente'),
     ESTADO_CLIENTE = document.getElementById('estadoCliente')
@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
-
 // Método del evento para cuando se envía el formulario de buscar.
 SEARCH_FORM.addEventListener('submit', (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -40,7 +39,6 @@ SEARCH_FORM.addEventListener('submit', (event) => {
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTable(FORM);
 });
-
 // Método del evento para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -63,7 +61,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         sweetAlert(2, DATA.error, false);
     }
 });
-
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
 *   Parámetros: form (objeto opcional con los datos de búsqueda).
@@ -86,9 +83,9 @@ const fillTable = async (form = null) => {
                 <tr>
                     <td>${row.nombre_cliente}</td>
                     <td>${row.apellido_cliente}</td>
+                    <td>${row.dui_cliente}</td>
                     <td>${row.correo_cliente}</td>
                     <td>${row.telefono_cliente}</td>
-                    <td>${row.dui_cliente}</td>
                     <td>${row.direccion_cliente}</td>
                     <td>${row.nacimiento_cliente}</td>
                     <td>
@@ -108,7 +105,6 @@ const fillTable = async (form = null) => {
         sweetAlert(4, DATA.error, true);
     }
 }
-
 /*
 *   Función para preparar el formulario al momento de insertar un registro.
 *   Parámetros: ninguno.
@@ -121,7 +117,6 @@ const openCreate = () => {
     // Se prepara el formulario.
     SAVE_FORM.reset();
 }
-
 /*
 *   Función asíncrona para preparar el formulario al momento de actualizar un registro.
 *   Parámetros: id (identificador del registro seleccionado).
@@ -146,8 +141,8 @@ const openUpdate = async (id) => {
         NOMBRE_CLIENTE.value = ROW.nombre_cliente;
         APELLIDO_CLIENTE.value = ROW.apellido_cliente;
         CORREO_CLIENTE.value = ROW.correo_cliente;
-        TELEFONO_CLIENTE.value = ROW.telefono_cliente;
         DUI_CLIENTE.value = ROW.dui_cliente;
+        TELEFONO_CLIENTE.value = ROW.telefono_cliente;
         DIRECCION_CLIENTE.value = ROW.direccion_cliente;
         NACIMIENTO_CLIENTE.value = ROW.nacimiento_cliente;
         ESTADO_CLIENTE.value = ROW.estado_cliente;
@@ -155,7 +150,6 @@ const openUpdate = async (id) => {
         sweetAlert(2, DATA.error, false);
     }
 }
-
 /*
 *   Función asíncrona para eliminar un registro.
 *   Parámetros: id (identificador del registro seleccionado).
@@ -182,3 +176,4 @@ const openDelete = async (id) => {
         }
     }
 }
+// Agregar otras funciones auxiliares según sea necesario

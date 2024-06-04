@@ -10,6 +10,7 @@ class ValoracionesHandler
      *  Declaración de atributos para el manejo de datos.
      */
     protected $idValoracion = null;
+    protected $id_producto = null;
     protected $calificacionValoracion = null;
     protected $comentarioValoracion = null;
     protected $fechaValoracion = null;
@@ -67,4 +68,6 @@ class ValoracionesHandler
         );
         return Database::executeRow($sql, $params);
     }
+
+    
 }

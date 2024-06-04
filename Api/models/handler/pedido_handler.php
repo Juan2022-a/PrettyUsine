@@ -21,8 +21,7 @@ class PedidoHandler
     protected $cliente = null;
     protected $producto = null;
     protected $cantidad = null;
-
-    const ESTADOS = array(array('Pendiente', 'Pendiente'), array('Finalizado', 'Finalizado'), array('Entregado', 'Entregado'), array('Anulado', 'Anulado'));
+    protected $estado = null;
 
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../images/pedidos/';
@@ -57,9 +56,10 @@ class PedidoHandler
     {
         $sql = 'SELECT 
 	    PD.id_pedido,
+        P.imagen_producto,
+        P.nombre_producto,
         C.nombre_cliente,
         C.direccion_cliente,
-        P.fecha_registro,        
         PD.estado_pedido
     FROM 
         detalle_pedido DP
@@ -75,11 +75,9 @@ class PedidoHandler
     // Método para obtener un solo registro por su ID.
     public function readOne()
     {
-        $sql = 'SELECT id_pedido, nombre_producto, nombre_cliente, direccion_cliente, estado_pedido, pedido.fecha_registro
+        $sql = ' SELECT   nombre_cliente, direccion_cliente, estado_pedido, pedido.fecha_registro
         FROM pedido
-        inner JOIN detalle_pedido  using (id_pedido)
         inner join cliente using (id_cliente)
-         inner JOIN producto  using (id_producto)
         WHERE id_pedido = ?';
         $params = array($this->id_pedido);
         return Database::getRow($sql, $params);
@@ -107,7 +105,7 @@ class PedidoHandler
 
     public function getOrder()
     {
-        $this->estadopedido = 'Pendiente';
+        $this->estado = 'Pendiente';
         $sql = 'SELECT id_pedido
                 FROM pedido
                 WHERE estado_pedido = ? AND id_cliente = ?';
@@ -163,11 +161,11 @@ class PedidoHandler
     // Método para finalizar un pedido por parte del cliente.
     public function finishOrder()
     {
-        $this->estadopedido = 'Finalizado';
+        $this->estado = 'Finalizado';
         $sql = 'UPDATE pedido
                 SET estado_pedido = ?
                 WHERE id_pedido = ?';
-        $params = array($this->estadopedido, $_SESSION['idPedido']);
+        $params = array($this->estado, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
     }
 

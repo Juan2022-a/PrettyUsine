@@ -40,8 +40,9 @@
                     <td colspan="8" id="rowsFound"></td>
                 </tr>
                 <tr>
+                    <th>IMAGEN PRODUCTO</th>
+                    <th>NOMBRE PRODUCTO</th>
                     <th>CLIENTE</th>
-                    <th>FECHA RESERVA</th>
                     <th>DIRECCION</th>
                     <th>ESTADO</th>
                     <th>ACCIONES</th>
@@ -60,14 +61,23 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form id="saveForm">
+                        <div class="modal-body row g-3">
+                            <input type="hidden" id="id_pedido" name="id_pedido">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="imagenproducto" class="form-label">Imagen del producto</label>
+                                <input id="imagenproducto" type="text" name="imagenproducto" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="nombreproducto" class="form-label">Nombre del producto</label>
+                                <input id="nombreproducto" type="text" name="nombreproducto" class="form-control"
+                                    required>
+                            </div>
+
                             <div class="col-sm-12 col-md-6">
                                 <label for="nombrecliente" class="form-label">Nombre del cliente</label>
                                 <input id="nombrecliente" type="text" name="nombrecliente" class="form-control"
                                     required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="estadopedido" class="form-label">Fecha de reserva</label>
-                                <input id="estadopedido" name="estadopedido" class="form-control" required>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="direccioncliente" class="form-label">Direccion del cliente</label>
@@ -86,35 +96,6 @@
                 </div>
             </div>
         </div>
-        <!-- Modal dentro del modal principal -->
-
-        <!-- Modal para guardar un registro -->
-        <div class="modal fade" id="saveModalSS" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="modalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalTitleSS"></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <!-- Formulario para guardar un registro -->
-                    <form id="saveFormSS">
-                        <div class="col-sm-12 col-md-6">
-                            <input type="number" class="d-none" id="idEstadosa" name="idEstadosa">
-                            <label for="estadopedido" class="form-label">Estado del pedido</label>
-                            <select id="estadopedidosa" name="estadopedido" class="form-select" required>
-                                <option value="1">Activo</option>
-                                <option value="0">Inactivo</option>
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

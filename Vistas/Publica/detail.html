@@ -10,7 +10,6 @@
     <meta name="author" content="JP Carranza Flamenco y-y">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- IMPORTACIÓN DE RECURSOS EXTERNOS -->
-    <link type="text/css" rel="stylesheet" href="../../Recursos/css/publica/estrellas.css">
     <link type="text/css" rel="stylesheet" href="../../Recursos/css/publica/detail.css">
     <!-- Llamada al icono de la página web -->
     <link type="image/png" rel="icon" href="../../Recursos/Img/LogoPretty.png">
@@ -35,15 +34,15 @@
                     <div class="card-body">
                         <h3 class="card-title" id="nombreProducto"></h3>
                         <p class="card-text" id="descripcionProducto"></p>
-                        <p class="card-text">Precio: $ <b id="precioProducto"></b></p>
-                        <p class="card-text">Existencias: <b id="existenciasProducto"></b></p>
+                        <p class="card-text">Precio: $ <b id="precioProducto"></b>.</p>
+                        <p class="card-text">Existencias: <b id="existenciasProducto"></b>.</p>
                         <!-- Formulario para agregar el producto al carrito de compras -->
                         <form class="row" id="shoppingForm">
                             <!-- Campo oculto para asignar el id del producto -->
                             <input type="number" class="d-none" id="idProducto" name="idProducto">
                             <div class="col-6">
-                                <input type="number" id="cantidadProducto" name="cantidadProducto" min="1"
-                                    class="form-control" placeholder="Ingrese cantidad" required>
+                                <input type="number" id="cantidadProducto" name="cantidadProducto" min="1" class="form-control" placeholder="Ingrese cantidad"
+                                    required>
                             </div>
                             <div class="col-6 align-self-end">
                                 <button type="submit" class="btn btn-primary">
@@ -52,94 +51,6 @@
                             </div>
                         </form>
                     </div>
-                    
-                    <!-- Comentarios -->
-
-                    <div class="container">
-                        <div class="col-lg-6 order-lg-1 text-center text-lg-start mb-5">
-                            <div class="title pt-3 pb-5">
-                                <h2 class="position-relative d-inline-block ms-4">Escribe tu Comentario</h2>
-                            </div>
-                            <form class="row justify-content-center" id="shoppingForm">
-                                <input type="number" class="d-none" id="idProducto" name="idProducto">
-                                <div class="rating">
-                                    <input type="radio" id="star-1" name="star-radio" value="1">
-                                    <label for="star-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                            <path pathLength="360"
-                                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
-                                            </path>
-                                        </svg>
-                                    </label>
-                                    <input type="radio" id="star-2" name="star-radio" value="2">
-                                    <label for="star-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                            <path pathLength="360"
-                                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
-                                            </path>
-                                        </svg>
-                                    </label>
-                                    <input type="radio" id="star-3" name="star-radio" value="3">
-                                    <label for="star-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                            <path pathLength="360"
-                                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
-                                            </path>
-                                        </svg>
-                                    </label>
-                                    <input type="radio" id="star-4" name="star-radio" value="4">
-                                    <label for="star-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                            <path pathLength="360"
-                                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
-                                            </path>
-                                        </svg>
-                                    </label>
-                                    <input type="radio" id="star-5" name="star-radio" value="5">
-                                    <label for="star-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                            <path pathLength="360"
-                                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
-                                            </path>
-                                        </svg>
-                                    </label>
-                                </div>
-
-                                <span class="Estrellita"><i class="fas fa-star"></i></span>
-                                <span class="Estrellita"><i class="fas fa-star"></i></span>
-                                <span class="Estrellita"><i class="fas fa-star"></i></span>
-                                <span class="Estrellita"><i class="fas fa-star"></i></span>
-                                <span class="Estrellita"><i class="fas fa-star"></i></span>
-
-                                <div class="my-2"></div>
-
-
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a comment here"
-                                        id="floatingTextarea2" name="floatingTextarea2"
-                                        style="height: 100px"></textarea>
-                                    <label for="floatingTextarea2">Escribe tu Comentario del Producto</label>
-                                    <br>
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class=""></i> Enviar Comentario
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-
-                        <div class="col-lg-6 order-lg-1 text-center text-lg-start">
-                            <div class="title pt-3 pb-5">
-                                <h2 class="position-relative d-inline-block ms-4">Opiniones</h2>
-                            </div>
-                            <div class="container mt-2">
-                                <ul class="list-group overflow-auto" id="listComentario" style="max-height: 300px;">
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

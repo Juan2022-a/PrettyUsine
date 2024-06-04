@@ -74,13 +74,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el pedido';
                 }
                 break;
-                case 'getEstados':
-                    if ($result['dataset'] = $pedido::ESTADOS) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['error'] = 'No existen estados disponibles';
-                    }
-                    break;
                 /*case 'deleteRow':
                     if (!$pedido->setid_pedido($_POST['id_pedido'])) {
                         $result['error'] = $pedido->getDataError();

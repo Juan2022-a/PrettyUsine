@@ -56,9 +56,10 @@ class ClienteHandler
         $sql = 'UPDATE cliente
                 SET clave_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->clave, $this->id);
+        $params = array($this->clave, $_SESSION['idUsuario']);
         return Database::executeRow($sql, $params);
     }
+    
 
     public function editProfile()
     {
@@ -114,6 +115,15 @@ class ClienteHandler
                 FROM cliente
                 WHERE id_cliente = ?';
         $params = array( $this->id);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readProfile()
+    {
+        $sql = 'SELECT id_usuario, nombre, usuario, correo, clave, estado_cliente
+        FROM tb_usuarios
+        WHERE id_usuario = ?';
+        $params = array($_SESSION['idUsuario']);
         return Database::getRow($sql, $params);
     }
 

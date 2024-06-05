@@ -2,8 +2,8 @@
 const PROFILE_FORM = document.getElementById('profileForm'),
     NOMBRE_CLIENTE = document.getElementById('nombreCliente'),
     CORREO_CLIENTE = document.getElementById('correoCliente'),
-    TELEFONO_CLIENTE = document.getElementById('aliasCliente');
-    DIRECCION_CLIENTE = document.getElementById('direccionCliente');
+    TELEFONO_CLIENTE = document.getElementById('telefonoCliente');
+DIRECCION_CLIENTE = document.getElementById('direccionCliente');
 // Constante para establecer la modal de cambiar contraseña.
 const PASSWORD_MODAL = new bootstrap.Modal('#passwordModal');
 // Constante para establecer el formulario de cambiar contraseña.
@@ -19,11 +19,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const DATA = await fetchData(USER_API, 'readProfile');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        // Se inicializan los campos del formulario con los datos del usuario que ha iniciado sesión.
+        // Se inicializan los campos del forlarmuio con los datos del usuario que ha iniciado sesión.
         const ROW = DATA.dataset;
-        NOMBRE_CLIENTE.value = ROW.nombre;
-        CORREO_CLIENTE.value = ROW.usuario;
-        ALIAS_CLIENTE.value = ROW.correo;
+        NOMBRE_CLIENTE.value = ROW.nombre_cliente;
+        CORREO_CLIENTE.value = ROW.correo_cliente;
+        TELEFONO_CLIENTE.value = ROW.telefono_cliente;
+        DIRECCION_CLIENTE.value = ROW.direccion_cliente;
     } else {
         sweetAlert(2, DATA.error, null);
     }

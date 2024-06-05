@@ -23,6 +23,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Correo de usuario indefinido';
                 }
                 break;
+
             case 'readProfile':
                 if ($result['dataset'] = $cliente->readProfile()) {
                     $result['status'] = 1;
@@ -30,6 +31,24 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
+                
+            case 'editProfile':
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$cliente->setNombre($_POST['nombreCliente']) or
+                        !$cliente->setCorreo($_POST['correoCliente']) or
+                        !$cliente->setDireccion($_POST['direccionCliente']) or
+                        !$cliente->setTelefono($_POST['telefonoCliente']) 
+                    ) {
+                        $result['error'] = $cliente->getDataError();
+                    } elseif ($cliente->editProfile()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Perfil modificado correctamente';
+                        $_SESSION['idCliente'] = $_POST['idCliente'];
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al modificar el perfil';
+                    }
+                    break;
 
             case 'changePassword':
                 $_POST = Validator::validateForm($_POST);
@@ -46,6 +65,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
                 }
                 break;
+
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
@@ -54,12 +74,14 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
+                
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
     } else {
         // Se compara la acción a realizar cuando el cliente no ha iniciado sesión.
         switch ($_GET['action']) {
+
             case 'signUp':
                 $_POST = Validator::validateForm($_POST);
                 // Se establece la clave secreta para el reCAPTCHA de acuerdo con la cuenta de Google.
@@ -78,7 +100,6 @@ if (isset($_GET['action'])) {
                 $context = stream_context_create($options);
                 $response = file_get_contents($url, false, $context);
                 $captcha = json_decode($response, true);
-
                 if (!$captcha['success']) {
                     $result['recaptcha'] = 1;
                     $result['error'] = 'No eres humano';
@@ -102,23 +123,6 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Cuenta registrada correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al registrar la cuenta';
-                }
-                break;
-            case 'editProfile':
-                $_POST = Validator::validateForm($_POST);
-                if (
-                    !$cliente->setNombre($_POST['nombreCliente']) or
-                    !$cliente->setCorreo($_POST['correoCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or
-                    !$cliente->setTelefono($_POST['telefonoCliente']) 
-                ) {
-                    $result['error'] = $cliente->getDataError();
-                } elseif ($cliente->editProfile()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Perfil modificado correctamente';
-                    $_SESSION['idCliente'] = $_POST['idCliente'];
-                } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el perfil';
                 }
                 break;
 

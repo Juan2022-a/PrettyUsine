@@ -62,12 +62,12 @@ class ClienteHandler
 
     public function checkPassword($password)
     {
-        $sql = 'SELECT clave
+        $sql = 'SELECT clave_cliente
                 FROM cliente
                 WHERE id_cliente = ?';
         $params = array($_SESSION['idCliente']);
         $data = Database::getRow($sql, $params);
-        if (password_verify($password, $data['clave'])) {
+        if (password_verify($password, $data['clave_cliente'])) {
             return true;
         } else {
             return false;
@@ -78,15 +78,15 @@ class ClienteHandler
     public function editProfile()
     {
         $sql = 'UPDATE cliente
-                SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_cliente = ?, telefono_cliente = ?,  direccion_cliente = ?, nacimiento_cliente = ?
+                SET nombre_cliente = ?, correo_cliente = ?, telefono_cliente = ?,  direccion_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->direccion, $this->nacimiento, $this->id);
+        $params = array($this->nombre, $this->correo, $this->telefono, $this->direccion, $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function readProfile()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion_cliente, nacimiento_cliente
+        $sql = 'SELECT id_cliente, nombre_cliente, correo_cliente, telefono_cliente, direccion_cliente
         FROM cliente
         WHERE id_cliente = ?';
         $params = array($_SESSION['idCliente']);

@@ -13,10 +13,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- IMPORTACIÓN DE RECURSOS EXTERNOS -->
+    <link type="text/css" rel="stylesheet" href="../../Recursos/css/publica/miperfil.css">
+
     <!-- Bootstrap CSS -->
     <link href="../../Controladores/resources/css/bootstrap.min.css" rel="stylesheet">
     <!-- Icono de la página -->
-    <link type="image/png" rel="icon" href="">
+    <link type="image/png" rel="icon" href="../../Recursos/Img/LogoPretty.png">
     <!-- Iconos de Bootstrap -->
     <link rel="stylesheet" href="../../Controladores/resources/css/bootstrap-icons.min.css">
 </head>
@@ -24,6 +27,8 @@
 <body>
     <!-- Contenido principal del documento -->
     <main>
+        <br>
+        <img src="../../Recursos/Img/LogoPretty.png" class="mx-auto d-block" width="130">
         <br>
         <!-- Título del contenido principal -->
         <h3 id="mainTitle"></h3>
@@ -35,7 +40,7 @@
                 <input id="nombreCliente" type="text" name="nombreCliente" class="form-control" required>
             </div>
             <!-- Campo para el correo -->
-            <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
+            <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-0">
                 <label for="correoCliente" class="form-label">Correo</label>
                 <input id="correoCliente" type="email" name="correoCliente" class="form-control" required>
             </div>
@@ -82,19 +87,15 @@
                                 <label for="claveActual" class="form-label">Contraseña actual</label>
                                 <input id="claveActual" type="password" name="claveActual" class="form-control"
                                     required>
-                            </div>
-                            <!-- Etiqueta para la nueva contraseña -->
-                            <div class="col-12 text-center">
-                                <span>CONTRASEÑA NUEVA</span>
-                            </div>
+                            </div>                            
                             <!-- Campo para la nueva contraseña -->
                             <div class="col-sm-12 col-md-6">
-                                <label for="claveNueva" class="form-label">Contraseña Nueva</label>
+                                <label for="claveNueva" class="form-label">Nueva Contraseña</label>
                                 <input id="claveNueva" type="password" name="claveNueva" class="form-control" required>
                             </div>
                             <!-- Campo para confirmar la nueva contraseña -->
                             <div class="col-sm-12 col-md-6">
-                                <label for="confirmarClave" class="form-label">Confirmar contraseña</label>
+                                <label for="confirmarClave" class="form-label">Confirmar Nueva Contraseña</label>
                                 <input id="confirmarClave" type="password" name="confirmarClave" class="form-control"
                                     required>
                             </div>

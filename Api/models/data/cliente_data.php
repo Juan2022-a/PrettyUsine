@@ -61,7 +61,7 @@ class ClienteData extends ClienteHandler
         } elseif (!Validator::validateLength($value, $min, $max)) {
             $this->data_error = 'El correo debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
-        } elseif($this->checkDuplicate($value)) {
+        } elseif ($this->checkDuplicate($value)) {
             $this->data_error = 'El correo ingresado ya existe';
             return false;
         } else {

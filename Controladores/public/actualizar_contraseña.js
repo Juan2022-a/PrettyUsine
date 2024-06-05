@@ -1,4 +1,4 @@
-const CLIENTE_API = 'services/public/cliente.php';
+const CLIENTE_API = 'services/publica/cliente.php';
 
 const SAVE_FORM = document.getElementById('saveForm');
     

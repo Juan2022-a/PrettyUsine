@@ -1,0 +1,17 @@
+/* Estilo para el cuerpo del formulario */
+.modal-body {
+    padding: 20px !important;
+}
+
+/* Estilo para las etiquetas */
+.form-label {
+    font-weight: bold !important;
+}
+
+/* Estilo para los campos de entrada */
+.form-control {
+    border-radius: 20px !important; /* Redondea los bordes */
+    border: 1px solid #ccc !important;
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+}

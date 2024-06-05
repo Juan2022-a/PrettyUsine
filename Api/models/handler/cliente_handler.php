@@ -56,8 +56,22 @@ class ClienteHandler
         $sql = 'UPDATE cliente
                 SET clave_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->clave, $_SESSION['idUsuario']);
+        $params = array($this->clave, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
+    }
+
+    public function checkPassword($password)
+    {
+        $sql = 'SELECT clave
+                FROM cliente
+                WHERE id_cliente = ?';
+        $params = array($_SESSION['idCliente']);
+        $data = Database::getRow($sql, $params);
+        if (password_verify($password, $data['clave'])) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
 
@@ -68,6 +82,15 @@ class ClienteHandler
                 WHERE id_cliente = ?';
         $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->direccion, $this->nacimiento, $this->id);
         return Database::executeRow($sql, $params);
+    }
+
+    public function readProfile()
+    {
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion_cliente, nacimiento_cliente
+        FROM cliente
+        WHERE id_cliente = ?';
+        $params = array($_SESSION['idCliente']);
+        return Database::getRow($sql, $params);
     }
 
     public function changeStatus()
@@ -115,15 +138,6 @@ class ClienteHandler
                 FROM cliente
                 WHERE id_cliente = ?';
         $params = array( $this->id);
-        return Database::getRow($sql, $params);
-    }
-
-    public function readProfile()
-    {
-        $sql = 'SELECT id_usuario, nombre, usuario, correo, clave, estado_cliente
-        FROM tb_usuarios
-        WHERE id_usuario = ?';
-        $params = array($_SESSION['idUsuario']);
         return Database::getRow($sql, $params);
     }
 

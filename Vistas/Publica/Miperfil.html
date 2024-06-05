@@ -4,8 +4,8 @@
 <head>
     <!-- Codificación del documento -->
     <meta charset="UTF-8">
-        <!-- Compatibilidad con Internet Explorer -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Compatibilidad con Internet Explorer -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Escalabilidad para dispositivos -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
@@ -31,18 +31,25 @@
         <form class="row g-3" id="profileForm">
             <!-- Campo para el nombre -->
             <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
-                <label for="nombreAdministrador" class="form-label">Nombre</label>
-                <input id="nombreAdministrador" type="text" name="nombreAdministrador" class="form-control" required>
-            </div>
-            <!-- Campo para el alias de usuario -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <label for="aliasAdministrador" class="form-label">Usuario</label>
-                <input id="aliasAdministrador" type="text" name="aliasAdministrador" class="form-control" required>
+                <label for="nombreCliente" class="form-label">Nombre</label>
+                <input id="nombreCliente" type="text" name="nombreCliente" class="form-control" required>
             </div>
             <!-- Campo para el correo -->
             <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
-                <label for="correoAdministrador" class="form-label">Correo</label>
-                <input id="correoAdministrador" type="email" name="correoAdministrador" class="form-control" required>
+                <label for="correoCliente" class="form-label">Correo</label>
+                <input id="correoCliente" type="email" name="correoCliente" class="form-control" required>
+            </div>
+            <!-- Campo para el Correo de cliente -->
+            <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
+                <label for="telefonoCliente" class="form-label">Teléfono</label>
+                <input type="text" id="telefonoCliente" name="telefonoCliente" placeholder="0000-0000"
+                    class="form-control" required>
+            </div>
+            <!-- Campo para la direccion de cliente -->
+            <div class="col-sm-12 col-lg-8 offset-lg-2">
+                <label for="direccionCliente" class="form-label">Dirección</label>
+                <input type="text" id="direccionCliente" name="direccionCliente" maxlength="250" class="form-control"
+                    required>
             </div>
             <!-- Botón para guardar los cambios -->
             <div class="text-center">
@@ -97,7 +104,7 @@
                             <button type="reset" class="btn btn-secondary">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
-                     
+
                     </form>
                 </div>
             </div>
@@ -105,8 +112,8 @@
     </main>
     <!-- IMPORTACIÓN DE ARCHIVOS JAVASCRIPT -->
     <!-- Llamada al framework y librería de mensajes -->
-    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../Controladores/resources/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../Controladores/resources/js/sweetalert.min.js"></script>
     <!-- Llamada al controlador general de la aplicación -->
     <script type="text/javascript" src="../../Controladores/utils/components.js"></script>
     <!-- Llamada al controlador del sitio público -->
@@ -114,4 +121,5 @@
     <!-- Llamada al controlador de la página web -->
     <script type="text/javascript" src="../../Controladores/public/miperfil.js"></script>
 </body>
+
 </html>

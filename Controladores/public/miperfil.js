@@ -1,8 +1,9 @@
 // Constantes para establecer los elementos del formulario de editar perfil.
 const PROFILE_FORM = document.getElementById('profileForm'),
-    NOMBRE_ADMINISTRADOR = document.getElementById('nombreAdministrador'),
-    CORREO_ADMINISTRADOR = document.getElementById('correoAdministrador'),
-    ALIAS_ADMINISTRADOR = document.getElementById('aliasAdministrador');
+    NOMBRE_CLIENTE = document.getElementById('nombreCliente'),
+    CORREO_CLIENTE = document.getElementById('correoCliente'),
+    TELEFONO_CLIENTE = document.getElementById('aliasCliente');
+    DIRECCION_CLIENTE = document.getElementById('direccionCliente');
 // Constante para establecer la modal de cambiar contraseña.
 const PASSWORD_MODAL = new bootstrap.Modal('#passwordModal');
 // Constante para establecer el formulario de cambiar contraseña.
@@ -20,9 +21,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (DATA.status) {
         // Se inicializan los campos del formulario con los datos del usuario que ha iniciado sesión.
         const ROW = DATA.dataset;
-        NOMBRE_ADMINISTRADOR.value = ROW.nombre;
-        CORREO_ADMINISTRADOR.value = ROW.usuario;
-        ALIAS_ADMINISTRADOR.value = ROW.correo;
+        NOMBRE_CLIENTE.value = ROW.nombre;
+        CORREO_CLIENTE.value = ROW.usuario;
+        ALIAS_CLIENTE.value = ROW.correo;
     } else {
         sweetAlert(2, DATA.error, null);
     }

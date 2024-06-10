@@ -312,6 +312,22 @@ JOIN
 
 SELECT * FROM vista_detalle_pedido;
 
+DELIMITER //
+
+CREATE TRIGGER actualizar_existencias
+AFTER UPDATE ON pedido
+FOR EACH ROW
+BEGIN
+    IF NEW.estado_pedido = 'Entregado' THEN
+        UPDATE producto p
+        INNER JOIN detalle_pedido dp ON p.id_producto = dp.id_producto
+        SET p.existencias_producto = p.existencias_producto - dp.cantidad_producto
+        WHERE dp.id_pedido = NEW.id_pedido;
+    END IF;
+END //
+
+DELIMITER ;
+
 COMMIT;
 
 

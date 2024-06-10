@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla PEDIDO.
@@ -171,6 +171,32 @@ class PedidoHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function readHistorials()
+    {
+        $sql = 'SELECT 
+        p.nombre_producto,
+        p.imagen_producto,
+        dp.cantidad_producto,
+        dp.precio_producto,
+        pe.fecha_registro,
+        c.direccion_cliente
+    FROM 
+        detalle_pedido dp
+    INNER JOIN 
+        pedido pe ON dp.id_pedido = pe.id_pedido
+    INNER JOIN 
+        producto p ON dp.id_producto = p.id_producto
+    INNER JOIN
+        cliente c ON pe.id_cliente = c.id_cliente
+    WHERE 
+        pe.estado_pedido = "Finalizado" AND
+        c.id_cliente = ?';
+        $params = array($_SESSION['idCliente']);
+        return Database::getRows($sql, $params);
+    }
+
+
+
     // Método para actualizar la cantidad de un producto agregado al carrito de compras.
     public function updateDetail()
     {
@@ -191,12 +217,12 @@ class PedidoHandler
     }
 
     // Método para eliminar un registro.
-   /* public function deleteRow()
-    {
-        $sql = 'DELETE FROM pedido
-        WHERE id_pedido = ?';
-        $params = array($this->id);
-        return Database::executeRow($sql, $params);
-    }*/
+    /* public function deleteRow()
+     {
+         $sql = 'DELETE FROM pedido
+         WHERE id_pedido = ?';
+         $params = array($this->id);
+         return Database::executeRow($sql, $params);
+     }*/
 }
 ?>

@@ -40,6 +40,7 @@ const loadTemplate = async () => {
                                 <div class="navbar-nav ms-auto">
                                     <a class="nav-link" href="index.html"><i class="bi bi-shop"></i> Productos</a>
                                     <a class="nav-link" href="cart.html"><i class="bi bi-cart"></i> Carrito</a>
+                                    <a class="nav-link" href="historial.html"><i class="bi bi-clock-history"></i> Historial de compras</a>
                                     <a class="nav-link" href="Miperfil.html"><i class="bi bi-person-fill"></i> Mi perfil</a>
                                     <a class="nav-link" href="#" onclick="logOut()"><i class="bi bi-box-arrow-left"></i> Cerrar sesión</a>
                                 </div>

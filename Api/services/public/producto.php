@@ -38,5 +38,5 @@ if (isset($_GET['action'])) {
     // Se imprime el resultado en formato JSON y se retorna al controlador.
     print(json_encode($result));
 } else {
-    print(json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));        
 }

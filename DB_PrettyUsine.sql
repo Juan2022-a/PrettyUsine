@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: prettyusine
+-- Base de datos: prettyusine    DROP DATABASE prettyusine;
 --
 
-DROP DATABASE prettyusine;
+
 CREATE DATABASE IF NOT EXISTS prettyusine DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE prettyusine;
 

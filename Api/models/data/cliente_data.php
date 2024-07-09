@@ -41,7 +41,7 @@ class ClienteData extends ClienteHandler
 
     public function setApellido($value, $min = 2, $max = 50)
     {
-        if (!Validator::validateAlphabetic($value)) {
+        if (!Validator::validateAlphanumeric($value)) {
             $this->data_error = 'El apellido debe ser un valor alfabético';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
@@ -49,6 +49,20 @@ class ClienteData extends ClienteHandler
             return true;
         } else {
             $this->data_error = 'El apellido debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
+    public function setDirec($value, $min = 2, $max = 8000)
+    {
+        if (!Validator::validateString($value)) {
+            $this->data_error = 'El nombre debe ser un valor alfabético d';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->direccion = $value;
+            return true;
+        } else {
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
         }
     }
@@ -69,6 +83,8 @@ class ClienteData extends ClienteHandler
             return true;
         }
     }
+
+
 
     public function setTelefono($value)
     {

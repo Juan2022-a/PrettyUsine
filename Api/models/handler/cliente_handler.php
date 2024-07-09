@@ -118,11 +118,19 @@ class ClienteHandler
 
     public function createRow()
     {
-        $sql = 'INSERT INTO cliente(nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion_cliente, nacimiento_cliente, clave_cliente)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->direccion, $this->nacimiento, $this->clave);
+        $sql = 'INSERT INTO cliente(nombre_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion_cliente, clave_cliente)
+                VALUES(?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->correo, $this->dui, $this->telefono, $this->direccion, $this->clave);
         return Database::executeRow($sql, $params);
     }
+
+    public function createUsuario()
+    {
+        $sql = 'INSERT INTO cliente(nombre_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion_cliente, clave_cliente)
+        VALUES(?, ?, ?, ?, ?, ?)';
+$params = array($this->nombre, $this->correo, $this->dui, $this->telefono, $this->direccion, $this->clave);
+return Database::executeRow($sql, $params);
+}
 
     public function readAll()
     {

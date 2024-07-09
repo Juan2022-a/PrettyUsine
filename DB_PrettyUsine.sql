@@ -42,7 +42,7 @@ CREATE TABLE `administrador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
-SELECT * FROM cliente
+
 --
 -- Estructura de tabla para la tabla `categoria`
 --

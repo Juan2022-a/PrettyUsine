@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /*
+*
 *   Función asíncrona para mostrar un gráfico de barras con la cantidad de productos por categoría.
 *   Parámetros: ninguno.
 *   Retorno: ninguno.

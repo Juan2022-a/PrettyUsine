@@ -95,4 +95,18 @@ class CategoriaHandler
          $params = array($this->id);
          return Database::getRows($sql, $params);
      }
+
+     public function readTopCategorias()
+{
+    $sql = 'SELECT c.nombre_categoria, SUM(dp.cantidad_producto) AS total
+            FROM detalle_pedido dp
+            INNER JOIN producto p ON dp.id_producto = p.id_producto
+            INNER JOIN categoria c ON p.id_categoria = c.id_categoria
+            GROUP BY c.nombre_categoria
+            ORDER BY total DESC
+            LIMIT 5';
+    $params = array();
+    return Database::getRows($sql, $params);
+}
+
 }

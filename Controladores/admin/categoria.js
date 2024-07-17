@@ -207,6 +207,36 @@ const openChart = async (id) => {
     }
 }
 
+/*
+*   Función asíncrona para mostrar un gráfico de las categorías más vendidas.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openCategoryChart = async () => {
+    // Petición para obtener los datos de las categorías más vendidas.
+    const DATA = await fetchData(CATEGORIA_API, 'readTopCategorias', null);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con el error.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        CHART_MODAL.show();
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let categorias = [];
+        let total_vendido = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            categorias.push(row.nombre_categoria);
+            total_vendido.push(row.total);
+        });
+        // Se agrega la etiqueta canvas al contenedor de la modal.
+        document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('chart', categorias, total_vendido, 'Cantidad de productos', 'Top 5 de categorías con más productos vendidos');
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
+
 
 /*
 *   Función para abrir un reporte parametrizado de productos de una categoría.

@@ -101,6 +101,15 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'No existen productos vendidos por el momento';
                     }
                     break;
+                    case 'readTopCategorias':
+                        if ($result['dataset'] = $categoria->readTopCategorias()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['error'] = 'No existen categorías vendidas por el momento';
+                        }
+                        break;
+
+                    
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

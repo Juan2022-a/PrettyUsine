@@ -81,6 +81,13 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'No existen estados disponibles';
                     }
                     break;
+                    case 'readVentasPorMes':
+                        if ($result['dataset'] = $pedido->readVentasPorMes()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['error'] = 'No existen ventas registradas por el momento';
+                        }
+                        break;  
                 /*case 'deleteRow':
                     if (!$pedido->setid_pedido($_POST['id_pedido'])) {
                         $result['error'] = $pedido->getDataError();

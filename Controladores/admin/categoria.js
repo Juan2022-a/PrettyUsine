@@ -238,6 +238,8 @@ const openCategoryChart = async () => {
 }
 
 
+
+
 /*
 *   Función para abrir un reporte parametrizado de productos de una categoría.
 *   Parámetros: id (identificador del registro seleccionado).

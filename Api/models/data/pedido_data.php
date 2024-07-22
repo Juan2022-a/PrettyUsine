@@ -135,6 +135,7 @@ class PedidoData extends PedidoHandler
         }
     }
 
+
     // Método para obtener el error de los datos.
     public function getDataError()
     {

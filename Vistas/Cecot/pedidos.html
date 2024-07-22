@@ -32,7 +32,28 @@
                     </div>
                 </div>
             </form>
+            <div class="col-sm-12 col-md-6 text-end">
+                <button type="button" class="btn btn-primary" onclick="openMonthlySalesChart()">
+                    <i class="bi bi-bar-chart-line-fill"></i>
+                </button>
+            </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="chartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ventas por Mes</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="chartContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <table class="table table-hover">
             <thead>
@@ -60,28 +81,27 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form id="saveForm">
-                            <div class="col-sm-12 col-md-6">
-                                <label for="nombrecliente" class="form-label">Nombre del cliente</label>
-                                <input id="nombrecliente" type="text" name="nombrecliente" class="form-control"
-                                    required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="estadopedido" class="form-label">Fecha de reserva</label>
-                                <input id="estadopedido" name="estadopedido" class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="direccioncliente" class="form-label">Direccion del cliente</label>
-                                <input id="direccioncliente" type="text" name="direccioncliente" class="form-control"
-                                    required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="estadopedido" class="form-label">Estado</label>
-                                <select id="estadopedido" name="estadopedido" class="form-select" required>
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="nombrecliente" class="form-label">Nombre del cliente</label>
+                            <input id="nombrecliente" type="text" name="nombrecliente" class="form-control" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="estadopedido" class="form-label">Fecha de reserva</label>
+                            <input id="estadopedido" name="estadopedido" class="form-control" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="direccioncliente" class="form-label">Direccion del cliente</label>
+                            <input id="direccioncliente" type="text" name="direccioncliente" class="form-control"
+                                required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="estadopedido" class="form-label">Estado</label>
+                            <select id="estadopedido" name="estadopedido" class="form-select" required>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
                     </form>
                 </div>
             </div>

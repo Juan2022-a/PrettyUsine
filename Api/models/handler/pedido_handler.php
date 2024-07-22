@@ -195,6 +195,30 @@ class PedidoHandler
         return Database::getRows($sql, $params);
     }
 
+    
+    public function readVentasPorMes()
+{
+    $sql = 'SELECT 
+                c.id_categoria, 
+                c.nombre_categoria, 
+                DATE_FORMAT(pe.fecha_registro, \'%Y-%m\') AS mes,
+                SUM(dp.cantidad_producto) AS total_vendido
+            FROM 
+                detalle_pedido dp
+            INNER JOIN 
+                producto p ON dp.id_producto = p.id_producto
+            INNER JOIN 
+                categoria c ON p.id_categoria = c.id_categoria
+            INNER JOIN 
+                pedido pe ON dp.id_pedido = pe.id_pedido
+            GROUP BY 
+                c.id_categoria, c.nombre_categoria, mes
+            ORDER BY 
+                mes DESC, total_vendido DESC';
+    $params = array();
+    return Database::getRows($sql, $params);
+}
+
 
 
     // Método para actualizar la cantidad de un producto agregado al carrito de compras.

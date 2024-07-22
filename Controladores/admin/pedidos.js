@@ -14,8 +14,10 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_CLIENTE = document.getElementById('nombrecliente'),
     FECHA_REGISTRO = document.getElementById('fecharegistro'),
     DIRECCION_CLIENTE = document.getElementById('direccioncliente'),
-    ESTADO_PEDIDO = document.getElementById('estadopedido');
-
+    ESTADO_PEDIDO = document.getElementById('estadopedido'),
+    CHART_MODAL = new bootstrap.Modal(document.getElementById('chartModal'), {
+        backdrop: 'static'
+    });
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -141,6 +143,77 @@ const openUpdate = async (id) => {
         sweetAlert(2, DATA.error, false);
     }
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const chartModalElement = document.getElementById('chartModal');
+    if (chartModalElement) {
+        const CHART_MODAL = new bootstrap.Modal(chartModalElement, {
+            backdrop: 'static'
+        });
+
+        // Función openMonthlySalesChart
+        window.openMonthlySalesChart = async function () {
+            const FORM = new FormData();
+            const DATA = await fetchData(CATEGORIA_API, 'readVentasPorMes', FORM);
+            if (DATA.status) {
+                CHART_MODAL.show();
+                let categorias = [];
+                let total_vendido = [];
+                let meses = [];
+                DATA.dataset.forEach(row => {
+                    categorias.push(`${row.nombre_categoria} (${row.mes})`);
+                    total_vendido.push(row.total_vendido);
+                    if (!meses.includes(row.mes)) {
+                        meses.push(row.mes);
+                    }
+                });
+                document.getElementById('chartContainer').innerHTML = `<canvas id="line"></canvas>`;
+                // Crear el gráfico de líneas
+                const ctx = document.getElementById('line').getContext('2d');
+                const config = {
+                    type: 'line',
+                    data: {
+                        labels: categorias,
+                        datasets: [{
+                            label: 'Ventas por Categoría y Mes',
+                            data: total_vendido,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            fill: false,
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Categorías y Meses'
+                                }
+                            },
+                            y: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Total Vendido'
+                                }
+                            }
+                        }
+                    }
+                };
+                new Chart(ctx, config);
+            } else {
+                sweetAlert(4, DATA.error, true);
+            }
+        }
+    }
+});
+
+
+
 
 /*
 *   Función asíncrona para eliminar un registro.

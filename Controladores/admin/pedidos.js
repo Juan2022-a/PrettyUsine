@@ -90,6 +90,9 @@ const fillTable = async (form = null) => {
                         <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_pedido})">
                             <i class="bi bi-pencil-fill"></i>
                         </button>
+                        <button type="button" class="btn btn-warning" onclick="openReport(${row.id_pedido})">
+                            <i class="bi bi-filetype-pdf"></i>
+                        </button>
                     </td>
                 </tr>
             `;
@@ -242,4 +245,12 @@ const openDelete = async (id) => {
     }
 }
 
+const openReport = (id) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/pedidos.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('id_pedido', id);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
+}
 // Agregar otras funciones auxiliares según sea necesario

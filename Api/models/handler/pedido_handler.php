@@ -85,6 +85,32 @@ class PedidoHandler
         return Database::getRow($sql, $params);
     }
 
+    public function readDetails()
+    {
+        $sql = 'SELECT
+    dp.id_detalle AS id_detalle_pedido,
+    pr.nombre_producto,
+    pe.fecha_registro,
+    dp.cantidad_producto AS cantidad,
+    dp.precio_producto AS precio_unitario,
+    pe.estado_pedido,
+    cl.nombre_cliente AS nombre,
+    cl.correo_cliente AS correo,
+    cl.direccion_cliente AS direccion
+FROM
+    detalle_pedido dp
+INNER JOIN
+    pedido pe ON dp.id_pedido = pe.id_pedido
+INNER JOIN
+    producto pr ON dp.id_producto = pr.id_producto
+INNER JOIN
+    cliente cl ON pe.id_cliente = cl.id_cliente
+WHERE
+    dp.id_pedido = ?';
+        $params = array($this->id_pedido);
+        return Database::getRows($sql, $params);
+    }
+
     // Método para obtener el nombre del archivo de imagen de un registro.
     public function readFilename()
     {

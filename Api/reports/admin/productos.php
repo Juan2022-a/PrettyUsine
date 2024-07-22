@@ -8,7 +8,7 @@ require_once('../../models/data/categoria_data.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Productos por categoría');
+$pdf->startReport('Productos por categoria');
 // Se instancia el módelo Categoría para obtener los datos.
 $categoria = new CategoriaData;
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
@@ -30,7 +30,7 @@ if ($dataCategorias = $categoria->readAll()) {
     // Se recorren los registros fila por fila.
     foreach ($dataCategorias as $rowCategoria) {
         // Se imprime una celda con el nombre de la categoría.
-        $pdf->cell(0, 10, $pdf->encodeString('Categoría: ' . $rowCategoria['nombre_categoria']), 1, 1, 'C', 1);
+        $pdf->cell(186, 10, $pdf->encodeString('Categoría: ' . $rowCategoria['nombre_categoria']), 1, 1, 'C', 1);
         // Se instancia el módelo Producto para procesar los datos.
         $producto = new ProductoData;
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.

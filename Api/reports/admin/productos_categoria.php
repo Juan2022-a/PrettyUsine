@@ -17,7 +17,7 @@ if (isset($_GET['idCategoria'])) {
         // Se verifica si la categoría existe, de lo contrario se muestra un mensaje.
         if ($rowCategoria = $categoria->readOne()) {
             // Se inicia el reporte con el encabezado del documento.
-            $pdf->startReport('Productos de la categoría ' . $rowCategoria['nombre_categoria']);
+            $pdf->startReport('Productos de la categoria ' . $rowCategoria['nombre_categoria']);
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
             if ($dataProductos = $producto->productosCategoria()) {
                 // Se establece un color de relleno para los encabezados.

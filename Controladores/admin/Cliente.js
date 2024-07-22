@@ -11,13 +11,11 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_CLIENTE = document.getElementById('idCliente'),
-    NOMBRE_CLIENTE = document.getElementById('nombreCliente'),
-    APELLIDO_CLIENTE = document.getElementById('apellidoCliente'),
+    NOMBRE_CLIENTE = document.getElementById('nombreCliente'),    
     CORREO_CLIENTE = document.getElementById('correoCliente'),
     DUI_CLIENTE = document.getElementById('duiCliente'),
     TELEFONO_CLIENTE = document.getElementById('telefonoCliente'),
-    DIRECCION_CLIENTE = document.getElementById('direccionCliente'),
-    NACIMIENTO_CLIENTE = document.getElementById('nacimientoCliente'),
+    DIRECCION_CLIENTE = document.getElementById('direccionCliente'),    
     ESTADO_CLIENTE = document.getElementById('estadoCliente')
 
 
@@ -81,13 +79,11 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
                 <tr>
-                    <td>${row.nombre_cliente}</td>
-                    <td>${row.apellido_cliente}</td>
+                    <td>${row.nombre_cliente}</td>                    
                     <td>${row.dui_cliente}</td>
                     <td>${row.correo_cliente}</td>
                     <td>${row.telefono_cliente}</td>
-                    <td>${row.direccion_cliente}</td>
-                    <td>${row.nacimiento_cliente}</td>
+                    <td>${row.direccion_cliente}</td>                    
                     <td>
                         <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_cliente})">
                             <i class="bi bi-pencil-fill"></i>
@@ -138,13 +134,11 @@ const openUpdate = async (id) => {
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
         ID_CLIENTE.value = ROW.id_cliente;
-        NOMBRE_CLIENTE.value = ROW.nombre_cliente;
-        APELLIDO_CLIENTE.value = ROW.apellido_cliente;
+        NOMBRE_CLIENTE.value = ROW.nombre_cliente;        
         CORREO_CLIENTE.value = ROW.correo_cliente;
         DUI_CLIENTE.value = ROW.dui_cliente;
         TELEFONO_CLIENTE.value = ROW.telefono_cliente;
-        DIRECCION_CLIENTE.value = ROW.direccion_cliente;
-        NACIMIENTO_CLIENTE.value = ROW.nacimiento_cliente;
+        DIRECCION_CLIENTE.value = ROW.direccion_cliente;        
         ESTADO_CLIENTE.value = ROW.estado_cliente;
     } else {
         sweetAlert(2, DATA.error, false);

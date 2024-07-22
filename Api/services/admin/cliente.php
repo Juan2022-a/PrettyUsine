@@ -27,13 +27,11 @@ if (isset($_GET['action'])) {
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$cliente->setNombre($_POST['nombreCliente']) or
-                    !$cliente->setApellido($_POST['apellidoCliente']) or
+                    !$cliente->setNombre($_POST['nombreCliente']) or                    
                     !$cliente->setCorreo($_POST['correoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or
-                    !$cliente->setNacimiento($_POST['nacimientoCliente']) or
+                    !$cliente->setDireccion($_POST['direccionCliente']) or                    
                     !$cliente->setClave($_POST['claveCliente']) or
                     !$cliente->setEstado($_POST['estadoCliente']) 
                 ) {
@@ -66,13 +64,11 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$cliente->setId($_POST['idCliente']) or
-                    !$cliente->setNombre($_POST['nombreCliente']) or
-                    !$cliente->setApellido($_POST['apellidoCliente']) or
+                    !$cliente->setNombre($_POST['nombreCliente']) or                    
                     !$cliente->setCorreo($_POST['correoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or
-                    !$cliente->setNacimiento($_POST['nacimientoCliente']) or
+                    !$cliente->setDireccion($_POST['direccionCliente']) or                    
                     !$cliente->setEstado($_POST['estadoCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();

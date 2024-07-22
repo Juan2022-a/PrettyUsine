@@ -79,7 +79,7 @@ class PedidoHandler
         FROM pedido
         inner JOIN detalle_pedido  using (id_pedido)
         inner join cliente using (id_cliente)
-         inner JOIN producto  using (id_producto)
+        inner JOIN producto  using (id_producto)
         WHERE id_pedido = ?';
         $params = array($this->id_pedido);
         return Database::getRow($sql, $params);

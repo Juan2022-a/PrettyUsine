@@ -39,20 +39,6 @@ class ClienteData extends ClienteHandler
         }
     }
 
-    public function setApellido($value, $min = 2, $max = 50)
-    {
-        if (!Validator::validateAlphanumeric($value)) {
-            $this->data_error = 'El apellido debe ser un valor alfabético';
-            return false;
-        } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->apellido = $value;
-            return true;
-        } else {
-            $this->data_error = 'El apellido debe tener una longitud entre ' . $min . ' y ' . $max;
-            return false;
-        }
-    }
-
     public function setDirec($value, $min = 2, $max = 8000)
     {
         if (!Validator::validateString($value)) {
@@ -108,17 +94,6 @@ class ClienteData extends ClienteHandler
         } else {
             $this->dui = $value;
             return true;
-        }
-    }
-
-    public function setNacimiento($value)
-    {
-        if (Validator::validateDate($value)) {
-            $this->nacimiento = $value;
-            return true;
-        } else {
-            $this->data_error = 'La fecha de nacimiento es incorrecta';
-            return false;
         }
     }
 

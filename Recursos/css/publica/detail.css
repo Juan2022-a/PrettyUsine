@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif ;
-    background-color: #eff0b9 !important;    
+    background-color: #ffffff !important;    
 }
 #mainTitle{
     margin-top: 40px;
@@ -11,6 +11,9 @@ body {
     border-radius: 20px;
 }
 .card {
+    padding-right: 30px !important; 
+    padding-top: 50px;
+    padding: 50px;
     border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

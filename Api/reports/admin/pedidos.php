@@ -11,7 +11,7 @@ class PDF extends FPDF
         
         // Título
         $this->SetFont('Times', 'B', 20); // Cambiado a Times para un estilo más formal
-        $this->Cell(0, 10, utf8_decode ('Factura Electrónica'), 0, 1, 'C');
+        $this->Cell(0, 10, utf8_decode ('Factura de cliente'), 0, 1, 'C');
         $this->Ln(10); // Añadir espacio después del título
 
         // Logo
@@ -116,17 +116,13 @@ if (isset($_GET['id_pedido']) && $pedido->setId($_GET['id_pedido'])) {
         $direccion_cliente = utf8_decode($firstRecord['direccion']);
 
         // Título y datos del cliente
-        $pdf->SetFont('Times', 'B', 16); // Usa una fuente integrada
         $pdf->SetTextColor(0); // Color del texto negro
         $pdf->Cell(0, 10, utf8_decode('Datos del cliente'), 0, 1, 'C');
-        $pdf->SetFont('Times', '', 14); // Usa una fuente integrada
         $pdf->Cell(0, 10, utf8_decode('Nombre: ') . $nombre_cliente, 0, 1, 'L');
         $pdf->Cell(0, 10, 'Correo: ' . $correo_cliente, 0, 1, 'L');
         
         // Dirección con MultiCell para manejo de texto largo
-        $pdf->SetFont('Times', '', 14); // Usa una fuente integrada
         $pdf->Cell(0, 10, utf8_decode('Dirección: '), 0, 1, 'L');
-        $pdf->SetFont('Times', '', 12); // Usa una fuente integrada
         $pdf->MultiCell(0, 10, $direccion_cliente); // Ajusta el ancho y alto según sea necesario
         $pdf->Ln(10);
 

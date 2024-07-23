@@ -1,6 +1,6 @@
 // Constante para completar la ruta de la API.
 const PEDIDO_API = 'services/admin/pedido.php';
-// Constante para establecer el formulario de buscar.F
+// Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer los elementos de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
@@ -44,11 +44,11 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se verifica la acción a realizar.
-    (ID_CLIENTE.value) ? action = 'updateRow' : action = 'createRow';
+    (ID_PEDIDO.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(CLIENTE_API, action, FORM);
+    const DATA = await fetchData(PEDIDO_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
@@ -138,7 +138,6 @@ const openUpdate = async (id) => {
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
         ID_PEDIDO.value = ROW.id_pedido;
-        NOMBRE_PRODUCTO.value = ROW.nombre_producto;
         NOMBRE_CLIENTE.value = ROW.nombre_cliente;
         DIRECCION_CLIENTE.value = ROW.direccion_cliente;
         fillSelect(PEDIDO_API, 'getEstados', 'estadopedido', ROW.estado_pedido);
@@ -146,7 +145,6 @@ const openUpdate = async (id) => {
         sweetAlert(2, DATA.error, false);
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', function () {
     const chartModalElement = document.getElementById('chartModal');
@@ -158,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Función openMonthlySalesChart
         window.openMonthlySalesChart = async function () {
             const FORM = new FormData();
-            const DATA = await fetchData(CATEGORIA_API, 'readVentasPorMes', FORM);
+            const DATA = await fetchData(PEDIDO_API, 'readVentasPorMes', FORM);
             if (DATA.status) {
                 CHART_MODAL.show();
                 let categorias = [];
@@ -214,9 +212,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-
-
-
 
 /*
 *   Función asíncrona para eliminar un registro.

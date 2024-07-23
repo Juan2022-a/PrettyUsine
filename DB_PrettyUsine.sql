@@ -61,6 +61,12 @@ CREATE TABLE `categoria` (
 INSERT INTO `categoria` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`, `imagen_categoria`) VALUES
 (1, 'Carnivoras', 'Las mejores plantas a nivel visual que existe en esta vida', 'default.png');
 
+INSERT INTO `categoria` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`, `imagen_categoria`) VALUES
+(2, 'Interior', 'Las mejores plantas para decorrar el interior de tu hogar', 'default.png');
+
+INSERT INTO `categoria` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`, `imagen_categoria`) VALUES
+(3, 'MultiClima', 'Las mejores plantas para cualquier parte de tu hogar', 'default.png');
+
 -- --------------------------------------------------------
 
 --

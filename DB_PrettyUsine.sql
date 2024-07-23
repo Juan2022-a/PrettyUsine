@@ -61,6 +61,12 @@ CREATE TABLE `categoria` (
 INSERT INTO `categoria` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`, `imagen_categoria`) VALUES
 (1, 'Carnivoras', 'Las mejores plantas a nivel visual que existe en esta vida', 'default.png');
 
+INSERT INTO `categoria` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`, `imagen_categoria`) VALUES
+(2, 'Interior', 'Las mejores plantas para decorrar el interior de tu hogar', 'default.png');
+
+INSERT INTO `categoria` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`, `imagen_categoria`) VALUES
+(3, 'MultiClima', 'Las mejores plantas para cualquier parte de tu hogar', 'default.png');
+
 -- --------------------------------------------------------
 
 --
@@ -318,7 +324,7 @@ CREATE TRIGGER actualizar_existencias
 AFTER UPDATE ON pedido
 FOR EACH ROW
 BEGIN
-    IF NEW.estado_pedido = 'Entregado' THEN
+    IF NEW.estado_pedido = 'Finalizado' THEN
         UPDATE producto p
         INNER JOIN detalle_pedido dp ON p.id_producto = dp.id_producto
         SET p.existencias_producto = p.existencias_producto - dp.cantidad_producto

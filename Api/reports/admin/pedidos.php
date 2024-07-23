@@ -1,5 +1,5 @@
 <?php
-require_once('../../libraries/fpdf185/fpdf.php');
+require_once '../../libraries/fpdf185/fpdf.php';
 
 class PDF extends FPDF
 {
@@ -10,8 +10,8 @@ class PDF extends FPDF
         $this->Rect(5, 5, $this->GetPageWidth() - 10, $this->GetPageHeight() - 10);
         
         // Título
-        $this->SetFont('Times', 'B', 20); // Cambiado a Times para un estilo más formal
-        $this->Cell(0, 10, utf8_decode ('Factura de cliente'), 0, 1, 'C');
+        $this->SetFont('Arial', 'B', 20);
+        $this->Cell(0, 10, utf8_decode('Factura para cliente'), 0, 1, 'C');
         $this->Ln(10); // Añadir espacio después del título
 
         // Logo
@@ -27,7 +27,7 @@ class PDF extends FPDF
     function Footer()
     {
         $this->SetY(-15);
-        $this->SetFont('Times', 'I', 8); // Cambiado a Times para consistencia
+        $this->SetFont('Arial', 'I', 9);
         $this->Cell(0, 10, 'Página ' . $this->PageNo(), 0, 0, 'C');
     }
 
@@ -45,22 +45,22 @@ class PDF extends FPDF
 
         // Encabezado
         $this->SetXY($x, $this->GetY());
-        $this->SetFillColor(0, 153, 153); // Color de fondo para el encabezado
+        $this->SetFillColor(169, 209, 84); // Color de fondo para el encabezado
         $this->SetTextColor(255); // Color del texto blanco
-        $this->SetDrawColor(128, 128, 128); // Color del borde
+        $this->SetDrawColor(0); // Color del borde
         $this->SetLineWidth(.3);
-        $this->SetFont('Arial', '', 12); // Cambiado a Times para un estilo más formal
+        $this->SetFont('Arial', 'B', 12); // Cambiado a Arial para un estilo más formal
         foreach ($header as $i => $col) {
             $this->Cell($w[$i], 10, $col, 1, 0, 'C', true);
         }
         $this->Ln();
 
         // Datos
-        $this->SetFont('Times', '', 10); // Cambiado a Times para un estilo más formal
+        $this->SetFont('Arial', '', 10); // Cambiado a Arial para un estilo más formal
         $fill = false;
         $totalGeneral = 0;
         foreach ($data as $row) {
-            $nombre_producto = $this->encodeString($row['nombre_producto']);
+            $nombre_producto = utf8_decode($row['nombre_producto']);
             $cantidad = $row['cantidad'];
             $precio_unitario = $row['precio_unitario'];
             
@@ -72,10 +72,10 @@ class PDF extends FPDF
             $currentY = $this->GetY();
             $this->SetXY($x, $currentY);
             $this->SetTextColor(0); // Color del texto negro
-            $this->Cell($w[0], 10, $nombre_producto, 'LR', 0, 'L', $fill);
-            $this->Cell($w[1], 10, $cantidad, 'LR', 0, 'C', $fill);
-            $this->Cell($w[2], 10, '$' . number_format($precio_unitario, 2, '.', ','), 'LR', 0, 'R', $fill);
-            $this->Cell($w[3], 10, '$' . number_format($subtotal, 2, '.', ','), 'LR', 0, 'R', $fill);
+            $this->Cell($w[0], 8, $nombre_producto, 'LR', 0, 'L', $fill);
+            $this->Cell($w[1], 8, $cantidad, 'LR', 0, 'C', $fill);
+            $this->Cell($w[2], 8, '$' . number_format($precio_unitario, 2, '.', ','), 'LR', 0, 'R', $fill);
+            $this->Cell($w[3], 8, '$' . number_format($subtotal, 2, '.', ','), 'LR', 0, 'R', $fill);
             $this->Ln();
 
             $fill = !$fill;
@@ -86,15 +86,9 @@ class PDF extends FPDF
 
         // Mostrar total general
         $this->SetXY($x, $this->GetY());
-        $this->SetFont('Times', 'B', 12);
+        $this->SetFont('Arial', 'B', 12);
         $this->Cell($w[0] + $w[1] + $w[2], 10, 'Total', 1, 0, 'C');
         $this->Cell($w[3], 10, '$' . number_format($totalGeneral, 2, '.', ','), 1, 0, 'R');
-    }
-
-    // Codifica caracteres especiales
-    function encodeString($str)
-    {
-        return iconv('UTF-8', 'ISO-8859-1//IGNORE', $str);
     }
 }
 
@@ -103,7 +97,7 @@ $pdf = new PDF();
 $pdf->AddPage();
 
 // Conectar a tu base de datos  
-require_once('../../models/data/pedido_data.php');
+require_once '../../models/data/pedido_data.php';
 
 $pedido = new PedidoData;
 
@@ -117,18 +111,18 @@ if (isset($_GET['id_pedido']) && $pedido->setId($_GET['id_pedido'])) {
 
         // Título y datos del cliente
         $pdf->SetTextColor(0); // Color del texto negro
-        $pdf->Cell(0, 10, utf8_decode('Datos del cliente'), 0, 1, 'C');
-        $pdf->Cell(0, 10, utf8_decode('Nombre: ') . $nombre_cliente, 0, 1, 'L');
-        $pdf->Cell(0, 10, 'Correo: ' . $correo_cliente, 0, 1, 'L');
+        $pdf->Cell(0, 8, utf8_decode('Datos del cliente'), 0, 1, 'C');
+        $pdf->Cell(0, 8, utf8_decode('Nombre: ') . $nombre_cliente, 0, 1, 'L');
+        $pdf->Cell(0, 8, 'Correo: ' . $correo_cliente, 0, 1, 'L');
         
         // Dirección con MultiCell para manejo de texto largo
-        $pdf->Cell(0, 10, utf8_decode('Dirección: '), 0, 1, 'L');
+        $pdf->Cell(0, 8, utf8_decode('Dirección: '), 0, 1, 'L');
         $pdf->MultiCell(0, 10, $direccion_cliente); // Ajusta el ancho y alto según sea necesario
         $pdf->Ln(10);
 
         // Tabla de productos
-        $pdf->SetXY(10, $pdf->GetY() + 10); // Espacio aumentado antes de la tabla
-        $pdf->SetFont('Times', 'B', 12); // Cambiado a Times para un estilo más formal
+        $pdf->SetXY(0, $pdf->GetY() + 0); // Espacio aumentado antes de la tabla
+        $pdf->SetFont('Arial', 'B', 15); // Cambiado a Arial para un estilo más formal
         $header = array('DESCRIPCION', 'CANTIDAD', 'PRECIO', 'SUBTOTAL');
         $pdf->InvoiceTable($header, $dataPedido);
 
@@ -140,3 +134,4 @@ if (isset($_GET['id_pedido']) && $pedido->setId($_GET['id_pedido'])) {
 } else {
     echo 'ID del pedido no válido.';
 }
+?>

@@ -45,6 +45,7 @@ class Report extends FPDF
         $this->Line(20, 45, 200, 45); // Línea horizontal debajo del encabezado
         $this->Ln(10); // Salto de línea después del encabezado
     }
+    
 
     public function Footer()
     {

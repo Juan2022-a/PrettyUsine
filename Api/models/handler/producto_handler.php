@@ -133,4 +133,15 @@ class ProductoHandler
         $params = array($this->categoria);
         return Database::getRows($sql, $params);
     }
+
+    public function readTopProductos()
+    {
+        $sql = 'SELECT nombre_producto, existencias_producto
+                FROM producto
+                ORDER BY existencias_producto DESC
+                LIMIT 5';
+        $params = array();
+        return Database::getRows($sql, $params);
+    }
+    
 }

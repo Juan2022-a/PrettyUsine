@@ -113,6 +113,14 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay datos disponibles';
                 }
                 break;
+            case 'readTopProductos':
+                if ($result['dataset'] = $producto->readTopProductos()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No existen productos en el inventario por el momento';
+                }
+                break;
+
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

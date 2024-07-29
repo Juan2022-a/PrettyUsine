@@ -1,9 +1,9 @@
 <?php
 // Se incluye la clase con las plantillas para generar reportes.
-require_once('../../helpers/report.php');
+require_once ('../../helpers/report.php');
 // Se incluyen las clases para la transferencia y acceso a datos.
-require_once('../../models/data/producto_data.php');
-require_once('../../models/data/categoria_data.php');
+require_once ('../../models/data/producto_data.php');
+require_once ('../../models/data/categoria_data.php');
 
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
@@ -11,6 +11,11 @@ $pdf = new Report;
 $pdf->startReport('Productos por categoria');
 // Se instancia el módelo Categoría para obtener los datos.
 $categoria = new CategoriaData;
+
+// Añadir un margen negro alrededor del reporte
+$pdf->SetFillColor(0, 0, 0); // Color negro
+$pdf->rect(5, 5, 205, 270, ); // Dibuja un rectángulo negro (ajusta la posición y tamaño según sea necesario)
+
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
 if ($dataCategorias = $categoria->readAll()) {
     // Se establece un color de relleno para los encabezados.
@@ -55,5 +60,6 @@ if ($dataCategorias = $categoria->readAll()) {
 } else {
     $pdf->cell(0, 10, $pdf->encodeString('No hay categorías para mostrar'), 1, 1);
 }
+
 // Se llama implícitamente al método footer() y se envía el documento al navegador web.
 $pdf->output('I', 'productos.pdf');

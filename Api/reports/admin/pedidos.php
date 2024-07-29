@@ -8,7 +8,7 @@ class PDF extends FPDF
     {
         // Borde alrededor de la página
         $this->Rect(5, 5, $this->GetPageWidth() - 10, $this->GetPageHeight() - 10);
-        
+
         // Título
         $this->SetFont('Arial', 'B', 20);
         $this->Cell(0, 10, utf8_decode('Factura para cliente'), 0, 1, 'C');
@@ -63,7 +63,7 @@ class PDF extends FPDF
             $nombre_producto = utf8_decode($row['nombre_producto']);
             $cantidad = $row['cantidad'];
             $precio_unitario = $row['precio_unitario'];
-            
+
             // Calcular subtotal por producto
             $subtotal = $cantidad * $precio_unitario;
             $totalGeneral += $subtotal;
@@ -92,14 +92,14 @@ class PDF extends FPDF
     }
 }
 
-// Crear objeto PDF
-$pdf = new PDF();
-$pdf->AddPage();
+        // Crear objeto PDF
+        $pdf = new PDF();
+        $pdf->AddPage();
 
-// Conectar a tu base de datos  
-require_once '../../models/data/pedido_data.php';
+        // Conectar a tu base de datos  
+        require_once '../../models/data/pedido_data.php';
 
-$pedido = new PedidoData;
+        $pedido = new PedidoData;
 
 if (isset($_GET['id_pedido']) && $pedido->setId($_GET['id_pedido'])) {
     if ($dataPedido = $pedido->readDetails()) {
@@ -114,7 +114,7 @@ if (isset($_GET['id_pedido']) && $pedido->setId($_GET['id_pedido'])) {
         $pdf->Cell(0, 8, utf8_decode('Datos del cliente'), 0, 1, 'C');
         $pdf->Cell(0, 8, utf8_decode('Nombre: ') . $nombre_cliente, 0, 1, 'L');
         $pdf->Cell(0, 8, 'Correo: ' . $correo_cliente, 0, 1, 'L');
-        
+
         // Dirección con MultiCell para manejo de texto largo
         $pdf->Cell(0, 8, utf8_decode('Dirección: '), 0, 1, 'L');
         $pdf->MultiCell(0, 10, $direccion_cliente); // Ajusta el ancho y alto según sea necesario

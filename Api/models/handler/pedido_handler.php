@@ -224,8 +224,7 @@ WHERE
     
     public function readVentasPorMes()
 {
-    $sql = 'SELECT 
-                c.id_categoria, 
+    $sql = 'SELECT
                 c.nombre_categoria, 
                 DATE_FORMAT(pe.fecha_registro, \'%Y-%m\') AS mes,
                 SUM(dp.cantidad_producto) AS total_vendido
@@ -238,7 +237,7 @@ WHERE
             INNER JOIN 
                 pedido pe ON dp.id_pedido = pe.id_pedido
             GROUP BY 
-                c.id_categoria, c.nombre_categoria, mes
+                c.nombre_categoria, mes
             ORDER BY 
                 mes DESC, total_vendido DESC';
     $params = array();

@@ -6,11 +6,16 @@ require_once('../../models/data/cliente_data.php');
 
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
+
+// Establece los márgenes: izquierdo, superior, derecho
+$pdf->SetMargins(10, 20, 10); // 10mm en los márgenes izquierdo y derecho, 20mm en el superior
+
 // Se inicia el reporte con el encabezado del documento.
 $pdf->startReport('Clientes');
 
 // Se instancia el modelo ClienteData para obtener los datos de los clientes.
 $clienteData = new ClienteData;
+
 // Se verifica si existen registros de clientes para mostrar.
 if ($dataClientes = $clienteData->readAll()) {
     // Configuración de estilos y encabezados de la tabla

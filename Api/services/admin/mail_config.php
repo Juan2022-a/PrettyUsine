@@ -17,7 +17,7 @@ function sendEmail($to, $subject, $body) {
         $mail->Port = 587; // Puerto SMTP
  
         // Destinatarios
-        $mail->setFrom('prettyusine@gmail.com', 'PrettyUsine$ El Salvador');
+        $mail->setFrom('prettyusine@gmail.com', 'PrettyUsine El Salvador');
         $mail->addAddress($to);
  
         // Contenido del correo

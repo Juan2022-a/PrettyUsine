@@ -161,14 +161,14 @@ if (isset($_GET['action'])) {
             //Metodos para recuperación de contraseña en movil
             case 'solicitarPinRecuperacion':
                 $_POST = Validator::validateForm($_POST);
-                if (!isset($_POST['correo_cliente'])) {
+                if (!isset($_POST['correo'])) {
                     $result['error'] = 'Falta el correo electrónico';
-                } elseif (!$cliente->setCorreo($_POST['correo_cliente'])) {
+                } elseif (!$cliente->setCorreo($_POST['correo'])) {
                     $result['error'] = 'Correo electrónico inválido';
                 } else {
                     // Verificar si el correo existe en la base de datos
                     $checkCorreoSql = 'SELECT COUNT(*) as count, nombre_cliente FROM cliente WHERE correo_cliente = ?';
-                    $checkCorreoParams = array($_POST['correo_cliente']);
+                    $checkCorreoParams = array($_POST['correo']);
                     $checkCorreoResult = Database::getRow($checkCorreoSql, $checkCorreoParams);
 
                     if ($checkCorreoResult['count'] == 0) {
@@ -178,9 +178,9 @@ if (isset($_GET['action'])) {
                         $result['message'] = 'PIN generado con éxito';
 
                         // Enviar correo con el PIN
-                        $email = $_POST['correo_cliente'];
+                        $email = $_POST['correo'];
                         $nombre = $checkCorreoResult['nombre_cliente'];
-                        $subject = "Recuperacion de clave - PrettyUsine$";
+                        $subject = "Recuperacion de clave - PrettyUsine";
                         $body = "
                             <p>Estimado/a {$nombre},</p>
                             <p>Hemos recibido una solicitud para restablecer la contraseña de tu cuenta de PrettyUsine.</p>
@@ -189,7 +189,7 @@ if (isset($_GET['action'])) {
                             <p>Para completar el proceso de recuperación de contraseña, ingresa este PIN en la aplicación.</p>
                             <p>Si tienes alguna pregunta o necesitas ayuda adicional, no dudes en contactarnos.</p>
                             <p>Saludos cordiales,<br>
-                            El equipo de PrettyUsine$</p>
+                            El equipo de PrettyUsine</p>
                         ";
 
                         $emailResult = sendEmail($email, $subject, $body);

@@ -172,4 +172,52 @@ return Database::executeRow($sql, $params);
         $params = array($value, $value);
         return Database::getRow($sql, $params);
     }
+
+    public function generarPinRecuperacion()    
+    {
+        $pin = sprintf("%06d", mt_rand(1, 999999)); // Genera un PIN de 6 dígitos
+        $expiry = date('Y-m-d H:i:s', strtotime('+30 minutes')); // codigo valido por 30 minutos
+ 
+        $sql = "UPDATE cliente SET recovery_pin = ?, pin_expiry = ? WHERE correo_cliente = ?";
+        $params = array($pin, $expiry, $this->correo);
+ 
+        if (Database::executeRow($sql, $params)) {
+            return $pin; // Retorna el PIN para enviarlo al usuario
+        } else {
+            // Manejo de errores
+            error_log("Error al generar el PIN de recuperación para el correo: " . $this->correo);
+        }
+        return false;
+    }
+    public function verificarPinRecuperacion($pin)
+    {
+        $sql = "SELECT id_cliente FROM cliente
+            WHERE correo_cliente = ? AND recovery_pin = ? AND pin_expiry > NOW()";
+        $params = array($this->correo, $pin);
+ 
+        $result = Database::getRow($sql, $params);
+ 
+        if ($result) {
+            return $result['id_cliente'];
+        } else {
+            // Manejo de errores
+            error_log("Error al verificar el PIN de recuperación para el correo: " . $this->correo);
+        }
+        return false;
+    }
+
+    public function resetearPin()
+    {
+        $sql = "UPDATE cliente SET recovery_pin = NULL, pin_expiry = NULL WHERE id_cliente = ?";
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+ 
+    public function cambiarClaveConPin($id_cliente, $nuevaClave)
+    {
+        $sql = 'UPDATE cliente SET clave_cliente = ? WHERE id_cliente = ?';
+        $params = array(password_hash($nuevaClave, PASSWORD_DEFAULT), $id_cliente);
+        return Database::executeRow($sql, $params);
+    }
+
 }

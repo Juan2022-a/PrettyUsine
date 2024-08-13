@@ -31,24 +31,24 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
-                
+
             case 'editProfile':
-                    $_POST = Validator::validateForm($_POST);
-                    if (
-                        !$cliente->setNombre($_POST['nombreCliente']) or
-                        !$cliente->setCorreo($_POST['correoCliente']) or
-                        !$cliente->setDireccion($_POST['direccionCliente']) or
-                        !$cliente->setTelefono($_POST['telefonoCliente']) 
-                    ) {
-                        $result['error'] = $cliente->getDataError();
-                    } elseif ($cliente->editProfile()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Perfil modificado correctamente';
-                        $_SESSION['idCliente'] = $_POST['idCliente'];
-                    } else {
-                        $result['error'] = 'Ocurrió un problema al modificar el perfil';
-                    }
-                    break;
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$cliente->setNombre($_POST['nombreCliente']) or
+                    !$cliente->setCorreo($_POST['correoCliente']) or
+                    !$cliente->setDireccion($_POST['direccionCliente']) or
+                    !$cliente->setTelefono($_POST['telefonoCliente'])
+                ) {
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($cliente->editProfile()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Perfil modificado correctamente';
+                    $_SESSION['idCliente'] = $_POST['idCliente'];
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el perfil';
+                }
+                break;
 
             case 'changePassword':
                 $_POST = Validator::validateForm($_POST);
@@ -74,7 +74,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
-                
+
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
@@ -124,25 +124,25 @@ if (isset($_GET['action'])) {
                 }
                 break;
 
-                case 'signUpMovil':
-                    $_POST = Validator::validateForm($_POST);
-                    if(
+            case 'signUpMovil':
+                $_POST = Validator::validateForm($_POST);
+                if (
                     !$cliente->setNombre($_POST['nombreCliente']) or
                     !$cliente->setCorreo($_POST['correoCliente']) or
-                    !$cliente ->setDirec($_POST['direccionCliente']) or
+                    !$cliente->setDirec($_POST['direccionCliente']) or
                     !$cliente->setDUI($_POST['duiCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
                     !$cliente->setClave($_POST['claveCliente'])
-                                       
-                    ){
-                        $result['error'] = $cliente ->getDataError();
-                    }elseif($cliente ->createUsuario()){
-                        $result['status'] = 1;
-                        $result['message'] = 'Cuenta registrada correctamente';
-                    } else{
-                          $result['error'] = 'Ocurrio un problema al registrar la cuenta';
-                    }
-                    break;
+
+                ) {
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($cliente->createUsuario()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Cuenta registrada correctamente';
+                } else {
+                    $result['error'] = 'Ocurrio un problema al registrar la cuenta';
+                }
+                break;
 
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
@@ -155,9 +155,87 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'La cuenta ha sido desactivada';
                 }
                 break;
-            default:
-                $result['error'] = 'Acción no disponible fuera de la sesión';
+
+
+            //Metodos para recuperación de contraseña en movil
+            case 'solicitarPinRecuperacion':
+                $_POST = Validator::validateForm($_POST);
+                if (!isset($_POST['correo_cliente'])) {
+                    $result['error'] = 'Falta el correo electrónico';
+                } elseif (!$cliente->setCorreo($_POST['correo_cliente'])) {
+                    $result['error'] = 'Correo electrónico inválido';
+                } else {
+                    // Verificar si el correo existe en la base de datos
+                    $checkCorreoSql = 'SELECT COUNT(*) as count, nombre_cliente FROM cliente WHERE correo_cliente = ?';
+                    $checkCorreoParams = array($_POST['correo_cliente']);
+                    $checkCorreoResult = Database::getRow($checkCorreoSql, $checkCorreoParams);
+
+                    if ($checkCorreoResult['count'] == 0) {
+                        $result['error'] = 'No existe una cuenta asociada a este correo electrónico';
+                    } elseif ($pin = $cliente->generarPinRecuperacion()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'PIN generado con éxito';
+
+                        // Enviar correo con el PIN
+                        $email = $_POST['correo_cliente'];
+                        $nombre = $checkCorreoResult['nombre_cliente'];
+                        $subject = "Recuperacion de clave - PrettyUsine$";
+                        $body = "
+                            <p>Estimado/a {$nombre},</p>
+                            <p>Hemos recibido una solicitud para restablecer la contraseña de tu cuenta de PrettyUsine.</p>
+                            <p>Tu PIN de recuperación es: <strong>{$pin}</strong></p>
+                            <p>Este PIN es válido por los próximos 30 minutos. Si no solicitaste este cambio, por favor ignora este mensaje.</p>
+                            <p>Para completar el proceso de recuperación de contraseña, ingresa este PIN en la aplicación.</p>
+                            <p>Si tienes alguna pregunta o necesitas ayuda adicional, no dudes en contactarnos.</p>
+                            <p>Saludos cordiales,<br>
+                            El equipo de PrettyUsine$</p>
+                        ";
+
+                        $emailResult = sendEmail($email, $subject, $body);
+                        if ($emailResult !== true) {
+                            $result['message'] .= ' Sin embargo, no se pudo enviar el correo con el PIN.';
+                        }
+                    } else {
+                        $result['error'] = 'No se pudo generar el PIN';
+                    }
+                }
+                break;
+            case 'verificarPin':
+                if (!isset($_POST['correo']) || !isset($_POST['pin'])) {
+                    $result['error'] = 'Faltan datos necesarios';
+                } elseif (!$cliente->setCorreo($_POST['correo'])) {
+                    $result['error'] = 'Correo electrónico inválido';
+                } else {
+                    $id_cliente = $cliente->verificarPinRecuperacion($_POST['pin']);
+                    if ($id_cliente) {
+                        $result['status'] = 1;
+                        $result['id_cliente'] = $id_cliente;
+                        $result['message'] = 'PIN verificado correctamente';
+                    } else {
+                        $result['error'] = 'PIN inválido o expirado';
+                    }
+                }
+                break;
+            case 'cambiarClaveConPin':
+                $_POST = Validator::validateForm($_POST);
+                if (!isset($_POST['id_cliente']) || !isset($_POST['nuevaClave'])) {
+                    $result['error'] = 'Faltan datos necesarios';
+                } else {
+                    $id_cliente = $_POST['id_cliente'];
+                    $nuevaClave = $_POST['nuevaClave'];
+                    if ($cliente->cambiarClaveConPin($id_cliente, $nuevaClave)) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Contraseña cambiada exitosamente';
+                        $cliente->resetearPin(); // Resetea el PIN para que no se pueda usar nuevamente
+                    } else {
+                        $result['error'] = 'No se pudo cambiar la contraseña';
+                    }
+                }
+                break;
+            default: $result['error'] = 'Acción no disponible fuera de la sesión';
+                
         }
+
     }
     // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
     $result['exception'] = Database::getException();

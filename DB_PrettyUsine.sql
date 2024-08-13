@@ -85,6 +85,8 @@ CREATE TABLE `cliente` (
   `fecha_registro` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+select * from cliente;
+
 -- --------------------------------------------------------
 
 --
@@ -268,6 +270,15 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `tipo_usuario`
   MODIFY `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  
+  
+--
+-- Alter para recuparción de contraseña `cliente`
+--
+ALTER TABLE cliente
+ADD COLUMN recovery_pin VARCHAR(10) NULL,
+ADD COLUMN pin_expiry DATETIME NULL;
+
 
 --
 -- Restricciones para tablas volcadas

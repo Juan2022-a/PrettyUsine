@@ -85,7 +85,6 @@ CREATE TABLE `cliente` (
   `fecha_registro` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-select * from cliente;
 
 -- --------------------------------------------------------
 

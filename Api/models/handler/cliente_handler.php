@@ -38,6 +38,22 @@ class ClienteHandler
         }
     }
 
+    // Dentro de la clase ClienteHandler
+public function checkSession()
+{
+    if (isset($_SESSION['idCliente'])) {
+        $this->id = $_SESSION['idCliente'];
+        $sql = 'SELECT id_cliente, estado_cliente FROM cliente WHERE id_cliente = ?';
+        $params = array($this->id);
+        $data = Database::getRow($sql, $params);
+        if ($data && $data['estado_cliente']) {
+            return $this->id;
+        }
+    }
+    return false;
+}
+
+
     public function checkStatus()
     {
         if ($this->estado) {

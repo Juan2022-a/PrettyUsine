@@ -1,6 +1,11 @@
 <?php
 // Se incluye la clase del modelo.
-require_once ('../../models/data/cliente_data.php');
+require_once('../../models/data/cliente_data.php');
+
+// Habilitar la depuración de errores para encontrar problemas
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -10,6 +15,7 @@ if (isset($_GET['action'])) {
     $cliente = new ClienteData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null);
+
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['idAdministrador'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
@@ -25,22 +31,29 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'createRow':
-                $_POST = Validator::validateForm($_POST);
-                if (
-                    !$cliente->setNombre($_POST['nombreCliente']) or                    
-                    !$cliente->setCorreo($_POST['correoCliente']) or
-                    !$cliente->setDui($_POST['duiCliente']) or
-                    !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or                    
-                    !$cliente->setClave($_POST['claveCliente']) or
-                    !$cliente->setEstado($_POST['estadoCliente']) 
-                ) {
-                    $result['error'] = $cliente->getDataError();
-                } elseif ($cliente->createRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Cliente creado correctamente';
+                // Validar los datos de entrada
+                if (!isset($_POST['nombreCliente']) || !isset($_POST['correoCliente']) || !isset($_POST['duiCliente']) ||
+                    !isset($_POST['telefonoCliente']) || !isset($_POST['direccionCliente']) || !isset($_POST['claveCliente']) ||
+                    !isset($_POST['estadoCliente'])) {
+                    $result['error'] = 'Faltan parámetros necesarios';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al crear el cliente';
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$cliente->setNombre($_POST['nombreCliente']) ||
+                        !$cliente->setCorreo($_POST['correoCliente']) ||
+                        !$cliente->setDui($_POST['duiCliente']) ||
+                        !$cliente->setTelefono($_POST['telefonoCliente']) ||
+                        !$cliente->setDireccion($_POST['direccionCliente']) ||
+                        !$cliente->setClave($_POST['claveCliente']) ||
+                        !$cliente->setEstado($_POST['estadoCliente'])
+                    ) {
+                        $result['error'] = $cliente->getDataError();
+                    } elseif ($cliente->createRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Cliente creado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al crear el cliente';
+                    }
                 }
                 break;
             case 'readAll':
@@ -52,7 +65,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$cliente->setId($_POST['idCliente'])) {
+                if (!isset($_POST['idCliente']) || !$cliente->setId($_POST['idCliente'])) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($result['dataset'] = $cliente->readOne()) {
                     $result['status'] = 1;
@@ -61,26 +74,33 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'updateRow':
-                $_POST = Validator::validateForm($_POST);
-                if (
-                    !$cliente->setId($_POST['idCliente']) or
-                    !$cliente->setNombre($_POST['nombreCliente']) or                    
-                    !$cliente->setCorreo($_POST['correoCliente']) or
-                    !$cliente->setDui($_POST['duiCliente']) or
-                    !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or                    
-                    !$cliente->setEstado($_POST['estadoCliente'])
-                ) {
-                    $result['error'] = $cliente->getDataError();
-                } elseif ($cliente->updateRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Cliente modificado correctamente';
+                // Validar los datos de entrada
+                if (!isset($_POST['idCliente']) || !isset($_POST['nombreCliente']) || !isset($_POST['correoCliente']) ||
+                    !isset($_POST['duiCliente']) || !isset($_POST['telefonoCliente']) || !isset($_POST['direccionCliente']) ||
+                    !isset($_POST['estadoCliente'])) {
+                    $result['error'] = 'Faltan parámetros necesarios';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el cliente';
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$cliente->setId($_POST['idCliente']) ||
+                        !$cliente->setNombre($_POST['nombreCliente']) ||
+                        !$cliente->setCorreo($_POST['correoCliente']) ||
+                        !$cliente->setDui($_POST['duiCliente']) ||
+                        !$cliente->setTelefono($_POST['telefonoCliente']) ||
+                        !$cliente->setDireccion($_POST['direccionCliente']) ||
+                        !$cliente->setEstado($_POST['estadoCliente'])
+                    ) {
+                        $result['error'] = $cliente->getDataError();
+                    } elseif ($cliente->updateRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Cliente modificado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al modificar el cliente';
+                    }
                 }
                 break;
             case 'deleteRow':
-                if (!$cliente->setId($_POST['idCliente'])) {
+                if (!isset($_POST['idCliente']) || !$cliente->setId($_POST['idCliente'])) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->deleteRow()) {
                     $result['status'] = 1;
@@ -97,11 +117,11 @@ if (isset($_GET['action'])) {
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('Content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
-        print (json_encode($result));
+        print(json_encode($result));
     } else {
-        print (json_encode('Acceso denegado'));
+        print(json_encode(['status' => 0, 'error' => 'Acceso denegado']));
     }
 } else {
-    print (json_encode('Recurso no disponible'));
+    print(json_encode(['status' => 0, 'error' => 'Recurso no disponible']));
 }
 ?>

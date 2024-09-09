@@ -5,6 +5,7 @@ const PEDIDO_API = 'services/public/pedido.php';
 const PARAMS = new URLSearchParams(location.search);
 // Constante para establecer el formulario de agregar un producto al carrito de compras.
 const SHOPPING_FORM = document.getElementById('shoppingForm');
+const COMENTARIO_API = 'services/public/comentario.php';
 LISTCOMENTARIO = document.getElementById('listComentario'),
 IDPRODUCTO=document.getElementById('idProducto');
 

@@ -83,4 +83,55 @@ class ValoracionesData extends ValoracionesHandler
     {
         return $this->filename;
     }
+
+    public function setIdDetalle($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->iddetalle = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del detalle es incorrecto';
+            return false;
+        }
+    }
+
+    public function setCantidad($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->cantidad = $value;
+            return true;
+        } else {
+            $this->data_error = 'La cantidad debe ser un número entero válido';
+            return false;
+        }
+    }
+
+    public function deleteDetail()
+    {
+        $sql = 'DELETE FROM detalle WHERE id_detalle = ?';
+        $params = array($this->iddetalle);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function createDetail()
+{
+    // Verificar si todos los datos necesarios están presentes y son válidos
+    if (empty($this->id_producto) || empty($this->cantidad)) {
+        $this->data_error = 'Datos del producto no válidos';
+        return false;
+    }
+
+    // Insertar el detalle del producto en el carrito (o en una tabla relacionada)
+    $sql = 'INSERT INTO detalle_carrito (id_producto, cantidad, id_usuario) VALUES (?, ?, ?)';
+    $params = array($this->id_producto, $this->cantidad, $_SESSION['idUsuario']);
+
+    if (Database::executeRow($sql, $params)) {
+        return true;
+    } else {
+        $this->data_error = 'Error al agregar el producto al carrito';
+        return false;
+    }
+}
+
+
 }

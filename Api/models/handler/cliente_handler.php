@@ -184,8 +184,8 @@ return Database::executeRow($sql, $params);
     {
         $sql = 'SELECT id_cliente
                 FROM cliente
-                WHERE dui_cliente = ? OR correo_cliente = ?';
-        $params = array($value, $value);
+                WHERE correo_cliente = ?';
+        $params = array($value);
         return Database::getRow($sql, $params);
     }
 

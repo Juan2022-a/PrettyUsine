@@ -61,14 +61,28 @@ class ClienteData extends ClienteHandler
         } elseif (!Validator::validateLength($value, $min, $max)) {
             $this->data_error = 'El correo debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
-        }
-        else {
+        } elseif ($this->checkDuplicate($value)) {
+            $this->data_error = 'El correo ingresado ya existe';
+            return false;
+        } else {
             $this->correo = $value;
             return true;
         }
     }
 
-
+    public function setCorreos($value, $min = 8, $max = 100)
+    {
+        if (!Validator::validateEmail($value)) {
+            $this->data_error = 'El correo no es válido';
+            return false;
+        } elseif (!Validator::validateLength($value, $min, $max)) {
+            $this->data_error = 'El correo debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        } else {
+            $this->correo = $value;
+            return true;
+        }
+    }
 
     public function setTelefono($value)
     {
@@ -83,15 +97,36 @@ class ClienteData extends ClienteHandler
 
     public function setDUI($value)
     {
-        if (!Validator::validateDUI($value)) {
-            $this->data_error = 'El DUI debe tener el formato ########-#';
-            return false;
-        } elseif($this->checkDuplicate($value)) {
+        $checkSql = 'SELECT COUNT(*) as count FROM cliente WHERE dui_cliente = ?';
+        $checkParams = array($value);
+        $checkResult = Database::getRow($checkSql, $checkParams);
+
+        if ($checkResult['count'] > 0) {
             $this->data_error = 'El DUI ingresado ya existe';
             return false;
-        } else {
+        }
+
+        if (Validator::validateDUI($value)) {
             $this->dui = $value;
             return true;
+        } else {
+            $this->data_error = 'El DUI debe tener el formato ########-#';
+            return false;
+        }
+    }
+
+    public function setDUIS($value)
+    {
+        $checkSql = 'SELECT COUNT(*) as count FROM cliente WHERE dui_cliente = ?';
+        $checkParams = array($value);
+        $checkResult = Database::getRow($checkSql, $checkParams);
+
+        if (Validator::validateDUI($value)) {
+            $this->dui = $value;
+            return true;
+        } else {
+            $this->data_error = 'El DUI debe tener el formato ########-#';
+            return false;
         }
     }
 

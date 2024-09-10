@@ -84,8 +84,8 @@ if (isset($_GET['action'])) {
                     if (
                         !$cliente->setId($_POST['idCliente']) ||
                         !$cliente->setNombre($_POST['nombreCliente']) ||
-                        !$cliente->setCorreo($_POST['correoCliente']) ||
-                        !$cliente->setDui($_POST['duiCliente']) ||
+                        !$cliente->setCorreos($_POST['correoCliente']) ||
+                        !$cliente->setDuiS($_POST['duiCliente']) ||
                         !$cliente->setTelefono($_POST['telefonoCliente']) ||
                         !$cliente->setDireccion($_POST['direccionCliente']) ||
                         !$cliente->setEstado($_POST['estadoCliente'])

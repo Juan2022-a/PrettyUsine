@@ -35,9 +35,9 @@ CREATE TABLE `administrador` (
   `id_administrador` int(10) UNSIGNED NOT NULL,
   `nombre_administrador` varchar(50) NOT NULL,
   `apellido_administrador` varchar(50) NOT NULL,
-  `correo_administrador` varchar(25) NOT NULL,
+  `correo_administrador` varchar(250) NOT NULL,
   `alias_administrador` varchar(25) NOT NULL,
-  `clave_administrador` varchar(100) NOT NULL,
+  `clave_administrador` varchar(10) NOT NULL,
   `fecha_registro` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
